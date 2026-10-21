@@ -1,0 +1,1411 @@
+{
+  "custom": {
+    "pv": null,
+    "eu": null,
+    "desc": null,
+    "sdesc": null,
+    "tag": null,
+    "min": null,
+    "max": null,
+    "iLo": null,
+    "iHi": null,
+    "q": null,
+    "ll": null,
+    "llEn": null,
+    "llA": null,
+    "llU": null,
+    "llP": null,
+    "l": null,
+    "lEn": null,
+    "lA": null,
+    "lU": null,
+    "lP": null,
+    "h": null,
+    "hEn": null,
+    "hA": null,
+    "hU": null,
+    "hP": null,
+    "hh": null,
+    "hhEn": null,
+    "hhA": null,
+    "hhU": null,
+    "hhP": null,
+    "good": null,
+    "span": null,
+    "p": null,
+    "pLL": null,
+    "pL": null,
+    "pH": null,
+    "pHH": null,
+    "pIL": null,
+    "pIH": null,
+    "lvl": null,
+    "almUnack": null,
+    "almPri": null,
+    "pri": null,
+    "almCls": null,
+    "ptrColor": null,
+    "valCls": null,
+    "valText": null,
+    "chipVis": null,
+    "chipCls": null,
+    "zLL": null,
+    "zL": null,
+    "zW1": null,
+    "zI": null,
+    "zW2": null,
+    "zH": null,
+    "zHH": null,
+    "cLL": null,
+    "cL": null,
+    "cH": null,
+    "cHH": null
+  },
+  "params": {
+    "TagPath": "[default]KPI/KPI_101",
+    "LabelMode": "Both",
+    "ShowMinMax": true,
+    "Format": "#,##0.0"
+  },
+  "propConfig": {
+    "custom.pv": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Val_PV",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.eu": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Cfg_EU",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.desc": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Cfg_Desc",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.sdesc": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Cfg_ShortDesc",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.tag": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Cfg_Tag",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.min": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Cfg_EUMin",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.max": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Cfg_EUMax",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.iLo": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Cfg_IdealLo",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.iHi": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Cfg_IdealHi",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.q": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Sts_Quality",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.ll": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_LL/Cfg_Lim",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.llEn": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_LL/Cfg_En",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.llA": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_LL/Sts_Active",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.llU": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_LL/Sts_Unack",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.llP": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_LL/Cfg_Priority",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.l": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_L/Cfg_Lim",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.lEn": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_L/Cfg_En",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.lA": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_L/Sts_Active",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.lU": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_L/Sts_Unack",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.lP": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_L/Cfg_Priority",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.h": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_H/Cfg_Lim",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.hEn": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_H/Cfg_En",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.hA": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_H/Sts_Active",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.hU": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_H/Sts_Unack",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.hP": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_H/Cfg_Priority",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.hh": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_HH/Cfg_Lim",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.hhEn": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_HH/Cfg_En",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.hhA": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_HH/Sts_Active",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.hhU": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_HH/Sts_Unack",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.hhP": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{1}/Alm_HH/Cfg_Priority",
+          "references": {
+            "1": "{view.params.TagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.good": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "{view.custom.q} != 2"
+        }
+      }
+    },
+    "custom.span": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max({view.custom.max} - {view.custom.min}, 0.000001)"
+        }
+      }
+    },
+    "custom.p": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "min(max(({view.custom.pv} - {view.custom.min}) / {view.custom.span}, 0), 1) * 100"
+        }
+      }
+    },
+    "custom.pLL": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "min(max(({view.custom.ll} - {view.custom.min}) / {view.custom.span}, 0), 1) * 100"
+        }
+      }
+    },
+    "custom.pL": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "min(max(({view.custom.l} - {view.custom.min}) / {view.custom.span}, 0), 1) * 100"
+        }
+      }
+    },
+    "custom.pH": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "min(max(({view.custom.h} - {view.custom.min}) / {view.custom.span}, 0), 1) * 100"
+        }
+      }
+    },
+    "custom.pHH": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "min(max(({view.custom.hh} - {view.custom.min}) / {view.custom.span}, 0), 1) * 100"
+        }
+      }
+    },
+    "custom.pIL": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.iLo} < {view.custom.iHi}, min(max(({view.custom.iLo} - {view.custom.min}) / {view.custom.span}, 0), 1) * 100, {view.custom.pL})"
+        }
+      }
+    },
+    "custom.pIH": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.iLo} < {view.custom.iHi}, min(max(({view.custom.iHi} - {view.custom.min}) / {view.custom.span}, 0), 1) * 100, {view.custom.pL})"
+        }
+      }
+    },
+    "custom.lvl": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.hhA}, 'HH', if({view.custom.llA}, 'LL', if({view.custom.hA}, 'H', if({view.custom.lA}, 'L', ''))))"
+        }
+      }
+    },
+    "custom.almUnack": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "case({view.custom.lvl}, 'HH', {view.custom.hhU}, 'LL', {view.custom.llU}, 'H', {view.custom.hU}, 'L', {view.custom.lU}, false)"
+        }
+      }
+    },
+    "custom.almPri": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "case({view.custom.lvl}, 'HH', {view.custom.hhP}, 'LL', {view.custom.llP}, 'H', {view.custom.hP}, 'L', {view.custom.lP}, 3)"
+        }
+      }
+    },
+    "custom.pri": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "case(toInt({view.custom.almPri}), 1, 'Critical', 2, 'High', 3, 'Medium', 4, 'Low', 'Medium')"
+        }
+      }
+    },
+    "custom.almCls": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.lvl} = '', '', 'Alarm/' + {view.custom.pri} + if({view.custom.almUnack}, '/Unacked', '/Fill'))"
+        }
+      }
+    },
+    "custom.ptrColor": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.lvl} = '', '#1F1F1F', case({view.custom.pri}, 'Critical', '#D50000', 'High', '#FF7A00', 'Medium', '#FFD200', 'Low', '#00A3E0', '#6E6E6E'))"
+        }
+      }
+    },
+    "custom.valCls": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "'Indicator/Analog/ValueBox' + if(!{view.custom.good}, ' Value/BadQuality', if({view.custom.lvl} != '', ' Alarm/' + {view.custom.pri} + '/Outline', if({view.custom.q} = 1, ' Value/Simulated', '')))"
+        }
+      }
+    },
+    "custom.valText": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "numberFormat({view.custom.pv}, {view.params.Format})"
+        }
+      }
+    },
+    "custom.chipVis": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "!{view.custom.good} || {view.custom.lvl} != ''"
+        }
+      }
+    },
+    "custom.chipCls": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "'Indicator/Analog/Chip ' + if(!{view.custom.good}, 'Indicator/Analog/ChipBad', {view.custom.almCls})"
+        }
+      }
+    },
+    "custom.zLL": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max({view.custom.pLL}, 0) + '%'"
+        }
+      }
+    },
+    "custom.zL": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max({view.custom.pL} - {view.custom.pLL}, 0) + '%'"
+        }
+      }
+    },
+    "custom.zW1": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max({view.custom.pIL} - {view.custom.pL}, 0) + '%'"
+        }
+      }
+    },
+    "custom.zI": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max({view.custom.pIH} - {view.custom.pIL}, 0) + '%'"
+        }
+      }
+    },
+    "custom.zW2": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max({view.custom.pH} - {view.custom.pIH}, 0) + '%'"
+        }
+      }
+    },
+    "custom.zH": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max({view.custom.pHH} - {view.custom.pH}, 0) + '%'"
+        }
+      }
+    },
+    "custom.zHH": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max(100 - {view.custom.pHH}, 0) + '%'"
+        }
+      }
+    },
+    "custom.cLL": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.lvl} = 'LL', {view.custom.almCls}, if({view.custom.llEn}, 'Indicator/Analog/ZoneLL', if({view.custom.lEn}, 'Indicator/Analog/ZoneL', 'Indicator/Analog/ZoneNormal')))"
+        }
+      }
+    },
+    "custom.cL": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.lvl} = 'L', {view.custom.almCls}, if({view.custom.lEn}, 'Indicator/Analog/ZoneL', 'Indicator/Analog/ZoneNormal'))"
+        }
+      }
+    },
+    "custom.cH": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.lvl} = 'H', {view.custom.almCls}, if({view.custom.hEn}, 'Indicator/Analog/ZoneL', 'Indicator/Analog/ZoneNormal'))"
+        }
+      }
+    },
+    "custom.cHH": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.lvl} = 'HH', {view.custom.almCls}, if({view.custom.hhEn}, 'Indicator/Analog/ZoneLL', if({view.custom.hEn}, 'Indicator/Analog/ZoneL', 'Indicator/Analog/ZoneNormal')))"
+        }
+      }
+    },
+    "params.TagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.LabelMode": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.ShowMinMax": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Format": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 256,
+      "height": 120
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "shrink": 0,
+      "grow": 0
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Indicator/Analog/Card",
+        "gap": "0.556vh"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "shrink": 0,
+          "grow": 0
+        },
+        "props": {
+          "direction": "row",
+          "style": {
+            "classes": ""
+          },
+          "justify": "space-between",
+          "alignItems": "flex-start"
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "shrink": 1,
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "classes": ""
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Tag"
+                },
+                "position": {
+                  "shrink": 0,
+                  "grow": 0
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Text/TagName"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.tag}"
+                      }
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.params.LabelMode} != 'Desc'"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Desc"
+                },
+                "position": {
+                  "shrink": 0,
+                  "grow": 0
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Indicator/Analog/Desc"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.desc}"
+                      }
+                    }
+                  },
+                  "props.style.classes": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if({view.params.LabelMode} = 'Desc', 'Indicator/Analog/DescTitle', 'Indicator/Analog/Desc')"
+                      }
+                    }
+                  },
+                  "position.display": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.params.LabelMode} != 'Tag'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "ValueRow"
+            },
+            "position": {
+              "shrink": 0,
+              "grow": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "classes": "",
+                "gap": "0.278vh"
+              },
+              "alignItems": "baseline"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "shrink": 0,
+                  "grow": 0
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Indicator/Analog/ValueBox"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.valText}"
+                      }
+                    }
+                  },
+                  "props.style.classes": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.valCls} + ' Text/Size/XL'"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Units"
+                },
+                "position": {
+                  "shrink": 0,
+                  "grow": 0
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Text/Units"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.eu}"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "PointerRow"
+        },
+        "position": {
+          "shrink": 0,
+          "grow": 0,
+          "basis": "1.019vh"
+        },
+        "props": {
+          "direction": "row",
+          "style": {
+            "classes": ""
+          }
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "PtrOffset"
+            },
+            "position": {
+              "basis": "0px",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": ""
+              }
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.p} + '%'"
+                  }
+                }
+              }
+            },
+            "children": []
+          },
+          {
+            "type": "ia.shapes.svg",
+            "version": 0,
+            "meta": {
+              "name": "Pointer"
+            },
+            "position": {
+              "basis": "1.296vh",
+              "shrink": 0,
+              "grow": 0
+            },
+            "props": {
+              "viewBox": "0 0 14 11",
+              "elements": [
+                {
+                  "type": "polygon",
+                  "name": "ptr",
+                  "points": "1,1 13,1 7,10",
+                  "fill": {
+                    "paint": "#1F1F1F"
+                  },
+                  "stroke": {
+                    "paint": "#1F1F1F",
+                    "width": 1,
+                    "linejoin": "round"
+                  }
+                }
+              ],
+              "style": {
+                "classes": "",
+                "marginLeft": "-0.648vh"
+              }
+            },
+            "propConfig": {
+              "props.elements[0].fill.paint": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.ptrColor}"
+                  }
+                }
+              },
+              "meta.visible": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.good}"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Track"
+        },
+        "position": {
+          "shrink": 0,
+          "grow": 0,
+          "basis": "0.926vh"
+        },
+        "props": {
+          "direction": "row",
+          "style": {
+            "classes": "Indicator/Analog/Track"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "ZoneLL"
+            },
+            "position": {
+              "basis": "0%",
+              "shrink": 0,
+              "grow": 0
+            },
+            "props": {
+              "style": {
+                "classes": ""
+              }
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.zLL}"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.cLL}"
+                  }
+                }
+              }
+            },
+            "children": []
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "ZoneL"
+            },
+            "position": {
+              "basis": "0%",
+              "shrink": 0,
+              "grow": 0
+            },
+            "props": {
+              "style": {
+                "classes": ""
+              }
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.zL}"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.cL}"
+                  }
+                }
+              }
+            },
+            "children": []
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "ZoneW1"
+            },
+            "position": {
+              "basis": "0%",
+              "shrink": 0,
+              "grow": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Indicator/Analog/ZoneNormal"
+              }
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.zW1}"
+                  }
+                }
+              }
+            },
+            "children": []
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "ZoneI"
+            },
+            "position": {
+              "basis": "0%",
+              "shrink": 0,
+              "grow": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Indicator/Analog/ZoneIdeal"
+              }
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.zI}"
+                  }
+                }
+              }
+            },
+            "children": []
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "ZoneW2"
+            },
+            "position": {
+              "basis": "0%",
+              "shrink": 0,
+              "grow": 0
+            },
+            "props": {
+              "style": {
+                "classes": "Indicator/Analog/ZoneNormal"
+              }
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.zW2}"
+                  }
+                }
+              }
+            },
+            "children": []
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "ZoneH"
+            },
+            "position": {
+              "basis": "0%",
+              "shrink": 0,
+              "grow": 0
+            },
+            "props": {
+              "style": {
+                "classes": ""
+              }
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.zH}"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.cH}"
+                  }
+                }
+              }
+            },
+            "children": []
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "ZoneHH"
+            },
+            "position": {
+              "basis": "0%",
+              "shrink": 0,
+              "grow": 0
+            },
+            "props": {
+              "style": {
+                "classes": ""
+              }
+            },
+            "propConfig": {
+              "position.basis": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.zHH}"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.cHH}"
+                  }
+                }
+              }
+            },
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Footer"
+        },
+        "position": {
+          "shrink": 0,
+          "grow": 0,
+          "basis": "1.481vh"
+        },
+        "props": {
+          "direction": "row",
+          "style": {
+            "classes": ""
+          },
+          "alignItems": "center"
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Min"
+            },
+            "position": {
+              "shrink": 0,
+              "grow": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Indicator/Analog/Scale"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if({view.params.ShowMinMax}, numberFormat({view.custom.min}, '#,##0.##'), '')"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Chip"
+            },
+            "position": {
+              "shrink": 0,
+              "grow": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Indicator/Analog/Chip"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(!{view.custom.good}, 'BAD Q', case({view.custom.lvl}, 'HH', 'HIHI', 'H', 'HI', 'L', 'LO', 'LL', 'LOLO', ''))"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.chipCls}"
+                  }
+                }
+              },
+              "position.display": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.custom.chipVis}"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Max"
+            },
+            "position": {
+              "shrink": 0,
+              "grow": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Indicator/Analog/Scale Text/Mod/Right"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if({view.params.ShowMinMax}, numberFormat({view.custom.max}, '#,##0.##'), '')"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

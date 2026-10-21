@@ -1,0 +1,13 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "0.926vh",
+      "lineHeight": "1.111vh",
+      "color": "#4D4D4D",
+      "fontVariantNumeric": "tabular-nums",
+      "whiteSpace": "nowrap",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif"
+    }
+  },
+  "variants": []
+}

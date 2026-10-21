@@ -1,0 +1,472 @@
+{
+  "name": "PCLib",
+  "tagType": "Folder",
+  "tags": [
+    {
+      "name": "T_KPI",
+      "tagType": "UdtType",
+      "documentation": "Calculated value / KPI: display range, ideal band, limit alarms, sim (EFC analog indicator templates)",
+      "parameters": {
+        "OPCServer": {
+          "dataType": "String",
+          "value": ""
+        },
+        "PathPrefix": {
+          "dataType": "String",
+          "value": ""
+        },
+        "BaseTag": {
+          "dataType": "String",
+          "value": ""
+        }
+      },
+      "tags": [
+        {
+          "name": "Cfg_Tag",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Cfg_Tag"
+          },
+          "documentation": "Equipment / instrument tag, e.g. FT-101",
+          "tooltip": "Equipment / instrument tag, e.g. FT-101",
+          "dataType": "String"
+        },
+        {
+          "name": "Cfg_Desc",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Cfg_Desc"
+          },
+          "documentation": "Description shown on HMI faceplate",
+          "tooltip": "Description shown on HMI faceplate",
+          "dataType": "String"
+        },
+        {
+          "name": "Cfg_ShortDesc",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Cfg_ShortDesc"
+          },
+          "documentation": "Short description for compact HMI headers (max 11 chars)",
+          "tooltip": "Short description for compact HMI headers (max 11 chars)",
+          "dataType": "String"
+        },
+        {
+          "name": "Cfg_EU",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Cfg_EU"
+          },
+          "documentation": "Engineering units text",
+          "tooltip": "Engineering units text",
+          "dataType": "String"
+        },
+        {
+          "name": "Inp_Value",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Inp_Value"
+          },
+          "documentation": "KPI value from calculation / owner logic (EU)",
+          "tooltip": "KPI value from calculation / owner logic (EU)",
+          "dataType": "Float4",
+          "readOnly": true
+        },
+        {
+          "name": "Inp_Bad",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Inp_Bad"
+          },
+          "documentation": "Source data bad (an input to the calculation is bad)",
+          "tooltip": "Source data bad (an input to the calculation is bad)",
+          "dataType": "Boolean",
+          "readOnly": true
+        },
+        {
+          "name": "Cfg_EUMin",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Cfg_EUMin"
+          },
+          "documentation": "Display range low (EU)",
+          "tooltip": "Display range low (EU)",
+          "dataType": "Float4"
+        },
+        {
+          "name": "Cfg_EUMax",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Cfg_EUMax"
+          },
+          "documentation": "Display range high (EU)",
+          "tooltip": "Display range high (EU)",
+          "dataType": "Float4"
+        },
+        {
+          "name": "Cfg_IdealLo",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Cfg_IdealLo"
+          },
+          "documentation": "Ideal band low (EU), blue zone on HMI. Band off if Cfg_IdealLo >= Cfg_IdealHi",
+          "tooltip": "Ideal band low (EU), blue zone on HMI. Band off if Cfg_IdealLo >= Cfg_IdealHi",
+          "dataType": "Float4"
+        },
+        {
+          "name": "Cfg_IdealHi",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Cfg_IdealHi"
+          },
+          "documentation": "Ideal band high (EU)",
+          "tooltip": "Ideal band high (EU)",
+          "dataType": "Float4"
+        },
+        {
+          "name": "Cfg_FiltTC",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Cfg_FiltTC"
+          },
+          "documentation": "1st-order filter time constant (s), 0 = off",
+          "tooltip": "1st-order filter time constant (s), 0 = off",
+          "dataType": "Float4"
+        },
+        {
+          "name": "Sim_En",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Sim_En"
+          },
+          "documentation": "Simulation enabled",
+          "tooltip": "Simulation enabled",
+          "dataType": "Boolean"
+        },
+        {
+          "name": "Sim_Value",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Sim_Value"
+          },
+          "documentation": "Simulated value (EU)",
+          "tooltip": "Simulated value (EU)",
+          "dataType": "Float4"
+        },
+        {
+          "name": "Val_PV",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Val_PV"
+          },
+          "documentation": "KPI value (EU) after filter / simulation - use this in logic and HMI",
+          "tooltip": "KPI value (EU) after filter / simulation - use this in logic and HMI",
+          "dataType": "Float4",
+          "readOnly": true
+        },
+        {
+          "name": "Val_PVPct",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Val_PVPct"
+          },
+          "documentation": "KPI value (% of display range)",
+          "tooltip": "KPI value (% of display range)",
+          "dataType": "Float4",
+          "readOnly": true
+        },
+        {
+          "name": "Sts_Bad",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Sts_Bad"
+          },
+          "documentation": "Value bad (Inp_Bad and not simulated)",
+          "tooltip": "Value bad (Inp_Bad and not simulated)",
+          "dataType": "Boolean",
+          "readOnly": true
+        },
+        {
+          "name": "Sts_Sim",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Sts_Sim"
+          },
+          "documentation": "Simulation active",
+          "tooltip": "Simulation active",
+          "dataType": "Boolean",
+          "readOnly": true
+        },
+        {
+          "name": "Sts_Quality",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Sts_Quality"
+          },
+          "documentation": "0=Good 1=Uncertain (simulation) 2=Bad",
+          "tooltip": "0=Good 1=Uncertain (simulation) 2=Bad",
+          "dataType": "Int2",
+          "readOnly": true
+        },
+        {
+          "name": "Sts_InIdeal",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Sts_InIdeal"
+          },
+          "documentation": "Value inside the ideal band",
+          "tooltip": "Value inside the ideal band",
+          "dataType": "Boolean",
+          "readOnly": true
+        },
+        {
+          "name": "Sts_Zone",
+          "tagType": "AtomicTag",
+          "valueSource": "opc",
+          "opcServer": {
+            "bindType": "parameter",
+            "binding": "{OPCServer}"
+          },
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "{PathPrefix}{BaseTag}.Sts_Zone"
+          },
+          "documentation": "-3=LL -2=L -1=Below ideal 0=Ideal or normal 1=Above ideal 2=H 3=HH",
+          "tooltip": "-3=LL -2=L -1=Below ideal 0=Ideal or normal 1=Above ideal 2=H 3=HH",
+          "dataType": "Int2",
+          "readOnly": true
+        },
+        {
+          "name": "Alm_HH",
+          "tagType": "UdtInstance",
+          "typeId": "PCLib/T_AlmLim",
+          "documentation": "High-high alarm",
+          "parameters": {
+            "OPCServer": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{OPCServer}"
+              }
+            },
+            "PathPrefix": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{PathPrefix}"
+              }
+            },
+            "BaseTag": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{BaseTag}.Alm_HH"
+              }
+            }
+          }
+        },
+        {
+          "name": "Alm_H",
+          "tagType": "UdtInstance",
+          "typeId": "PCLib/T_AlmLim",
+          "documentation": "High alarm",
+          "parameters": {
+            "OPCServer": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{OPCServer}"
+              }
+            },
+            "PathPrefix": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{PathPrefix}"
+              }
+            },
+            "BaseTag": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{BaseTag}.Alm_H"
+              }
+            }
+          }
+        },
+        {
+          "name": "Alm_L",
+          "tagType": "UdtInstance",
+          "typeId": "PCLib/T_AlmLim",
+          "documentation": "Low alarm",
+          "parameters": {
+            "OPCServer": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{OPCServer}"
+              }
+            },
+            "PathPrefix": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{PathPrefix}"
+              }
+            },
+            "BaseTag": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{BaseTag}.Alm_L"
+              }
+            }
+          }
+        },
+        {
+          "name": "Alm_LL",
+          "tagType": "UdtInstance",
+          "typeId": "PCLib/T_AlmLim",
+          "documentation": "Low-low alarm",
+          "parameters": {
+            "OPCServer": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{OPCServer}"
+              }
+            },
+            "PathPrefix": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{PathPrefix}"
+              }
+            },
+            "BaseTag": {
+              "dataType": "String",
+              "value": {
+                "bindType": "parameter",
+                "binding": "{BaseTag}.Alm_LL"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "0.926vh",
+      "fontWeight": "700",
+      "letterSpacing": "0.02em",
+      "color": "#1F1F1F",
+      "whiteSpace": "nowrap",
+      "overflow": "hidden",
+      "textOverflow": "ellipsis",
+      "textAlign": "center",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif"
+    }
+  },
+  "variants": []
+}

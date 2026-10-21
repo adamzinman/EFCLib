@@ -1,0 +1,17 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "0.926vh",
+      "fontWeight": "700",
+      "letterSpacing": "0.05em",
+      "padding": "0 0.648vh",
+      "borderRadius": "0.833vh",
+      "lineHeight": "1.296vh",
+      "border": "1px solid rgba(0,0,0,0.25)",
+      "color": "#1F1F1F",
+      "whiteSpace": "nowrap",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif"
+    }
+  },
+  "variants": []
+}

@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#EDEDED",
+      "color": "#B000B0",
+      "border": "1px dashed #B000B0"
+    }
+  },
+  "variants": []
+}

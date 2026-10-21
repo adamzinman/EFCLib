@@ -1,0 +1,38 @@
+\subsubsection*{T\_KPI}
+\label{app:pclib:tkpi}
+Calculated value / KPI: display range, ideal band, limit alarms, sim (EFC analog indicator templates).
+
+{\small\textbf{ISA-88 role:} Control module (calculated value) \quad \textbf{MTP:} AnaMon \quad \textbf{Standards:} ISA-88 /\allowbreak{} IEC 61512-1, ISA-18.2 /\allowbreak{} IEC 62682, ISA-101.01, VDI/\allowbreak{}VDE/\allowbreak{}NAMUR 2658-4 (MTP)}
+{\footnotesize
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{3.4cm}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{1.3cm}>{\raggedright\arraybackslash}p{6.4cm}@{}}
+\toprule
+\rowcolor{tblhead}\textbf{Member} & \textbf{Type} & \textbf{Init} & \textbf{Description} \\
+\midrule
+\endhead
+\texttt{Cfg\_Tag} & \texttt{STRING[20]} &  & Equipment /\allowbreak{} instrument tag, e.g. FT-101 \\
+\texttt{Cfg\_Desc} & \texttt{STRING[40]} &  & Description shown on HMI faceplate \\
+\texttt{Cfg\_ShortDesc} & \texttt{STRING[12]} &  & Short description for compact HMI headers (max 11 chars) \\
+\texttt{Cfg\_EU} & \texttt{STRING[12]} &  & Engineering units text \\
+\texttt{Inp\_Value} & \texttt{REAL} &  & KPI value from calculation /\allowbreak{} owner logic (EU) \\
+\texttt{Inp\_Bad} & \texttt{BOOL} &  & Source data bad (an input to the calculation is bad) \\
+\texttt{Cfg\_EUMin} & \texttt{REAL} & \texttt{0.0} & Display range low (EU) \\
+\texttt{Cfg\_EUMax} & \texttt{REAL} & \texttt{100.0} & Display range high (EU) \\
+\texttt{Cfg\_IdealLo} & \texttt{REAL} & \texttt{0.0} & Ideal band low (EU), blue zone on HMI. Band off if Cfg\_IdealLo $\\geq$ Cfg\_IdealHi \\
+\texttt{Cfg\_IdealHi} & \texttt{REAL} & \texttt{0.0} & Ideal band high (EU) \\
+\texttt{Cfg\_FiltTC} & \texttt{REAL} & \texttt{0.0} & 1st-order filter time constant (s), 0 = off \\
+\texttt{Sim\_En} & \texttt{BOOL} &  & Simulation enabled \\
+\texttt{Sim\_Value} & \texttt{REAL} & \texttt{0.0} & Simulated value (EU) \\
+\texttt{Val\_PV} & \texttt{REAL} &  & KPI value (EU) after filter /\allowbreak{} simulation - use this in logic and HMI \\
+\texttt{Val\_PVPct} & \texttt{REAL} &  & KPI value (\% of display range) \\
+\texttt{Sts\_Bad} & \texttt{BOOL} &  & Value bad (Inp\_Bad and not simulated) \\
+\texttt{Sts\_Sim} & \texttt{BOOL} &  & Simulation active \\
+\texttt{Sts\_Quality} & \texttt{INT} &  & 0=Good 1=Uncertain (simulation) 2=Bad \\
+\texttt{Sts\_InIdeal} & \texttt{BOOL} &  & Value inside the ideal band \\
+\texttt{Sts\_Zone} & \texttt{INT} &  & -3=LL -2=L -1=Below ideal 0=Ideal or normal 1=Above ideal 2=H 3=HH \\
+\texttt{Alm\_HH} & \texttt{T\_AlmLim} &  & High-high alarm \\
+\texttt{Alm\_H} & \texttt{T\_AlmLim} &  & High alarm \\
+\texttt{Alm\_L} & \texttt{T\_AlmLim} &  & Low alarm \\
+\texttt{Alm\_LL} & \texttt{T\_AlmLim} &  & Low-low alarm \\
+\bottomrule
+\end{longtable}
+}
