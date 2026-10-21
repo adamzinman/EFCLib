@@ -1,7 +1,0 @@
-{
-  "title": "EFC_StationFaceplates",
-  "description": "EFC Station (scale / fill) faceplates: sidebar, fill, tile",
-  "parent": "EFC_Styles",
-  "enabled": true,
-  "inheritable": true
-}

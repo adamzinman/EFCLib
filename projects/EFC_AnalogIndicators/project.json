@@ -1,7 +1,0 @@
-{
-  "title": "EFC_AnalogIndicators",
-  "description": "Analog indicator templates A-D + Indicator/Analog style classes. Merge into EFC_Styles / EFC_ProcessValues via Designer File > Import.",
-  "parent": "EFC_Styles",
-  "enabled": true,
-  "inheritable": true
-}

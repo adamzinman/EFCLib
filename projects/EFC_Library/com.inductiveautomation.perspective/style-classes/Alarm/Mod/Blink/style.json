@@ -1,8 +1,0 @@
-{
-  "base": {
-    "style": {
-      "animation": "efc-blink 1s steps(1, end) infinite"
-    }
-  },
-  "variants": []
-}

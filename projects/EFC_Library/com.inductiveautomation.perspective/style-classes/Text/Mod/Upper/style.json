@@ -1,9 +1,0 @@
-{
-  "base": {
-    "style": {
-      "textTransform": "uppercase",
-      "letterSpacing": "0.03em"
-    }
-  },
-  "variants": []
-}

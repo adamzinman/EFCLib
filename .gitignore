@@ -1,8 +1,0 @@
-# build outputs (regenerate with: python3 build.py --dist)
-build/
-dist/
-*.zip
-__pycache__/
-*.pyc
-.DS_Store
-Thumbs.db

@@ -1,9 +1,0 @@
-{
-  "base": {
-    "style": {
-      "textAlign": "left",
-      "justifyContent": "flex-start"
-    }
-  },
-  "variants": []
-}
