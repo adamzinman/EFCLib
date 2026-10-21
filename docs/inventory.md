@@ -21,6 +21,7 @@ Since v7.0 all designs ship as **one Perspective project, `EFC_Library`** (no pa
 | PID tags (UDTs + demo) | v5.1 | `tags/PID_*_UDT.json`, `Valve_Discrete_Demo_UDT.json`, `PID_Demo_Instances.json` | `build_pid.py` |
 | Nav connectors: off-page connector options A–D | options only; none chosen | `symbols/NavConnectors/`, `mockups/nav-connectors.html` | `generator/nav_connectors/` |
 | Screen design standard | — | [screen-layout-standard](screen-layout-standard.md) | — |
+| XSY → Ignition tag import (Control Expert v16.2) | strategy only; not built | [xsy-tag-import-strategy](xsy-tag-import-strategy.md) | — |
 
 ## Not in the repo yet
 | Design | Status |
