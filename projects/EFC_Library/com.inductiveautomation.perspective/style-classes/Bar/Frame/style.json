@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "border": "0.093vh solid #7F7F7F",
+      "borderRadius": "0.185vh",
+      "backgroundColor": "transparent",
+      "boxSizing": "border-box",
+      "pointerEvents": "none"
+    }
+  },
+  "variants": []
+}

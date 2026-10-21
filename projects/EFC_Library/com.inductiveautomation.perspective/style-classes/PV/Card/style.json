@@ -1,0 +1,15 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#FFFFFF",
+      "border": "0.093vh solid #B3B3B3",
+      "borderBottomColor": "#8C8C8C",
+      "borderRadius": "0.556vh",
+      "boxShadow": "0 0.093vh 0.278vh rgba(0,0,0,0.22)",
+      "overflow": "hidden",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif",
+      "boxSizing": "border-box"
+    }
+  },
+  "variants": []
+}

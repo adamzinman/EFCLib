@@ -1,0 +1,7 @@
+{
+  "title": "EFC_Library",
+  "description": "EFC Ignition library v7.0 (generated): ISA-101 styles, P&ID device templates, process values, PID loops, x80 I/O card and station faceplates in one project. Import standalone, or make it the parent of an HMI project.",
+  "parent": "",
+  "enabled": true,
+  "inheritable": true
+}

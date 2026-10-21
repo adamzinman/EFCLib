@@ -1,0 +1,337 @@
+{
+  "custom": {},
+  "params": {},
+  "propConfig": {},
+  "props": {
+    "defaultSize": {
+      "width": 1000,
+      "height": 858
+    }
+  },
+  "root": {
+    "type": "ia.container.coord",
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "fixed",
+      "style": {
+        "backgroundColor": "#DADDE1"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.display.label",
+        "meta": {
+          "name": "title_B1_Bar"
+        },
+        "props": {
+          "text": "Loop_B1_Bar",
+          "style": {
+            "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+            "color": "#3A424A",
+            "fontSize": "1.204vh",
+            "fontWeight": 600
+          }
+        },
+        "position": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 20
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B1_Bar_TIC101"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B1_Bar",
+          "params": {
+            "tagPath": "[default]PID_Demo/TIC101",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 20,
+          "y": 46,
+          "width": 150,
+          "height": 156
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B1_Bar_PIC205"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B1_Bar",
+          "params": {
+            "tagPath": "[default]PID_Demo/PIC205",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 194,
+          "y": 46,
+          "width": 150,
+          "height": 156
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B1_Bar_FIC310"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B1_Bar",
+          "params": {
+            "tagPath": "[default]PID_Demo/FIC310",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 368,
+          "y": 46,
+          "width": 150,
+          "height": 156
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "meta": {
+          "name": "title_B2_Horizontal"
+        },
+        "props": {
+          "text": "Loop_B2_Horizontal",
+          "style": {
+            "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+            "color": "#3A424A",
+            "fontSize": "1.204vh",
+            "fontWeight": 600
+          }
+        },
+        "position": {
+          "x": 20,
+          "y": 226,
+          "width": 300,
+          "height": 20
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B2_Horizontal_TIC101"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B2_Horizontal",
+          "params": {
+            "tagPath": "[default]PID_Demo/TIC101",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 20,
+          "y": 252,
+          "width": 260,
+          "height": 92
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B2_Horizontal_PIC205"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B2_Horizontal",
+          "params": {
+            "tagPath": "[default]PID_Demo/PIC205",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 304,
+          "y": 252,
+          "width": 260,
+          "height": 92
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B2_Horizontal_FIC310"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B2_Horizontal",
+          "params": {
+            "tagPath": "[default]PID_Demo/FIC310",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 588,
+          "y": 252,
+          "width": 260,
+          "height": 92
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "meta": {
+          "name": "title_B3_Sparkline"
+        },
+        "props": {
+          "text": "Loop_B3_Sparkline",
+          "style": {
+            "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+            "color": "#3A424A",
+            "fontSize": "1.204vh",
+            "fontWeight": 600
+          }
+        },
+        "position": {
+          "x": 20,
+          "y": 368,
+          "width": 300,
+          "height": 20
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B3_Sparkline_TIC101"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B3_Sparkline",
+          "params": {
+            "tagPath": "[default]PID_Demo/TIC101",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 20,
+          "y": 394,
+          "width": 172,
+          "height": 184
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B3_Sparkline_PIC205"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B3_Sparkline",
+          "params": {
+            "tagPath": "[default]PID_Demo/PIC205",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 216,
+          "y": 394,
+          "width": 172,
+          "height": 184
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B3_Sparkline_FIC310"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B3_Sparkline",
+          "params": {
+            "tagPath": "[default]PID_Demo/FIC310",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 412,
+          "y": 394,
+          "width": 172,
+          "height": 184
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "meta": {
+          "name": "title_B4_Column"
+        },
+        "props": {
+          "text": "Loop_B4_Column",
+          "style": {
+            "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+            "color": "#3A424A",
+            "fontSize": "1.204vh",
+            "fontWeight": 600
+          }
+        },
+        "position": {
+          "x": 20,
+          "y": 602,
+          "width": 300,
+          "height": 20
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B4_Column_TIC101"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B4_Column",
+          "params": {
+            "tagPath": "[default]PID_Demo/TIC101",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 20,
+          "y": 628,
+          "width": 104,
+          "height": 196
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B4_Column_PIC205"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B4_Column",
+          "params": {
+            "tagPath": "[default]PID_Demo/PIC205",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 148,
+          "y": 628,
+          "width": 104,
+          "height": 196
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "meta": {
+          "name": "B4_Column_FIC310"
+        },
+        "props": {
+          "path": "Templates/Loops/Loop_B4_Column",
+          "params": {
+            "tagPath": "[default]PID_Demo/FIC310",
+            "label": ""
+          }
+        },
+        "position": {
+          "x": 276,
+          "y": 628,
+          "width": 104,
+          "height": 196
+        }
+      }
+    ]
+  }
+}

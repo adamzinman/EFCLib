@@ -1,0 +1,42 @@
+{
+  "base": {
+    "style": {
+      "backgroundImage": "linear-gradient(#F4F4F4, #E4E4E4)",
+      "backgroundColor": "#ECECEC",
+      "border": "0.093vh solid #7A7A7A",
+      "borderRadius": "0.278vh",
+      "boxShadow": "inset 0 -0.093vh 0 #C8C8C8, 0 0.093vh 0.093vh rgba(0,0,0,0.22)",
+      "cursor": "pointer",
+      "padding": "0px",
+      "minWidth": "0px",
+      "minHeight": "0px"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "backgroundImage": "linear-gradient(#FAFAFA, #EAEAEA)",
+        "borderColor": "#595959"
+      }
+    },
+    {
+      "pseudo": "active",
+      "style": {
+        "backgroundImage": "none",
+        "backgroundColor": "#D6D6D6",
+        "boxShadow": "inset 0 0.093vh 0.185vh rgba(0,0,0,0.35)"
+      }
+    },
+    {
+      "pseudo": "disabled",
+      "style": {
+        "backgroundImage": "none",
+        "backgroundColor": "#E3E3E3",
+        "opacity": "0.45",
+        "boxShadow": "none",
+        "cursor": "not-allowed"
+      }
+    }
+  ]
+}

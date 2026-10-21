@@ -1,0 +1,384 @@
+{
+  "name": "Station_Demo",
+  "tagType": "Folder",
+  "tags": [
+    {
+      "name": "Station_1",
+      "tagType": "UdtInstance",
+      "typeId": "DDT_Station_Demo",
+      "tags": [
+        {
+          "name": "Active",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Deadband",
+          "tagType": "AtomicTag",
+          "value": 0.005
+        },
+        {
+          "name": "Filling",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "GrossWeight",
+          "tagType": "AtomicTag",
+          "value": 146.988
+        },
+        {
+          "name": "InletCMD",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "InletREQ",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "NetWeight",
+          "tagType": "AtomicTag",
+          "value": 9.814
+        },
+        {
+          "name": "PT",
+          "tagType": "AtomicTag",
+          "value": 1314.5
+        },
+        {
+          "name": "PT_Diff",
+          "tagType": "AtomicTag",
+          "value": 3.2
+        },
+        {
+          "name": "PT_Valid",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Press_Balanced",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Press_Max",
+          "tagType": "AtomicTag",
+          "value": 2950.0
+        },
+        {
+          "name": "ReadyToFill",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "ReadyToStart",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "SamplePress",
+          "tagType": "AtomicTag",
+          "value": 50.0
+        },
+        {
+          "name": "SampleWeight",
+          "tagType": "AtomicTag",
+          "value": 0.55
+        },
+        {
+          "name": "ScaleName",
+          "tagType": "AtomicTag",
+          "value": "WT101"
+        },
+        {
+          "name": "Selected",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "StationName",
+          "tagType": "AtomicTag",
+          "value": "Station 1"
+        },
+        {
+          "name": "TareWeight",
+          "tagType": "AtomicTag",
+          "value": 137.174
+        },
+        {
+          "name": "TargetWeight",
+          "tagType": "AtomicTag",
+          "value": 12.645
+        },
+        {
+          "name": "TotalWeight",
+          "tagType": "AtomicTag",
+          "value": 9.814
+        },
+        {
+          "name": "Vacuumed",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Vessel_Present",
+          "tagType": "AtomicTag",
+          "value": true
+        }
+      ]
+    },
+    {
+      "name": "Station_2",
+      "tagType": "UdtInstance",
+      "typeId": "DDT_Station_Demo",
+      "tags": [
+        {
+          "name": "Complete",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Deadband",
+          "tagType": "AtomicTag",
+          "value": 0.005
+        },
+        {
+          "name": "GrossWeight",
+          "tagType": "AtomicTag",
+          "value": 149.816
+        },
+        {
+          "name": "Msg",
+          "tagType": "AtomicTag",
+          "value": "Fill complete"
+        },
+        {
+          "name": "NetWeight",
+          "tagType": "AtomicTag",
+          "value": 12.642
+        },
+        {
+          "name": "PT",
+          "tagType": "AtomicTag",
+          "value": 1314.5
+        },
+        {
+          "name": "PT_Diff",
+          "tagType": "AtomicTag",
+          "value": 0.4
+        },
+        {
+          "name": "PT_Valid",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Press_Balanced",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Press_Max",
+          "tagType": "AtomicTag",
+          "value": 2950.0
+        },
+        {
+          "name": "SamplePress",
+          "tagType": "AtomicTag",
+          "value": 50.0
+        },
+        {
+          "name": "SampleWeight",
+          "tagType": "AtomicTag",
+          "value": 0.55
+        },
+        {
+          "name": "ScaleName",
+          "tagType": "AtomicTag",
+          "value": "WT102"
+        },
+        {
+          "name": "StationName",
+          "tagType": "AtomicTag",
+          "value": "Station 2"
+        },
+        {
+          "name": "TareWeight",
+          "tagType": "AtomicTag",
+          "value": 137.174
+        },
+        {
+          "name": "TargetWeight",
+          "tagType": "AtomicTag",
+          "value": 12.645
+        },
+        {
+          "name": "TotalWeight",
+          "tagType": "AtomicTag",
+          "value": 13.193
+        },
+        {
+          "name": "Vacuumed",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Vessel_Present",
+          "tagType": "AtomicTag",
+          "value": true
+        }
+      ]
+    },
+    {
+      "name": "Station_3",
+      "tagType": "UdtInstance",
+      "typeId": "DDT_Station_Demo",
+      "tags": [
+        {
+          "name": "Deadband",
+          "tagType": "AtomicTag",
+          "value": 0.005
+        },
+        {
+          "name": "Failed",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "GrossWeight",
+          "tagType": "AtomicTag",
+          "value": 141.381
+        },
+        {
+          "name": "InletREQ",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Msg",
+          "tagType": "AtomicTag",
+          "value": "PT signal invalid"
+        },
+        {
+          "name": "NetWeight",
+          "tagType": "AtomicTag",
+          "value": 4.207
+        },
+        {
+          "name": "PT_Valid",
+          "tagType": "AtomicTag",
+          "value": false
+        },
+        {
+          "name": "Press_Balanced",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Press_Max",
+          "tagType": "AtomicTag",
+          "value": 2950.0
+        },
+        {
+          "name": "SamplePress",
+          "tagType": "AtomicTag",
+          "value": 50.0
+        },
+        {
+          "name": "SampleWeight",
+          "tagType": "AtomicTag",
+          "value": 0.55
+        },
+        {
+          "name": "ScaleName",
+          "tagType": "AtomicTag",
+          "value": "WT103"
+        },
+        {
+          "name": "StationName",
+          "tagType": "AtomicTag",
+          "value": "Station 3"
+        },
+        {
+          "name": "TareWeight",
+          "tagType": "AtomicTag",
+          "value": 137.174
+        },
+        {
+          "name": "TargetWeight",
+          "tagType": "AtomicTag",
+          "value": 12.645
+        },
+        {
+          "name": "TotalWeight",
+          "tagType": "AtomicTag",
+          "value": 4.207
+        },
+        {
+          "name": "Vacuumed",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Vessel_Present",
+          "tagType": "AtomicTag",
+          "value": true
+        }
+      ]
+    },
+    {
+      "name": "Station_4",
+      "tagType": "UdtInstance",
+      "typeId": "DDT_Station_Demo",
+      "tags": [
+        {
+          "name": "Disabled",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "GrossWeight",
+          "tagType": "AtomicTag",
+          "value": -0.018
+        },
+        {
+          "name": "Msg",
+          "tagType": "AtomicTag",
+          "value": "Station disabled"
+        },
+        {
+          "name": "NetWeight",
+          "tagType": "AtomicTag",
+          "value": -0.018
+        },
+        {
+          "name": "PT",
+          "tagType": "AtomicTag",
+          "value": -14.5
+        },
+        {
+          "name": "PT_Valid",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "ScaleName",
+          "tagType": "AtomicTag",
+          "value": "WT104"
+        },
+        {
+          "name": "StationName",
+          "tagType": "AtomicTag",
+          "value": "Station 4"
+        },
+        {
+          "name": "TotalWeight",
+          "tagType": "AtomicTag",
+          "value": -0.018
+        }
+      ]
+    }
+  ]
+}

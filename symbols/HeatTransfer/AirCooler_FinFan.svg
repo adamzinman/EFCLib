@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" width="64" height="53">
+<path id="pipe0" d="M10 20 H0 M110 34 H120" fill="none" stroke="#333333" stroke-width="3.75"/>
+<rect id="shell1" x="10" y="14" width="100" height="26" fill="#EBEBEB" stroke="#262626" stroke-width="2.812"/>
+<path id="detail2" d="M14 27 L22 18 L30 36 L38 18 L46 36 L54 18 L62 36 L70 18 L78 36 L86 18 L94 36 L102 18 L106 27" fill="none" stroke="#262626" stroke-width="1.875"/>
+<path id="detail3" d="M14 40 V94 M106 40 V94" fill="none" stroke="#262626" stroke-width="2.812"/>
+<path id="body4" d="M20 70 A15 15 0 1 0 50 70 A15 15 0 1 0 20 70 Z M70 70 A15 15 0 1 0 100 70 A15 15 0 1 0 70 70 Z" fill="#9E9E9E" stroke="#262626" stroke-width="2.812"/>
+<path id="detail5" d="M35 57 V83 M22 70 H48 M85 57 V83 M72 70 H98" fill="none" stroke="#262626" stroke-width="1.875"/>
+</svg>

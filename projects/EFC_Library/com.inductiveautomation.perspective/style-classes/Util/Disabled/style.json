@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "opacity": "0.45",
+      "pointerEvents": "none",
+      "cursor": "not-allowed"
+    }
+  },
+  "variants": []
+}

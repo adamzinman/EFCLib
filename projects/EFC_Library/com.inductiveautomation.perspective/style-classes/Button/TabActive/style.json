@@ -1,0 +1,48 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#E6E6E6",
+      "color": "#1F1F1F",
+      "border": "0.093vh solid #7F7F7F",
+      "borderRadius": "0.278vh 0.278vh 0 0",
+      "fontSize": "1.111vh",
+      "fontWeight": "600",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif",
+      "padding": "0.37vh 0.741vh",
+      "cursor": "pointer",
+      "boxShadow": "none",
+      "userSelect": "none",
+      "borderBottom": "0.093vh solid #E6E6E6"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "backgroundColor": "#E6E6E6"
+      }
+    },
+    {
+      "pseudo": "active",
+      "style": {
+        "backgroundColor": "#BFBFBF"
+      }
+    },
+    {
+      "pseudo": "focus",
+      "style": {
+        "outline": "0.185vh solid #1F4E99",
+        "outlineOffset": "0.093vh"
+      }
+    },
+    {
+      "pseudo": "disabled",
+      "style": {
+        "backgroundColor": "#EDEDED",
+        "color": "#9A9A9A",
+        "borderColor": "#A6A6A6",
+        "cursor": "not-allowed"
+      }
+    }
+  ]
+}

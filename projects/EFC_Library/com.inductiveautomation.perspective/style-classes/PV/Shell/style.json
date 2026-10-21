@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "padding": "0.093vh 0.185vh 0.278vh 0.185vh",
+      "backgroundColor": "transparent",
+      "overflow": "visible",
+      "boxSizing": "border-box"
+    }
+  },
+  "variants": []
+}

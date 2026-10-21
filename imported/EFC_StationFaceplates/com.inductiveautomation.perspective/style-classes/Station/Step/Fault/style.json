@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#3A3A3A",
+      "backgroundImage": "repeating-linear-gradient(135deg, #3A3A3A 0 0.278vh, #FFFFFF 0.278vh 0.463vh)",
+      "border": "0.093vh solid #000000",
+      "borderRadius": "0.093vh"
+    }
+  },
+  "variants": []
+}

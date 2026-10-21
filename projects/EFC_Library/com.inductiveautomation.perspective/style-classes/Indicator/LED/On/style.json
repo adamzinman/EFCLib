@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "borderRadius": "50%",
+      "border": "0.093vh solid #595959",
+      "minWidth": "0.926vh",
+      "minHeight": "0.926vh",
+      "backgroundColor": "#FFFFFF"
+    }
+  },
+  "variants": []
+}

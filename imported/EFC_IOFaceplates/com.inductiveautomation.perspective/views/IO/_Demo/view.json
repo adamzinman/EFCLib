@@ -1,0 +1,83 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 1400,
+      "height": 400
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {},
+    "props": {
+      "direction": "column",
+      "justify": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "Container/Screen Util/Pad/L"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "text": "x80 I/O card faceplates — demo",
+          "style": {
+            "classes": "Text/Title"
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Hint"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "text": "Demo tags: [default]IO_Demo/Rack0 (memory-tag copies of the card UDTs). Click a card. Slot 5 has a module fault, slot 2 ch 6, slot 3 ch 2 and slot 7 ch 3 have channel faults; dashed tiles are spares.",
+          "style": {
+            "classes": "Text/Caption Text/Mod/Wrap"
+          }
+        }
+      },
+      {
+        "type": "ia.display.view",
+        "version": 0,
+        "meta": {
+          "name": "Rack"
+        },
+        "position": {
+          "basis": "20.37vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "path": "IO/RackOverview",
+          "params": {
+            "rackPath": "[default]IO_Demo/Rack0"
+          }
+        }
+      }
+    ]
+  }
+}

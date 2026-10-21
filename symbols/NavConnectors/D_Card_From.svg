@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="D_Card_From" width="180" height="44" viewBox="0 0 180 44">
+  <path id="body" d="M0.75,0.75 H158 L179.25,22 L158,43.25 H0.75 L14,22 Z" fill="#F0F0F0" stroke="#5A5A5A" stroke-width="1.5"/>
+  <rect id="valueField" x="42" y="24" width="108" height="15" fill="#FFFFFF" stroke="#5A5A5A" stroke-width="1"/>
+  <path id="alarm" d="M29,14 L37,22 L29,30 L21,22 Z" fill="none" stroke="none"/>
+</svg>

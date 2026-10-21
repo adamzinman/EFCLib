@@ -1,0 +1,349 @@
+{
+  "name": "PID_Demo",
+  "tagType": "Folder",
+  "tags": [
+    {
+      "name": "XV101",
+      "tagType": "UdtInstance",
+      "typeId": "Valve_Discrete_Demo",
+      "tags": [
+        {
+          "name": "Auto",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "CMD",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "ZSO",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "ZSC",
+          "tagType": "AtomicTag",
+          "value": false
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "XV-101"
+        },
+        {
+          "name": "Description",
+          "tagType": "AtomicTag",
+          "value": "N2 supply isolation"
+        }
+      ]
+    },
+    {
+      "name": "XV102",
+      "tagType": "UdtInstance",
+      "typeId": "Valve_Discrete_Demo",
+      "tags": [
+        {
+          "name": "Manual",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Permissive",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "XV-102"
+        }
+      ]
+    },
+    {
+      "name": "XV103",
+      "tagType": "UdtInstance",
+      "typeId": "Valve_Discrete_Demo",
+      "tags": [
+        {
+          "name": "Manual",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "CMD",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "ZSC",
+          "tagType": "AtomicTag",
+          "value": false
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "XV-103"
+        }
+      ]
+    },
+    {
+      "name": "XV104",
+      "tagType": "UdtInstance",
+      "typeId": "Valve_Discrete_Demo",
+      "tags": [
+        {
+          "name": "Off",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Interlock",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "InterlockList",
+          "tagType": "AtomicTag",
+          "value": "PSH-201 high pressure"
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "XV-104"
+        }
+      ]
+    },
+    {
+      "name": "XV105",
+      "tagType": "UdtInstance",
+      "typeId": "Valve_Discrete_Demo",
+      "tags": [
+        {
+          "name": "LockedOut",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "ZSO",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "ZSC",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "XV-105"
+        }
+      ]
+    },
+    {
+      "name": "FV101",
+      "tagType": "UdtInstance",
+      "typeId": "PID_ControlValve",
+      "tags": [
+        {
+          "name": "Out",
+          "tagType": "AtomicTag",
+          "value": 45.0
+        },
+        {
+          "name": "Pos",
+          "tagType": "AtomicTag",
+          "value": 43.0
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "FV-101"
+        }
+      ]
+    },
+    {
+      "name": "FV102",
+      "tagType": "UdtInstance",
+      "typeId": "PID_ControlValve",
+      "tags": [
+        {
+          "name": "Out",
+          "tagType": "AtomicTag",
+          "value": 20.0
+        },
+        {
+          "name": "Pos",
+          "tagType": "AtomicTag",
+          "value": 20.0
+        },
+        {
+          "name": "Mode",
+          "tagType": "AtomicTag",
+          "value": 1
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "FV-102"
+        }
+      ]
+    },
+    {
+      "name": "P101",
+      "tagType": "UdtInstance",
+      "typeId": "PID_Motor",
+      "tags": [
+        {
+          "name": "Cmd",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Run",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "P-101"
+        }
+      ]
+    },
+    {
+      "name": "P102",
+      "tagType": "UdtInstance",
+      "typeId": "PID_Motor",
+      "tags": [
+        {
+          "name": "PermOK",
+          "tagType": "AtomicTag",
+          "value": false
+        },
+        {
+          "name": "Intlk",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "P-102"
+        }
+      ]
+    },
+    {
+      "name": "K201",
+      "tagType": "UdtInstance",
+      "typeId": "PID_Motor",
+      "tags": [
+        {
+          "name": "Cmd",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Run",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Mode",
+          "tagType": "AtomicTag",
+          "value": 1
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "K-201"
+        }
+      ]
+    },
+    {
+      "name": "K202",
+      "tagType": "UdtInstance",
+      "typeId": "PID_Motor",
+      "tags": [
+        {
+          "name": "Fault",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "K-202"
+        }
+      ]
+    },
+    {
+      "name": "B301",
+      "tagType": "UdtInstance",
+      "typeId": "PID_Motor",
+      "tags": [
+        {
+          "name": "Cmd",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "B-301"
+        }
+      ]
+    },
+    {
+      "name": "PV501",
+      "tagType": "UdtInstance",
+      "typeId": "PID_Motor",
+      "tags": [
+        {
+          "name": "Cmd",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Run",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Mode",
+          "tagType": "AtomicTag",
+          "value": 1
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "PV-501"
+        }
+      ]
+    },
+    {
+      "name": "E401",
+      "tagType": "UdtInstance",
+      "typeId": "PID_Motor",
+      "tags": [
+        {
+          "name": "Cmd",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Run",
+          "tagType": "AtomicTag",
+          "value": true
+        },
+        {
+          "name": "Name",
+          "tagType": "AtomicTag",
+          "value": "E-401"
+        }
+      ]
+    }
+  ]
+}

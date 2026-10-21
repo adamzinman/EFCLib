@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "color": "#9A9A9A",
+      "textDecoration": "line-through"
+    }
+  },
+  "variants": []
+}

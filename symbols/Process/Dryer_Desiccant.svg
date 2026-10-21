@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" width="64" height="75">
+<path id="pipe0" d="M30 128 V136 H90 V128 M30 14 V6 H90 V14" fill="none" stroke="#333333" stroke-width="3.75"/>
+<path id="shell1" d="M10 30 Q10 14 30 14 Q50 14 50 30 V112 Q50 128 30 128 Q10 128 10 112 Z M70 30 Q70 14 90 14 Q110 14 110 30 V112 Q110 128 90 128 Q70 128 70 112 Z" fill="#EBEBEB" stroke="#262626" stroke-width="2.812"/>
+<path id="detail2" d="M14 40 H46 M14 100 H46 M74 40 H106 M74 100 H106" fill="none" stroke="#262626" stroke-width="1.875"/>
+<path id="detail3" d="M20 52 h0.1 M20 64 h0.1 M20 76 h0.1 M20 88 h0.1 M30 52 h0.1 M30 64 h0.1 M30 76 h0.1 M30 88 h0.1 M40 52 h0.1 M40 64 h0.1 M40 76 h0.1 M40 88 h0.1 M80 52 h0.1 M80 64 h0.1 M80 76 h0.1 M80 88 h0.1 M90 52 h0.1 M90 64 h0.1 M90 76 h0.1 M90 88 h0.1 M100 52 h0.1 M100 64 h0.1 M100 76 h0.1 M100 88 h0.1" fill="none" stroke="#262626" stroke-width="4.688"/>
+</svg>

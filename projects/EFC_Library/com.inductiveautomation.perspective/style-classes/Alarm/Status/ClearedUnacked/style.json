@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#FFFFFF",
+      "color": "#1F1F1F",
+      "border": "0.185vh solid #595959",
+      "opacity": "0.45"
+    }
+  },
+  "variants": []
+}

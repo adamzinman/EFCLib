@@ -1,0 +1,13 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#00A3E0",
+      "color": "#1F1F1F",
+      "fontWeight": "700",
+      "padding": "0 0.278vh",
+      "borderRadius": "0.185vh",
+      "animation": "efc-blink 1s steps(1, end) infinite"
+    }
+  },
+  "variants": []
+}

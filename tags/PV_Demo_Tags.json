@@ -1,0 +1,370 @@
+{
+  "tags": [
+    {
+      "name": "_types_",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "name": "DDT_Process_Value_Demo",
+          "tagType": "UdtType",
+          "tags": [
+            {
+              "name": "PV",
+              "tagType": "AtomicTag",
+              "valueSource": "memory",
+              "dataType": "Float4",
+              "value": 28.2
+            },
+            {
+              "name": "Name",
+              "tagType": "AtomicTag",
+              "valueSource": "expr",
+              "dataType": "String",
+              "expression": "\"{InstanceName}\""
+            },
+            {
+              "name": "Description",
+              "tagType": "AtomicTag",
+              "valueSource": "memory",
+              "dataType": "String",
+              "value": "Demo pressure transmitter"
+            },
+            {
+              "name": "Units",
+              "tagType": "AtomicTag",
+              "valueSource": "memory",
+              "dataType": "String",
+              "value": "PSIG"
+            },
+            {
+              "name": "Eng_Min",
+              "tagType": "AtomicTag",
+              "valueSource": "memory",
+              "dataType": "Float4",
+              "value": 0.0
+            },
+            {
+              "name": "Eng_Max",
+              "tagType": "AtomicTag",
+              "valueSource": "memory",
+              "dataType": "Float4",
+              "value": 50.0
+            },
+            {
+              "name": "HW_Fault",
+              "tagType": "AtomicTag",
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "value": false,
+              "alarms": [
+                {
+                  "name": "HW_Fault",
+                  "priority": "High",
+                  "mode": "Equality",
+                  "setpointA": 1.0
+                }
+              ]
+            },
+            {
+              "name": "Overrange",
+              "tagType": "AtomicTag",
+              "valueSource": "expr",
+              "dataType": "Boolean",
+              "expression": "{[.]PV} > {[.]Eng_Max}",
+              "alarms": [
+                {
+                  "name": "Overrange",
+                  "priority": "Diagnostic",
+                  "mode": "Equality",
+                  "setpointA": 1.0
+                }
+              ]
+            },
+            {
+              "name": "Underrange",
+              "tagType": "AtomicTag",
+              "valueSource": "expr",
+              "dataType": "Boolean",
+              "expression": "{[.]PV} < {[.]Eng_Min}",
+              "alarms": [
+                {
+                  "name": "Underrange",
+                  "priority": "Diagnostic",
+                  "mode": "Equality",
+                  "setpointA": 1.0
+                }
+              ]
+            },
+            {
+              "name": "HH",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "SP",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Float4",
+                  "value": 42.0
+                },
+                {
+                  "name": "Inhibit",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
+                  "value": false
+                },
+                {
+                  "name": "Enabled",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
+                  "value": true
+                },
+                {
+                  "name": "DLY",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Int4",
+                  "value": 0
+                },
+                {
+                  "name": "Alarm",
+                  "tagType": "AtomicTag",
+                  "valueSource": "expr",
+                  "dataType": "Boolean",
+                  "expression": "{[.]../PV} >= {[.]SP} && {[.]Enabled} && !{[.]Inhibit}",
+                  "alarms": [
+                    {
+                      "name": "HH",
+                      "priority": "Critical",
+                      "mode": "Equality",
+                      "setpointA": 1.0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "H",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "SP",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Float4",
+                  "value": 35.0
+                },
+                {
+                  "name": "Inhibit",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
+                  "value": false
+                },
+                {
+                  "name": "Enabled",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
+                  "value": true
+                },
+                {
+                  "name": "DLY",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Int4",
+                  "value": 0
+                },
+                {
+                  "name": "Alarm",
+                  "tagType": "AtomicTag",
+                  "valueSource": "expr",
+                  "dataType": "Boolean",
+                  "expression": "{[.]../PV} >= {[.]SP} && {[.]Enabled} && !{[.]Inhibit}",
+                  "alarms": [
+                    {
+                      "name": "H",
+                      "priority": "Medium",
+                      "mode": "Equality",
+                      "setpointA": 1.0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "L",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "SP",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Float4",
+                  "value": 10.0
+                },
+                {
+                  "name": "Inhibit",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
+                  "value": false
+                },
+                {
+                  "name": "Enabled",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
+                  "value": true
+                },
+                {
+                  "name": "DLY",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Int4",
+                  "value": 0
+                },
+                {
+                  "name": "Alarm",
+                  "tagType": "AtomicTag",
+                  "valueSource": "expr",
+                  "dataType": "Boolean",
+                  "expression": "{[.]../PV} <= {[.]SP} && {[.]Enabled} && !{[.]Inhibit}",
+                  "alarms": [
+                    {
+                      "name": "L",
+                      "priority": "Medium",
+                      "mode": "Equality",
+                      "setpointA": 1.0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "LL",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "SP",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Float4",
+                  "value": 5.0
+                },
+                {
+                  "name": "Inhibit",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
+                  "value": false
+                },
+                {
+                  "name": "Enabled",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
+                  "value": true
+                },
+                {
+                  "name": "DLY",
+                  "tagType": "AtomicTag",
+                  "valueSource": "memory",
+                  "dataType": "Int4",
+                  "value": 0
+                },
+                {
+                  "name": "Alarm",
+                  "tagType": "AtomicTag",
+                  "valueSource": "expr",
+                  "dataType": "Boolean",
+                  "expression": "{[.]../PV} <= {[.]SP} && {[.]Enabled} && !{[.]Inhibit}",
+                  "alarms": [
+                    {
+                      "name": "LL",
+                      "priority": "Critical",
+                      "mode": "Equality",
+                      "setpointA": 1.0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PV_Demo",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "name": "PT001",
+          "tagType": "UdtInstance",
+          "typeId": "DDT_Process_Value_Demo",
+          "tags": [
+            {
+              "name": "PV",
+              "tagType": "AtomicTag",
+              "value": 28.2
+            }
+          ]
+        },
+        {
+          "name": "PT002",
+          "tagType": "UdtInstance",
+          "typeId": "DDT_Process_Value_Demo",
+          "tags": [
+            {
+              "name": "PV",
+              "tagType": "AtomicTag",
+              "value": 37.6
+            }
+          ]
+        },
+        {
+          "name": "PT003",
+          "tagType": "UdtInstance",
+          "typeId": "DDT_Process_Value_Demo",
+          "tags": [
+            {
+              "name": "PV",
+              "tagType": "AtomicTag",
+              "value": 44.1
+            }
+          ]
+        },
+        {
+          "name": "PT004",
+          "tagType": "UdtInstance",
+          "typeId": "DDT_Process_Value_Demo",
+          "tags": [
+            {
+              "name": "PV",
+              "tagType": "AtomicTag",
+              "value": 3.2
+            }
+          ]
+        },
+        {
+          "name": "PT005",
+          "tagType": "UdtInstance",
+          "typeId": "DDT_Process_Value_Demo",
+          "tags": [
+            {
+              "name": "PV",
+              "tagType": "AtomicTag",
+              "value": 28.2
+            },
+            {
+              "name": "HW_Fault",
+              "tagType": "AtomicTag",
+              "value": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

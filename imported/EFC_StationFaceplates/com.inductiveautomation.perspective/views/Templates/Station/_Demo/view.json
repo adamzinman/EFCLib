@@ -1,0 +1,392 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "basis": "auto",
+      "grow": 0,
+      "shrink": 0
+    },
+    "props": {
+      "direction": "row",
+      "justify": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "Container/Screen Util/Pad/L",
+        "gap": "2.222vh",
+        "overflow": "auto"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Left"
+        },
+        "position": {
+          "basis": "0px",
+          "grow": 1,
+          "shrink": 1
+        },
+        "props": {
+          "direction": "column",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "",
+            "gap": "0.926vh"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "Station faceplates (demo tags: [default]Station_Demo)",
+              "style": {
+                "classes": "Text/Title"
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "T3"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "Type 3: overview tiles (click opens the StationSidebar dock)",
+              "style": {
+                "classes": "Text/Subheader"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Tiles"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": "",
+                "gap": "1.481vh"
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.view",
+                "version": 0,
+                "meta": {
+                  "name": "Station_Tile_Station_1"
+                },
+                "position": {
+                  "basis": "20.37vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "Templates/Station/Station_Tile",
+                  "params": {
+                    "tagPath": "[default]Station_Demo/Station_1"
+                  },
+                  "style": {
+                    "height": "8.889vh"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.view",
+                "version": 0,
+                "meta": {
+                  "name": "Station_Tile_Station_2"
+                },
+                "position": {
+                  "basis": "20.37vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "Templates/Station/Station_Tile",
+                  "params": {
+                    "tagPath": "[default]Station_Demo/Station_2"
+                  },
+                  "style": {
+                    "height": "8.889vh"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.view",
+                "version": 0,
+                "meta": {
+                  "name": "Station_Tile_Station_3"
+                },
+                "position": {
+                  "basis": "20.37vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "Templates/Station/Station_Tile",
+                  "params": {
+                    "tagPath": "[default]Station_Demo/Station_3"
+                  },
+                  "style": {
+                    "height": "8.889vh"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.view",
+                "version": 0,
+                "meta": {
+                  "name": "Station_Tile_Station_4"
+                },
+                "position": {
+                  "basis": "20.37vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "Templates/Station/Station_Tile",
+                  "params": {
+                    "tagPath": "[default]Station_Demo/Station_4"
+                  },
+                  "style": {
+                    "height": "8.889vh"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "T2"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "Type 2: filling-screen faceplates",
+              "style": {
+                "classes": "Text/Subheader"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Fills"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": "",
+                "gap": "1.481vh"
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.view",
+                "version": 0,
+                "meta": {
+                  "name": "Station_Fill_Station_1"
+                },
+                "position": {
+                  "basis": "27.778vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "Templates/Station/Station_Fill",
+                  "params": {
+                    "tagPath": "[default]Station_Demo/Station_1"
+                  },
+                  "style": {
+                    "height": "37.037vh"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.view",
+                "version": 0,
+                "meta": {
+                  "name": "Station_Fill_Station_2"
+                },
+                "position": {
+                  "basis": "27.778vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "Templates/Station/Station_Fill",
+                  "params": {
+                    "tagPath": "[default]Station_Demo/Station_2"
+                  },
+                  "style": {
+                    "height": "37.037vh"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.view",
+                "version": 0,
+                "meta": {
+                  "name": "Station_Fill_Station_3"
+                },
+                "position": {
+                  "basis": "27.778vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "Templates/Station/Station_Fill",
+                  "params": {
+                    "tagPath": "[default]Station_Demo/Station_3"
+                  },
+                  "style": {
+                    "height": "37.037vh"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.view",
+                "version": 0,
+                "meta": {
+                  "name": "Station_Fill_Station_4"
+                },
+                "position": {
+                  "basis": "27.778vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "Templates/Station/Station_Fill",
+                  "params": {
+                    "tagPath": "[default]Station_Demo/Station_4"
+                  },
+                  "style": {
+                    "height": "37.037vh"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Right"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "",
+            "gap": "0.926vh"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "T1"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "Type 1: sidebar",
+              "style": {
+                "classes": "Text/Subheader"
+              }
+            }
+          },
+          {
+            "type": "ia.display.view",
+            "version": 0,
+            "meta": {
+              "name": "Station_Sidebar_Station_1"
+            },
+            "position": {
+              "basis": "27.778vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "Templates/Station/Station_Sidebar",
+              "params": {
+                "tagPath": "[default]Station_Demo/Station_1"
+              },
+              "style": {
+                "height": "74.074vh"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

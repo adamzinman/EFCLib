@@ -1,0 +1,16 @@
+name: check
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regenerate and run the Ignition 8.1 import check
+        run: python3 build.py
+      - name: Committed projects/, tags/, symbols/ must match the generator
+        run: |
+          git status --porcelain -- projects imported tags symbols mockups docs/style-class-index.md docs/pv-style-index.md
+          test -z "$(git status --porcelain -- projects imported tags symbols mockups docs/style-class-index.md docs/pv-style-index.md)" || { echo "Run 'python3 build.py' and commit the result."; exit 1; }

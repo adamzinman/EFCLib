@@ -1,0 +1,20 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "1.296vh",
+      "fontWeight": "400",
+      "color": "#1F4E99",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif",
+      "textDecoration": "underline",
+      "cursor": "pointer"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "color": "#0F2E66"
+      }
+    }
+  ]
+}

@@ -1,0 +1,946 @@
+{
+  "custom": {
+    "t": {
+      "Active": null,
+      "Complete": null,
+      "Deadband": null,
+      "Disabled": null,
+      "Failed": null,
+      "Filling": null,
+      "NetWeight": null,
+      "PT": null,
+      "PT_Valid": null,
+      "ReadyToFill": null,
+      "ReadyToStart": null,
+      "Recovering": null,
+      "SampleCMD": null,
+      "ScaleName": null,
+      "Selected": null,
+      "StationName": null,
+      "TargetWeight": null,
+      "Units": null,
+      "Vacuuming": null,
+      "Venting": null
+    },
+    "s": {
+      "name": "Station 1",
+      "scale": "WT101",
+      "word": "FILLING",
+      "chip": "State/Running",
+      "msg": "Filling primary vessel",
+      "units": "kg",
+      "busy": true,
+      "dis": false,
+      "sel": true,
+      "selText": "SELECTED",
+      "selCls": "Button/Toggle/On",
+      "hiCls": " Util/Highlight",
+      "net": "9.814",
+      "target": "12.645",
+      "rem": "2.831",
+      "db": "0.005",
+      "gross": "146.988",
+      "tare": "137.174",
+      "total": "9.814",
+      "pct": "77.6%",
+      "fillCls": "Bar/Fill",
+      "fillW": 0.719,
+      "tgtX": 0.926,
+      "dbX": 0.925,
+      "dbW": 0.012,
+      "pt": "1,314.5",
+      "ptBad": false,
+      "ptCls": "Text/ValueLarge",
+      "ptSmallCls": "Text/Value Text/Mod/Right",
+      "ptd": "dP 3.2 psi",
+      "ptW": 0.405,
+      "preX": 0.015,
+      "maxX": 0.901,
+      "pre": "50.0",
+      "pmax": "2,950.0",
+      "steps": [
+        "Station/Step/Done",
+        "Station/Step/Done",
+        "Station/Step/Done",
+        "Station/Step/Active",
+        "Station/Step/Pending",
+        "Station/Step/Pending"
+      ],
+      "stepText": [
+        "Text/Caption Text/Mod/Center",
+        "Text/Caption Text/Mod/Center",
+        "Text/Caption Text/Mod/Center",
+        "Text/Caption Text/Mod/Center",
+        "Text/Caption Text/Mod/Center",
+        "Text/Caption Text/Mod/Center"
+      ],
+      "permLed": [
+        "Indicator/LED/On",
+        "Indicator/LED/On",
+        "Indicator/LED/On",
+        "Indicator/LED/On",
+        "Indicator/LED/On"
+      ],
+      "permTxt": [
+        "Text/Label Text/Color/Default",
+        "Text/Label Text/Color/Default",
+        "Text/Label Text/Color/Default",
+        "Text/Label Text/Color/Default",
+        "Text/Label Text/Color/Default"
+      ],
+      "inReq": "Indicator/LED/On",
+      "inCmd": "Indicator/LED/On",
+      "inIlk": false,
+      "smReq": "Indicator/LED/Off",
+      "smCmd": "Indicator/LED/Off",
+      "smIlk": false,
+      "vaReq": "Indicator/LED/Off",
+      "vaCmd": "Indicator/LED/Off",
+      "vaIlk": false,
+      "tzLocked": true,
+      "resetLocked": true,
+      "foot": "Tare and Zero locked while active"
+    },
+    "pendingCmd": ""
+  },
+  "params": {
+    "tagPath": ""
+  },
+  "propConfig": {
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "custom.s": {
+      "binding": {
+        "type": "property",
+        "config": {
+          "path": "view.custom.t"
+        },
+        "transforms": [
+          {
+            "type": "script",
+            "code": "\tt = value\n\tdef g(k, d=None):\n\t\ttry:\n\t\t\tv = t[k]\n\t\texcept:\n\t\t\tv = None\n\t\treturn d if v is None else v\n\tdef b(k):\n\t\ttry:\n\t\t\treturn bool(g(k, False))\n\t\texcept:\n\t\t\treturn False\n\tdef f(k):\n\t\ttry:\n\t\t\treturn float(g(k, 0.0))\n\t\texcept:\n\t\t\treturn 0.0\n\tdef cl(x):\n\t\treturn max(0.0, min(1.0, x))\n\tf3 = lambda x: \"%.3f\" % x\n\tdef f1(x):\n\t\treturn \"{:,.1f}\".format(x)\n\tdis, flt, cmp = b(\"Disabled\"), b(\"Failed\"), b(\"Complete\")\n\tsmp = b(\"SampleCMD\")\n\tif dis:   word, chip, txt = \"DISABLED\", \"State/OutOfService\", \"Station disabled\"\n\telif flt: word, chip, txt = \"FAULT\", \"State/Fault\", \"Station fault\"\n\telif cmp: word, chip, txt = \"COMPLETE\", \"State/Stopped\", \"Fill complete\"\n\telif b(\"Filling\"):    word, chip, txt = \"FILLING\", \"State/Running\", \"Filling primary vessel\"\n\telif smp:             word, chip, txt = \"SAMPLING\", \"State/Running\", \"Routing sample to secondary\"\n\telif b(\"Vacuuming\"):  word, chip, txt = \"VACUUMING\", \"State/Transition\", \"Evacuating vessel\"\n\telif b(\"Venting\"):    word, chip, txt = \"VENTING\", \"State/Transition\", \"Venting\"\n\telif b(\"Recovering\"): word, chip, txt = \"RECOVERING\", \"State/Transition\", \"Recovering\"\n\telif b(\"Active\"):     word, chip, txt = \"ACTIVE\", \"State/Running\", \"Station active\"\n\telif b(\"ReadyToStart\") or b(\"ReadyToFill\"): word, chip, txt = \"READY\", \"State/Stopped\", \"Ready to start\"\n\telse:                 word, chip, txt = \"IDLE\", \"State/Stopped\", \"Idle\"\n\tbusy = chip in (\"State/Running\", \"State/Transition\")\n\tmsg = g(\"Msg\", \"\")\n\ttry:\n\t\tmsg = msg.strip() if isinstance(msg, basestring) else \"\"\n\texcept NameError:\n\t\tmsg = msg.strip() if isinstance(msg, str) else \"\"\n\tif not msg:\n\t\tmsg = txt\n\tu = g(\"Units\", \"\")\n\tu = (\"%s\" % u).strip() if u is not None else \"\"\n\tif u in (\"\", \"---\", \"null\", \"None\"):\n\t\tu = \"kg\"\n\tnet, tgt, db = f(\"NetWeight\"), f(\"TargetWeight\"), f(\"Deadband\")\n\tscale = tgt * 1.08 if tgt > 0 else 1.0\n\tpct = net / tgt * 100.0 if tgt > 0 else 0.0\n\tover = tgt > 0 and net > tgt + db\n\tpt, pmax, pre = f(\"PT\"), f(\"Press_Max\"), f(\"SamplePress\")\n\tptok = b(\"PT_Valid\")\n\tpscale = pmax * 1.1 if pmax > 0 else 100.0\n\tvac = b(\"Vacuumed\")\n\tst = [0, 0, 0, 0, 0, 0]\n\tst[0] = 2 if b(\"Vessel_Present\") else 0\n\tst[1] = 2 if vac else (1 if b(\"Vacuuming\") else 0)\n\tst[2] = 2 if b(\"Press_Balanced\") else (1 if (b(\"Active\") and vac and not b(\"Filling\")) else 0)\n\tst[3] = 2 if (cmp or smp) else (1 if b(\"Filling\") else 0)\n\tst[4] = 2 if cmp else (1 if smp else 0)\n\tst[5] = 2 if cmp else 0\n\tif dis:\n\t\tst = [0, 0, 0, 0, 0, 0]\n\telif flt:\n\t\tfor i in range(6):\n\t\t\tif st[i] != 2:\n\t\t\t\tst[i] = 3\n\t\t\t\tbreak\n\tSC = [\"Station/Step/Pending\", \"Station/Step/Active\", \"Station/Step/Done\", \"Station/Step/Fault\"]\n\tTC = [\"Text/Caption Text/Mod/Center\", \"Text/Caption Text/Mod/Center Text/Color/Default Text/Weight/Bold\",\n\t      \"Text/Caption Text/Mod/Center Text/Color/Default\", \"Text/Caption Text/Mod/Center Text/Color/Default Text/Weight/Bold\"]\n\tled = lambda x: \"Indicator/LED/On\" if x else \"Indicator/LED/Off\"\n\tpl = lambda x: \"Text/Label Text/Color/Default\" if x else \"Text/Label\"\n\tsel = b(\"Selected\")\n\ttz = busy or dis\n\trs = not (cmp or flt)\n\tfoot = \"Station disabled: commands unavailable\" if dis else (\"Tare and Zero locked while active\" if tz else \"\")\n\tname = g(\"StationName\", \"\")\n\tscl = g(\"ScaleName\", \"\")\n\treturn {\n\t\t\"name\": (\"%s\" % name) if name else \"Station\", \"scale\": (\"%s\" % scl) if scl else \"\",\n\t\t\"word\": word, \"chip\": chip, \"msg\": msg, \"units\": u,\n\t\t\"busy\": busy, \"dis\": dis, \"sel\": sel,\n\t\t\"selText\": \"SELECTED\" if sel else \"SELECT\",\n\t\t\"selCls\": \"Button/Toggle/On\" if sel else \"Button/Toggle/Off\",\n\t\t\"hiCls\": \" Util/Highlight\" if sel else \"\",\n\t\t\"net\": f3(net), \"target\": f3(tgt), \"rem\": f3(max(0.0, tgt - net)), \"db\": f3(db),\n\t\t\"gross\": f3(f(\"GrossWeight\")), \"tare\": f3(f(\"TareWeight\")), \"total\": f3(f(\"TotalWeight\")),\n\t\t\"pct\": ((\"OVER \" if over else \"\") + \"%.1f%%\" % pct) if tgt > 0 else \"-\",\n\t\t\"fillCls\": \"Bar/FillAlarm\" if over else \"Bar/Fill\",\n\t\t\"fillW\": cl(net / scale), \"tgtX\": cl(tgt / scale) if tgt > 0 else 0.0,\n\t\t\"dbX\": cl((tgt - db) / scale), \"dbW\": max(0.012, cl(2 * db / scale)) if tgt > 0 else 0.0,\n\t\t\"pt\": f1(pt) if ptok else \"-----\", \"ptBad\": not ptok,\n\t\t\"ptCls\": \"Text/ValueLarge\" if ptok else \"Text/ValueLarge Value/BadQuality\",\n\t\t\"ptSmallCls\": \"Text/Value Text/Mod/Right\" if ptok else \"Text/Value Text/Mod/Right Value/BadQuality\",\n\t\t\"ptd\": \"dP %.1f psi\" % f(\"PT_Diff\"),\n\t\t\"ptW\": cl(pt / pscale) if ptok else 0.0,\n\t\t\"preX\": cl(pre / pscale), \"maxX\": cl(pmax / pscale - 0.008),\n\t\t\"pre\": f1(pre), \"pmax\": f1(pmax),\n\t\t\"steps\": [SC[x] for x in st], \"stepText\": [TC[x] for x in st],\n\t\t\"permLed\": [led(b(\"Vessel_Present\")), led(ptok), led(b(\"Press_Balanced\")), led(b(\"ReadyToStart\")), led(b(\"ReadyToFill\"))],\n\t\t\"permTxt\": [pl(b(\"Vessel_Present\")), pl(ptok), pl(b(\"Press_Balanced\")), pl(b(\"ReadyToStart\")), pl(b(\"ReadyToFill\"))],\n\t\t\"inReq\": led(b(\"InletREQ\")), \"inCmd\": led(b(\"InletCMD\")), \"inIlk\": b(\"InletREQ\") and not b(\"InletCMD\"),\n\t\t\"smReq\": led(b(\"SampleREQ\")), \"smCmd\": led(smp), \"smIlk\": b(\"SampleREQ\") and not smp,\n\t\t\"vaReq\": led(b(\"VacuumREQ\")), \"vaCmd\": led(b(\"VacuumCMD\")), \"vaIlk\": b(\"VacuumREQ\") and not b(\"VacuumCMD\"),\n\t\t\"tzLocked\": tz, \"resetLocked\": rs, \"foot\": foot\n\t}"
+          }
+        ]
+      }
+    },
+    "custom.t.Active": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Active",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Complete": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Complete",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Deadband": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Deadband",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Disabled": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Disabled",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Failed": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Failed",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Filling": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Filling",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.NetWeight": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/NetWeight",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.PT": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/PT",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.PT_Valid": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/PT_Valid",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.ReadyToFill": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/ReadyToFill",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.ReadyToStart": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/ReadyToStart",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Recovering": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Recovering",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.SampleCMD": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/SampleCMD",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.ScaleName": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/ScaleName",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Selected": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Selected",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.StationName": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/StationName",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.TargetWeight": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/TargetWeight",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Units": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Units",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Vacuuming": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Vacuuming",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Venting": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Venting",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 220,
+      "height": 96
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root",
+      "tooltip": {
+        "enabled": true,
+        "text": "Open station faceplate"
+      }
+    },
+    "position": {
+      "basis": "auto",
+      "grow": 0,
+      "shrink": 0
+    },
+    "props": {
+      "direction": "column",
+      "justify": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "Container/Card Util/Pointer",
+        "padding": "0.556vh 0.741vh",
+        "gap": "0.37vh"
+      }
+    },
+    "propConfig": {
+      "props.style.classes": {
+        "binding": {
+          "type": "expr",
+          "config": {
+            "expression": "\"Container/Card Util/Pointer\" + {view.custom.s.hiCls}"
+          }
+        }
+      }
+    },
+    "events": {
+      "dom": {
+        "onClick": {
+          "config": {
+            "script": "\t# Opens the Type 1 sidebar. Create a right-side dock in Page Configuration with id \"StationSidebar\",\n\t# view Templates/Station/Station_Sidebar, size 300 x 800, display \"onDemand\".\n\tsystem.perspective.openDock(\"StationSidebar\", params={\"tagPath\": self.view.params.tagPath})"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Row1"
+        },
+        "position": {
+          "basis": "1.667vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": ""
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Name"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/TagName Text/Mod/Ellipsis"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.name"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Scale"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Caption",
+                "marginLeft": "0.556vh"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.scale"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Sp"
+            },
+            "position": {
+              "basis": "0px",
+              "grow": 1,
+              "shrink": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": ""
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Chip"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "State/Stopped",
+                "alignSelf": "center"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.word"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.chip"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Row2"
+        },
+        "position": {
+          "basis": "2.222vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "baseline",
+          "wrap": "nowrap",
+          "style": {
+            "classes": ""
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Net"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/ValueLarge Text/Mod/NoWrap"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.net"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "NetU"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Units"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.units"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Sp"
+            },
+            "position": {
+              "basis": "0px",
+              "grow": 1,
+              "shrink": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": ""
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Of"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "of",
+              "style": {
+                "classes": "Text/Caption"
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Target"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Value/Setpoint",
+                "marginLeft": "0.278vh",
+                "fontSize": "1.019vh"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.target"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.container.coord",
+        "version": 0,
+        "meta": {
+          "name": "Bar"
+        },
+        "position": {
+          "basis": "0.741vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "mode": "percent",
+          "style": {
+            "classes": "Bar/Track Util/Clip"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Fill"
+            },
+            "position": {
+              "x": 0,
+              "y": 0,
+              "width": 0.5,
+              "height": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Bar/Fill"
+              }
+            },
+            "propConfig": {
+              "position.width": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.fillW"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.fillCls"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Target"
+            },
+            "position": {
+              "x": 0.9,
+              "y": 0,
+              "width": 0.008,
+              "height": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Bar/Marker"
+              }
+            },
+            "propConfig": {
+              "position.x": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.tgtX"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Row4"
+        },
+        "position": {
+          "basis": "1.296vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": ""
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "PtL"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "PT",
+              "style": {
+                "classes": "Text/Caption"
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Pt"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Caption Text/Color/Default Text/Weight/Semibold",
+                "marginLeft": "0.278vh"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.pt"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "PtU"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "psig",
+              "style": {
+                "classes": "Text/Caption",
+                "marginLeft": "0.278vh"
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Sp"
+            },
+            "position": {
+              "basis": "0px",
+              "grow": 1,
+              "shrink": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": ""
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Pct"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Caption Text/Color/Default Text/Weight/Semibold"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.s.pct"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

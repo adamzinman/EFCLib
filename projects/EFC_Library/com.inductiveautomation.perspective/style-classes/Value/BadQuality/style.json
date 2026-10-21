@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "color": "#5A5A5A",
+      "fontStyle": "italic",
+      "outline": "0.093vh dashed #B000B0",
+      "outlineOffset": "-0.093vh",
+      "backgroundColor": "#EDEDED"
+    }
+  },
+  "variants": []
+}

@@ -1,0 +1,84 @@
+{
+  "name": "PID_Motor",
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "name": "Cmd",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "Run",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "PB",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "PermOK",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": true
+    },
+    {
+      "name": "Intlk",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "Fault",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false,
+      "alarms": [
+        {
+          "name": "Fault",
+          "mode": "Equality",
+          "setpointA": 1.0,
+          "priority": "High"
+        }
+      ]
+    },
+    {
+      "name": "Mode",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Int2",
+      "value": 0
+    },
+    {
+      "name": "Name",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "String",
+      "value": ""
+    },
+    {
+      "name": "Description",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "String",
+      "value": ""
+    },
+    {
+      "name": "Feedback_Enabled",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": true
+    }
+  ]
+}

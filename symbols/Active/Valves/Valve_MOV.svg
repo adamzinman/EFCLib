@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36">
+<path id="detail0" d="M50,70 L50,36" fill="none" stroke="#262626" stroke-width="2.778" stroke-linejoin="round"/>
+<circle id="head1" cx="50" cy="22" r="14" fill="#9E9E9E" stroke="#262626" stroke-width="4.167" stroke-linejoin="round"/>
+<path id="detail2" d="M45.5,28 L45.5,16 L50,23.2 L54.5,16 L54.5,28" fill="none" stroke="#262626" stroke-width="2.778" stroke-linejoin="round"/>
+<path id="state3" d="M10,54 L10,86 L50,70 Z M90,54 L90,86 L50,70 Z" fill="#9E9E9E" stroke="#262626" stroke-width="4.167" stroke-linejoin="round"/>
+</svg>

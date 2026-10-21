@@ -1,0 +1,13 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#CFCFCF",
+      "borderTop": "0.093vh solid #7F7F7F",
+      "borderLeft": "0.093vh solid #7F7F7F",
+      "borderRight": "0.093vh solid #F0F0F0",
+      "borderBottom": "0.093vh solid #F0F0F0",
+      "padding": "0.37vh"
+    }
+  },
+  "variants": []
+}

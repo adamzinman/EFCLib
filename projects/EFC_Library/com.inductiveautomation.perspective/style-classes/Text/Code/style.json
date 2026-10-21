@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "1.111vh",
+      "fontFamily": "'Noto Sans Mono', Consolas, 'Courier New', monospace",
+      "color": "#1F1F1F"
+    }
+  },
+  "variants": []
+}

@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#D7EEEB",
+      "color": "#00695C",
+      "fontStyle": "italic"
+    }
+  },
+  "variants": []
+}

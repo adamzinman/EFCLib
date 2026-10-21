@@ -1,0 +1,618 @@
+[
+ {
+  "group": "Valves",
+  "path": "Templates/Valves/Valve_Control",
+  "kind": "template",
+  "png": "templates/Valves/Valve_Control.png",
+  "size": "120\u00d7100",
+  "params": {
+   "tagPath": "[default]PID_Demo/FV101"
+  },
+  "bindings": {
+   "ok": 91,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Valves",
+  "path": "Templates/Valves/Valve_MOV",
+  "kind": "template",
+  "png": "templates/Valves/Valve_MOV.png",
+  "size": "120\u00d7100",
+  "params": {
+   "tagPath": "[default]PID_Demo/XV103",
+   "useButton": false
+  },
+  "bindings": {
+   "ok": 103,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Valves",
+  "path": "Templates/Valves/Valve_OnOff_Pneumatic",
+  "kind": "template",
+  "png": "templates/Valves/Valve_OnOff_Pneumatic.png",
+  "size": "120\u00d7100",
+  "params": {
+   "tagPath": "[default]PID_Demo/XV101"
+  },
+  "bindings": {
+   "ok": 103,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Valves",
+  "path": "Templates/Valves/Valve_Solenoid",
+  "kind": "template",
+  "png": "templates/Valves/Valve_Solenoid.png",
+  "size": "120\u00d7100",
+  "params": {
+   "tagPath": "[default]PID_Demo/XV102"
+  },
+  "bindings": {
+   "ok": 103,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Rotating equipment",
+  "path": "Templates/Rotating/Agitator",
+  "kind": "template",
+  "png": "templates/Rotating/Agitator.png",
+  "size": "120\u00d7116",
+  "params": {},
+  "bindings": {
+   "ok": 85,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Rotating equipment",
+  "path": "Templates/Rotating/Blower",
+  "kind": "template",
+  "png": "templates/Rotating/Blower.png",
+  "size": "120\u00d7116",
+  "params": {
+   "tagPath": "[default]PID_Demo/B301"
+  },
+  "bindings": {
+   "ok": 87,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Rotating equipment",
+  "path": "Templates/Rotating/Compressor_Centrifugal",
+  "kind": "template",
+  "png": "templates/Rotating/Compressor_Centrifugal.png",
+  "size": "120\u00d7116",
+  "params": {
+   "tagPath": "[default]PID_Demo/K202"
+  },
+  "bindings": {
+   "ok": 85,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Rotating equipment",
+  "path": "Templates/Rotating/Compressor_Diaphragm",
+  "kind": "template",
+  "png": "templates/Rotating/Compressor_Diaphragm.png",
+  "size": "120\u00d7116",
+  "params": {
+   "tagPath": "[default]PID_Demo/K201"
+  },
+  "bindings": {
+   "ok": 85,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Rotating equipment",
+  "path": "Templates/Rotating/Motor",
+  "kind": "template",
+  "png": "templates/Rotating/Motor.png",
+  "size": "120\u00d7116",
+  "params": {},
+  "bindings": {
+   "ok": 85,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Rotating equipment",
+  "path": "Templates/Rotating/Pump_Centrifugal",
+  "kind": "template",
+  "png": "templates/Rotating/Pump_Centrifugal.png",
+  "size": "120\u00d7116",
+  "params": {
+   "tagPath": "[default]PID_Demo/P101"
+  },
+  "bindings": {
+   "ok": 89,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Rotating equipment",
+  "path": "Templates/Rotating/Pump_Diaphragm",
+  "kind": "template",
+  "png": "templates/Rotating/Pump_Diaphragm.png",
+  "size": "120\u00d7116",
+  "params": {},
+  "bindings": {
+   "ok": 103,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Rotating equipment",
+  "path": "Templates/Rotating/Pump_PD_Rotary",
+  "kind": "template",
+  "png": "templates/Rotating/Pump_PD_Rotary.png",
+  "size": "120\u00d7116",
+  "params": {
+   "tagPath": "[default]PID_Demo/P102"
+  },
+  "bindings": {
+   "ok": 103,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Rotating equipment",
+  "path": "Templates/Rotating/Pump_Reciprocating",
+  "kind": "template",
+  "png": "templates/Rotating/Pump_Reciprocating.png",
+  "size": "120\u00d7116",
+  "params": {},
+  "bindings": {
+   "ok": 93,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Rotating equipment",
+  "path": "Templates/Rotating/Pump_Vacuum",
+  "kind": "template",
+  "png": "templates/Rotating/Pump_Vacuum.png",
+  "size": "120\u00d7116",
+  "params": {
+   "tagPath": "[default]PID_Demo/PV501",
+   "useButton": false
+  },
+  "bindings": {
+   "ok": 87,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Heat transfer",
+  "path": "Templates/HeatTransfer/HX_AirCooled",
+  "kind": "template",
+  "png": "templates/HeatTransfer/HX_AirCooled.png",
+  "size": "120\u00d7116",
+  "params": {},
+  "bindings": {
+   "ok": 89,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Heat transfer",
+  "path": "Templates/HeatTransfer/Heater_Electric",
+  "kind": "template",
+  "png": "templates/HeatTransfer/Heater_Electric.png",
+  "size": "120\u00d7116",
+  "params": {
+   "tagPath": "[default]PID_Demo/E401"
+  },
+  "bindings": {
+   "ok": 87,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Process values",
+  "path": "Templates/ProcessValues/PV_RangeBar",
+  "kind": "template",
+  "png": "templates/ProcessValues/PV_RangeBar.png",
+  "size": "104\u00d754",
+  "params": {
+   "tagPath": "[default]PV_Demo/PT001"
+  },
+  "bindings": {
+   "ok": 210,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Process values",
+  "path": "Templates/ProcessValues/PV_StatusStrip",
+  "kind": "template",
+  "png": "templates/ProcessValues/PV_StatusStrip.png",
+  "size": "104\u00d754",
+  "params": {
+   "tagPath": "[default]PV_Demo/PT001"
+  },
+  "bindings": {
+   "ok": 125,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Process values",
+  "path": "Templates/ProcessValues/_Demo",
+  "kind": "demo",
+  "png": "templates/ProcessValues/_Demo.png",
+  "size": "1200\u00d7700",
+  "params": {},
+  "bindings": {
+   "ok": 1695,
+   "fail": 0
+  }
+ },
+ {
+  "group": "PID loops",
+  "path": "Templates/Loops/Loop_B1_Bar",
+  "kind": "template",
+  "png": "templates/Loops/Loop_B1_Bar.png",
+  "size": "150\u00d7156",
+  "params": {
+   "tagPath": "[default]PID_Demo/TIC101",
+   "label": ""
+  },
+  "bindings": {
+   "ok": 83,
+   "fail": 0
+  }
+ },
+ {
+  "group": "PID loops",
+  "path": "Templates/Loops/Loop_B2_Horizontal",
+  "kind": "template",
+  "png": "templates/Loops/Loop_B2_Horizontal.png",
+  "size": "260\u00d792",
+  "params": {
+   "tagPath": "[default]PID_Demo/TIC101",
+   "label": ""
+  },
+  "bindings": {
+   "ok": 85,
+   "fail": 0
+  }
+ },
+ {
+  "group": "PID loops",
+  "path": "Templates/Loops/Loop_B3_Sparkline",
+  "kind": "template",
+  "png": "templates/Loops/Loop_B3_Sparkline.png",
+  "size": "172\u00d7184",
+  "params": {
+   "tagPath": "[default]PID_Demo/TIC101",
+   "label": ""
+  },
+  "bindings": {
+   "ok": 99,
+   "fail": 0
+  }
+ },
+ {
+  "group": "PID loops",
+  "path": "Templates/Loops/Loop_B4_Column",
+  "kind": "template",
+  "png": "templates/Loops/Loop_B4_Column.png",
+  "size": "104\u00d7196",
+  "params": {
+   "tagPath": "[default]PID_Demo/TIC101",
+   "label": ""
+  },
+  "bindings": {
+   "ok": 85,
+   "fail": 0
+  }
+ },
+ {
+  "group": "PID loops",
+  "path": "Templates/Loops/Popups/LoopConfig",
+  "kind": "template",
+  "png": "templates/Loops/Popups/LoopConfig.png",
+  "size": "440\u00d7480",
+  "params": {},
+  "bindings": {
+   "ok": 69,
+   "fail": 0
+  }
+ },
+ {
+  "group": "PID loops",
+  "path": "Templates/Loops/_Demo",
+  "kind": "demo",
+  "png": "templates/Loops/_Demo.png",
+  "size": "1000\u00d7858",
+  "params": {},
+  "bindings": {
+   "ok": 1056,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Station faceplates",
+  "path": "Templates/Station/Station_Fill",
+  "kind": "template",
+  "png": "templates/Station/Station_Fill.png",
+  "size": "300\u00d7400",
+  "params": {
+   "tagPath": "[default]Station_Demo/Station_1"
+  },
+  "bindings": {
+   "ok": 195,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Station faceplates",
+  "path": "Templates/Station/Station_Sidebar",
+  "kind": "template",
+  "png": "templates/Station/Station_Sidebar.png",
+  "size": "300\u00d7800",
+  "params": {
+   "tagPath": "[default]Station_Demo/Station_1"
+  },
+  "bindings": {
+   "ok": 277,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Station faceplates",
+  "path": "Templates/Station/Station_Tile",
+  "kind": "template",
+  "png": "templates/Station/Station_Tile.png",
+  "size": "220\u00d796",
+  "params": {
+   "tagPath": "[default]Station_Demo/Station_1"
+  },
+  "bindings": {
+   "ok": 89,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Station faceplates",
+  "path": "Templates/Station/_Demo",
+  "kind": "demo",
+  "png": "templates/Station/_Demo.png",
+  "size": "1920\u00d71080",
+  "params": {},
+  "bindings": {
+   "ok": 1413,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Faceplates/BMXAMI0810",
+  "kind": "template",
+  "png": "templates/IO/Faceplates/BMXAMI0810.png",
+  "size": "1040\u00d7442",
+  "params": {
+   "cardPath": "[default]IO_Demo/Rack0/R0S5"
+  },
+  "bindings": {
+   "ok": 554,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Faceplates/BMXAMO0802",
+  "kind": "template",
+  "png": "templates/IO/Faceplates/BMXAMO0802.png",
+  "size": "1040\u00d7442",
+  "params": {
+   "cardPath": "[default]IO_Demo/Rack0/R0S6"
+  },
+  "bindings": {
+   "ok": 494,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Faceplates/BMXART0814",
+  "kind": "template",
+  "png": "templates/IO/Faceplates/BMXART0814.png",
+  "size": "920\u00d7442",
+  "params": {
+   "cardPath": "[default]IO_Demo/Rack0/R0S7"
+  },
+  "bindings": {
+   "ok": 526,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Faceplates/BMXDDI1602",
+  "kind": "template",
+  "png": "templates/IO/Faceplates/BMXDDI1602.png",
+  "size": "810\u00d7302",
+  "params": {
+   "cardPath": "[default]IO_Demo/Rack0/R0S2"
+  },
+  "bindings": {
+   "ok": 550,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Faceplates/BMXDDI3202K",
+  "kind": "template",
+  "png": "templates/IO/Faceplates/BMXDDI3202K.png",
+  "size": "810\u00d7492",
+  "params": {
+   "cardPath": "[default]IO_Demo/Rack0/R0S4"
+  },
+  "bindings": {
+   "ok": 1080,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Faceplates/BMXDDO1602",
+  "kind": "template",
+  "png": "templates/IO/Faceplates/BMXDDO1602.png",
+  "size": "810\u00d7302",
+  "params": {
+   "cardPath": "[default]IO_Demo/Rack0/R0S3"
+  },
+  "bindings": {
+   "ok": 550,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Faceplates/BMXDDO3202K",
+  "kind": "template",
+  "png": "templates/IO/Faceplates/BMXDDO3202K.png",
+  "size": "810\u00d7492",
+  "params": {
+   "cardPath": "[default]IO_Demo/Rack0/R0S8"
+  },
+  "bindings": {
+   "ok": 1080,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Faceplates/BMXDDO6402K",
+  "kind": "template",
+  "png": "templates/IO/Faceplates/BMXDDO6402K.png",
+  "size": "1620\u00d7492",
+  "params": {
+   "cardPath": "[default]IO_Demo/Rack0/R0S9"
+  },
+  "bindings": {
+   "ok": 2140,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Parts/AnalogRow_AI",
+  "kind": "part",
+  "png": "templates/IO/Parts/AnalogRow_AI.png",
+  "size": "1000\u00d734",
+  "params": {},
+  "bindings": {
+   "ok": 67,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Parts/AnalogRow_AO",
+  "kind": "part",
+  "png": "templates/IO/Parts/AnalogRow_AO.png",
+  "size": "1000\u00d734",
+  "params": {},
+  "bindings": {
+   "ok": 59,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Parts/AnalogRow_TEMP",
+  "kind": "part",
+  "png": "templates/IO/Parts/AnalogRow_TEMP.png",
+  "size": "1000\u00d734",
+  "params": {},
+  "bindings": {
+   "ok": 63,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Parts/DiscreteTile",
+  "kind": "part",
+  "png": "templates/IO/Parts/DiscreteTile.png",
+  "size": "96\u00d770",
+  "params": {},
+  "bindings": {
+   "ok": 33,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/Parts/SlotTile",
+  "kind": "part",
+  "png": "templates/IO/Parts/SlotTile.png",
+  "size": "132\u00d7150",
+  "params": {},
+  "bindings": {
+   "ok": 25,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/RackOverview",
+  "kind": "template",
+  "png": "templates/IO/RackOverview.png",
+  "size": "1200\u00d7220",
+  "params": {
+   "rackPath": "[default]IO_Demo/Rack0"
+  },
+  "bindings": {
+   "ok": 207,
+   "fail": 0
+  }
+ },
+ {
+  "group": "x80 I/O card faceplates",
+  "path": "Templates/IO/_Demo",
+  "kind": "demo",
+  "png": "templates/IO/_Demo.png",
+  "size": "1400\u00d7400",
+  "params": {},
+  "bindings": {
+   "ok": 207,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Library",
+  "path": "Templates/_Demo",
+  "kind": "demo",
+  "png": "templates/_Demo.png",
+  "size": "1920\u00d71080",
+  "params": {},
+  "bindings": {
+   "ok": 1320,
+   "fail": 0
+  }
+ },
+ {
+  "group": "Library",
+  "path": "Styles/_Catalog",
+  "kind": "demo",
+  "png": "templates/Styles/_Catalog.png",
+  "size": "1920\u00d71080",
+  "params": {},
+  "bindings": {
+   "ok": 0,
+   "fail": 0
+  }
+ }
+]

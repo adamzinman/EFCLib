@@ -1,0 +1,7 @@
+{
+  "title": "PID_Compressor_Diaphragm",
+  "description": "Diaphragm gas compressor symbol",
+  "parent": "",
+  "enabled": true,
+  "inheritable": true
+}

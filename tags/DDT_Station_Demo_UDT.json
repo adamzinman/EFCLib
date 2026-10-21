@@ -1,0 +1,297 @@
+{
+  "tags": [
+    {
+      "name": "DDT_Station_Demo",
+      "tagType": "UdtType",
+      "tags": [
+        {
+          "name": "Active",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Complete",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Deadband",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "value": 0.0
+        },
+        {
+          "name": "Disabled",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Failed",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Filling",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "GrossWeight",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "value": 0.0
+        },
+        {
+          "name": "HMI_Reset",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "HMI_Select",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "InletCMD",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "InletREQ",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Msg",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "String",
+          "value": ""
+        },
+        {
+          "name": "NetWeight",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "value": 0.0
+        },
+        {
+          "name": "PT",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "value": 0.0
+        },
+        {
+          "name": "PT_Diff",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "value": 0.0
+        },
+        {
+          "name": "PT_Valid",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Press_Balanced",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Press_Max",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "value": 0.0
+        },
+        {
+          "name": "ReadyToFill",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "ReadyToStart",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Recovering",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "SampleCMD",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "SamplePress",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "value": 0.0
+        },
+        {
+          "name": "SampleREQ",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "SampleWeight",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "value": 0.0
+        },
+        {
+          "name": "ScaleName",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "String",
+          "value": "WT000"
+        },
+        {
+          "name": "Selected",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "StationName",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "String",
+          "value": "Station 00"
+        },
+        {
+          "name": "StatusEnum",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Int2",
+          "value": 0
+        },
+        {
+          "name": "TareCMD",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "TareWeight",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "value": 0.0
+        },
+        {
+          "name": "TargetWeight",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "value": 0.0
+        },
+        {
+          "name": "TotalWeight",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Float4",
+          "value": 0.0
+        },
+        {
+          "name": "Units",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "String",
+          "value": "kg"
+        },
+        {
+          "name": "VacuumCMD",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "VacuumREQ",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Vacuumed",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Vacuuming",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Venting",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "Vessel_Present",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        },
+        {
+          "name": "ZeroCMD",
+          "tagType": "AtomicTag",
+          "valueSource": "memory",
+          "dataType": "Boolean",
+          "value": false
+        }
+      ]
+    }
+  ]
+}

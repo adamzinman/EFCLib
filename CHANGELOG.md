@@ -1,0 +1,63 @@
+# Changelog
+
+Newest first. Versions match `VERSION.json` and the git tags (`v5.1`, `v6.0`, ...).
+
+- **v7.0 (2026-10-19): one project, one Templates tree:**
+  - **EFC_Library** replaces the seven separate projects (EFC_Styles, PID_Symbols, EFC_PID_Library, EFC_ProcessValues, PID_Loops, EFC_IOFaceplates, EFC_StationFaceplates). `build.py --dist` now writes one project zip.
+  - **Moved views:** `IO/…` → `Templates/IO/…`; `PID/Templates/…` → `Templates/Loops/…`; `PID/Popups/LoopConfig` → `Templates/Loops/Popups/LoopConfig`; `PID/_Demo_Loops` → `Templates/Loops/_Demo`. Every embedded-view, repeater and `openPopup` path was rewritten to match, and the build now fails on any unresolved view reference.
+  - **Imported parts** moved from `projects/` to `imported/` (EFC_IOFaceplates, EFC_StationFaceplates); `tools/import_project_zip.py` writes there.
+  - **Added** `generator/render_views.py` and one review image per view in `docs/previews/templates/` (`build.py --preview`); findings in `docs/template-review.md`.
+  - **Archived** (in `archive/`, see `ARCHIVED.md`): the legacy PID_Compressor_Diaphragm add-on, the stale `generators/` copy and its old `tools/` pipeline, an older PV demo tag file and three superseded note files. The separate v6.3 projects remain at tag `v6.3`.
+  - No template, style or tag content changed apart from the view paths above.
+- **v6.3 (2026-10-07): merged in the other session's repo (`efc-ignition-library_3.zip`):**
+  - **Added** `generator/pid_loops/` (PID_Loops: B1–B4, LoopConfig, `PID_Loop` UDT + demo tags in `tags/PID_Loops/`), `generator/nav_connectors/` (`symbols/NavConnectors/`, options A–D) and `generator/compressor_addon/` (legacy `PID_Compressor_Diaphragm`, `symbols/legacy/`).
+  - **Added** `mockups/` (loop options, nav connectors, compressor add-on, style preview).
+  - Regenerated output is identical to that repo's committed files.
+  - That repo's EFC_Styles generator (reconstructed from older docs) and its older PV generator were **not** taken; this repo's are newer.
+- **v6.2 (2026-10-07):** imported **EFC_StationFaceplates** (Station_Sidebar, Station_Fill, Station_Tile, _Demo, plus 5 classes) from the 2026-10-06 export, with demo tags (`tags/DDT_Station_Demo_UDT.json`, `tags/Station_Demo_Instances.json`) and its README (`docs/station-faceplates.md`). `build.py` now keeps imported tag files when it regenerates `tags/`.
+- **v6.1 (2026-10-07):** imported **EFC_IOFaceplates** (8 Modicon x80 card faceplates, parts, RackOverview, _Demo) from the user's 2026-10-07 export. It passes the 8.1 check and uses only existing EFC_Styles classes. No tag/UDT files were included in the export.
+- **v6.0 (2026-10-07): every project design in one repo:**
+  - **Added EFC_ProcessValues** (PV design 1.3.0: `PV_StatusStrip`, `PV_RangeBar`, `_Demo`, 36 classes) with its generator (`generator/build_pv.py`, `common.py`) and `tags/PV_Demo_Tags.json`.
+  - **Docs:** `inventory.md`, `pv-display.md`, `pid-loop-templates.md`, `screen-layout-standard.md`, `design-briefs.md` (I/O card and station faceplates, compressor screen, Haskel pump), and an updated `style-library.md`.
+  - **`tools/import_project_zip.py`** adds existing exports (PID_Loops, EFC_IOFaceplates, EFC_StationFaceplates) as projects.
+  - **`build.py --dist`** now zips every project and writes a single `EFC_Ignition_Library_v<ver>.zip` bundle.
+  - **Unchanged:** EFC_Styles, PID_Symbols and EFC_PID_Library are identical to v5.1 except the version in `project.json`.
+- **v5.1 (verified on the gateway with `[EFC]RGTCR/Valves/AV002`):**
+  - **Symbols are embedded as Drawing elements** with state-bound fills, outlines and weights, replacing the Image / data-URI source that could show as a broken link.
+  - The Drawing `preserveAspectRatio` is `xMidYMid`; 8.1 rejects `xMidYMid meet`. `check_81.py` now checks this enum.
+  - **Alarm lookup is quality-guarded** (see the Alarm lookup bullet above). This clears the red `alarm`, `line` and `lw` bindings.
+  - **Known:** `permMissing` shows Bad_NodeIdUnknown until the `Permissive` variable exists in the PLC. The template treats it as "not missing" in the meantime.
+- **v5:**
+  - The ISA-101 audit fixes above.
+  - **Status stays centered when the M isn't used.** The hidden manual M (button mode, or Auto) now collapses to zero width: `meta.visible` is false and it also gets `Util/Collapsed`. The status chip centers alone on the symbol centerline (0.0 px offset, measured in the preview). When the M is shown (`useButton` = false, Manual), the M and status are centered together.
+  - Project names are unchanged (`EFC_Styles`, `PID_Symbols`, `EFC_PID_Library`), so importing v5 overwrites v4.
+- **v4.5 (live-gateway fixes):**
+  - **Null-safe reads:** every read of a tag-bound property is wrapped in `coalesce()`, so a missing, bad or loading UDT member (for example the new `Permissive` on `DDT_Valve`) no longer puts `canCmd`, `state` and the colors into error. The defaults are safe: no permissive missing, no interlock, not manual, feedback enabled.
+  - **Alarm lookup:** wrapped in `try(..., 0)`, so it falls back to "no alarm" instead of erroring.
+  - **Valve I tooltip:** now reads the `InterlockList` document (`InterlockName[]`, `Description[]`, `Used[]`) with a script transform and lists the used interlocks by name.
+- **v4.4:**
+  - **Command button:** the manual command button is now `Button/Command`, a blank 18 px square the same height as the status chip, on the status row. It's a subtle raised key that sinks when pressed and fades when disabled.
+  - **New `useButton` parameter** on valve and running-equipment templates (default `true`):
+    - `true`: the button shows in Manual.
+    - `false`: no button. In Manual you click the symbol itself, with the same rules (opening or starting blocked by P or I; closing or stopping always allowed). The cursor becomes a hand only when a click would act, and a yellow **M** segment (`Mode/ManualSplit`, the same height and font as the status chip) joins the left of the status.
+  - **Control valves:** they keep `tagPath` only.
+  - **New EFC_Styles classes:** `Button/Command` and `Mode/ManualJoined`.
+- **v4.3:**
+  - **Valve P and I:** they sit beside the actuator, 3 px from each side, centered on the actuator height. Positions are computed per valve symbol.
+  - **Control valve position bar:** moved to the left of the valve, just outside the P badge. It's taller (37 px), and the command pointer stays visible at 0 % and 100 %.
+- **v4.2:** every valve status (including the control valve's `NN %`) is now a bordered state chip, the same as running equipment: `State/Stopped` closed or 0 %, `State/Running` open, `State/Transition` opening or closing, `State/Fault` fault. Each chip is sized to its text and centered under the symbol.
+- **v4.1 (notes 25–31):**
+  - **Mode letters:** M / D / L removed.
+  - **Fault:** keeps the dark-gray fill and gets a **red 3 px border**, which overrides the alarm color.
+  - **Travelling / starting:** solid light-gray fill `#C4C4C4` (the dashed outline was tried and removed). The transition gray was darkened from `#D9D9D9` so it no longer disappears against the screen background.
+  - **Control valves:** a vertical position bar right of the actuator. The fill is the actual `Pos` and the blue pointer is the commanded `Out`; hover for the numbers. The I badge moved slightly left to make room.
+  - **Diaphragm compressor:** arc removed; the lines are wider apart and symmetric.
+  - **New `Templates/Rotating/Pump_Vacuum`:** the compressor body with a small inner circle.
+  - **Static SVG rename:** the old static `Pump_Vacuum.svg` is now `Pump_Vacuum_LiquidRing.svg`.
+- **v4 (templates per symbol):** the separate symbol views (`PID/Rotating/...`, `PID/Valves/...`) and the generic AutoValve / ControlValve / Motor templates are gone. Re-point existing instances to `Templates/<Category>/<Symbol>` and delete their `symbol`, `label`, `hasFeedback`, `alarm` and `popupView` params.
+- **Removed from the project:** the v2 static views (Fittings, Lines, Instruments, Vessels and so on) and the Equipment / Valve / Instrument / Tank wrapper templates. Their artwork lives on as SVGs in `symbols/`. Any screen embedding those v2 views must switch to a Drawing made from the SVG, or keep the v2 project.
+- **AutoValve size:** now 120×100 (was 110×84), because the template is wider and taller for the badges, centered status and manual chip. Resize existing instances.
+- **Not yet tested on a gateway.** Check `Templates/_Demo` first:
+  - percent-mode positions
+  - the `position.y` binding on the I badge
+  - the flex status group

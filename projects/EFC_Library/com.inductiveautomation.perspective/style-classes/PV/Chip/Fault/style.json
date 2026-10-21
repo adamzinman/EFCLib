@@ -1,0 +1,24 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "0.833vh",
+      "fontWeight": "700",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif",
+      "lineHeight": "1.111vh",
+      "height": "1.111vh",
+      "minWidth": "1.111vh",
+      "padding": "0 0.185vh",
+      "borderRadius": "0.185vh",
+      "letterSpacing": "0.01em",
+      "textAlign": "center",
+      "justifyContent": "center",
+      "alignItems": "center",
+      "boxSizing": "border-box",
+      "whiteSpace": "nowrap",
+      "backgroundColor": "#3A3A3A",
+      "color": "#FFFFFF",
+      "border": "0.093vh solid #000000"
+    }
+  },
+  "variants": []
+}

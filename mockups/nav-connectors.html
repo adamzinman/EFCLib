@@ -1,0 +1,59 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nav Connector Options</title>
+<style>
+body{margin:0;padding:24px 16px;background:#C8C8C8;font-family:Arial,Helvetica,sans-serif;color:#222}
+h1{font-size:20px;margin:0 0 4px} .sub{margin:0 0 20px;font-size:13px;color:#444}
+section{background:#D9D9D9;border:1px solid #AAA;border-radius:6px;padding:14px 16px;margin-bottom:16px;max-width:900px}
+h2{font-size:15px;margin:0 0 4px} p{font-size:13px;margin:0 0 12px;color:#333}
+.canvas{display:flex;align-items:center;overflow-x:auto;padding:10px 0}
+.conn{position:relative;flex:none;cursor:pointer} .conn svg{display:block}
+.conn:hover svg #body{fill:#E0E0E0}
+.lbl{position:absolute;font-size:11px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.val{position:absolute;height:15px;line-height:15px;font-size:11px;text-align:right;font-family:Consolas,monospace}
+.pipe{flex:1;min-width:40px;height:3px;background:#5A5A5A}
+.equip{flex:none;width:70px;height:46px;border:1.5px solid #5A5A5A;background:#F0F0F0;border-radius:23px;display:flex;align-items:center;justify-content:center;font-size:11px}
+.files{font-size:11px;color:#555;margin-top:6px;font-family:Consolas,monospace}
+</style></head><body><h1>Nav connector options: To / From</h1>
+<p class="sub">Each row shows a FROM connector at the left edge and a TO connector at the right edge, as on a process screen. Text and values are HTML overlays here, the same way they'll be labels in the parent Perspective view. Hover to see a fill change.</p>
+<section><h2>Option A — ISA off-page connector</h2><p>Classic P&amp;ID shape. Point = flow direction. The From version has a swallowtail.</p>
+<div class="canvas"><div class="conn" style="width:160px;height:32px"><svg xmlns="http://www.w3.org/2000/svg"  width="160" height="32" viewBox="0 0 160 32">
+  <path id="body" d="M0.75,0.75 H143 L159.25,16 L143,31.25 H0.75 L12,16 Z" fill="#F0F0F0" stroke="#5A5A5A" stroke-width="1.5"/>
+</svg>
+<div class="lbl" style="left:26px;right:8px;top:0;height:32px;line-height:32px">FROM: TANK FARM</div></div><div class="pipe"></div><div class="equip">P-101</div><div class="pipe"></div><div class="conn" style="width:160px;height:32px"><svg xmlns="http://www.w3.org/2000/svg"  width="160" height="32" viewBox="0 0 160 32">
+  <path id="body" d="M0.75,0.75 H143 L159.25,16 L143,31.25 H0.75 Z" fill="#F0F0F0" stroke="#5A5A5A" stroke-width="1.5"/>
+</svg>
+<div class="lbl" style="left:14px;right:8px;top:0;height:32px;line-height:32px">TO: AREA 2 REACTOR</div></div></div>
+<div class="files">svg/A_Flag_From.svg · svg/A_Flag_To.svg · 160×32 px @1080p</div></section><section><h2>Option B — Chevron tab</h2><p>Reads as a button. The chevron points toward the other screen.</p>
+<div class="canvas"><div class="conn" style="width:160px;height:32px"><svg xmlns="http://www.w3.org/2000/svg"  width="160" height="32" viewBox="0 0 160 32">
+  <rect id="body" x="0.75" y="0.75" width="158.5" height="30.5" rx="4" fill="#F0F0F0" stroke="#5A5A5A" stroke-width="1.5"/>
+  <path id="chevron" d="M18,9 L11,16 L18,23" fill="none" stroke="#4A4A4A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<div class="lbl" style="left:26px;right:10px;top:0;height:32px;line-height:32px">FROM: TANK FARM</div></div><div class="pipe"></div><div class="equip">P-101</div><div class="pipe"></div><div class="conn" style="width:160px;height:32px"><svg xmlns="http://www.w3.org/2000/svg"  width="160" height="32" viewBox="0 0 160 32">
+  <rect id="body" x="0.75" y="0.75" width="158.5" height="30.5" rx="4" fill="#F0F0F0" stroke="#5A5A5A" stroke-width="1.5"/>
+  <path id="chevron" d="M142,9 L149,16 L142,23" fill="none" stroke="#4A4A4A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<div class="lbl" style="left:10px;right:24px;top:0;height:32px;line-height:32px">TO: AREA 2 REACTOR</div></div></div>
+<div class="files">svg/B_Chevron_From.svg · svg/B_Chevron_To.svg · 160×32 px @1080p</div></section><section><h2>Option C — Area jump (double chevron)</h2><p>Dark end cell with »/«. Use this for jumps to another area and A or B within an area.</p>
+<div class="canvas"><div class="conn" style="width:160px;height:32px"><svg xmlns="http://www.w3.org/2000/svg"  width="160" height="32" viewBox="0 0 160 32">
+  <rect id="body" x="0.75" y="0.75" width="158.5" height="30.5" fill="#F0F0F0" stroke="#5A5A5A" stroke-width="1.5"/>
+  <rect id="cell" x="0.75" y="0.75" width="31.25" height="30.5" fill="#4A4A4A" stroke="none"/>
+  <path id="chevrons" d="M26,10 L20,16 L26,22 M17,10 L11,16 L17,22" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<div class="lbl" style="left:40px;right:10px;top:0;height:32px;line-height:32px">FROM: TANK FARM</div></div><div class="pipe"></div><div class="equip">P-101</div><div class="pipe"></div><div class="conn" style="width:160px;height:32px"><svg xmlns="http://www.w3.org/2000/svg"  width="160" height="32" viewBox="0 0 160 32">
+  <rect id="body" x="0.75" y="0.75" width="158.5" height="30.5" fill="#F0F0F0" stroke="#5A5A5A" stroke-width="1.5"/>
+  <rect id="cell" x="128" y="0.75" width="31.25" height="30.5" fill="#4A4A4A" stroke="none"/>
+  <path id="chevrons" d="M134,10 L140,16 L134,22 M143,10 L149,16 L143,22" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<div class="lbl" style="left:10px;right:38px;top:0;height:32px;line-height:32px">TO: AREA 2 REACTOR</div></div></div>
+<div class="files">svg/C_AreaJump_From.svg · svg/C_AreaJump_To.svg · 160×32 px @1080p</div></section><section><h2>Option D — Card with alarm + live value</h2><p>Pentagon with an ISA alarm slot (diamond) and a white live-value field.</p>
+<div class="canvas"><div class="conn" style="width:180px;height:44px"><svg xmlns="http://www.w3.org/2000/svg"  width="180" height="44" viewBox="0 0 180 44">
+  <path id="body" d="M0.75,0.75 H158 L179.25,22 L158,43.25 H0.75 L14,22 Z" fill="#F0F0F0" stroke="#5A5A5A" stroke-width="1.5"/>
+  <rect id="valueField" x="42" y="24" width="108" height="15" fill="#FFFFFF" stroke="#5A5A5A" stroke-width="1"/>
+  <path id="alarm" style="fill:#F5A623;stroke:#222;stroke-width:1" d="M29,14 L37,22 L29,30 L21,22 Z" fill="none" stroke="none"/>
+</svg>
+<div class="lbl" style="left:42px;right:22px;top:3px;font-size:11px">FROM: TANK FARM</div><div class="val" style="left:46px;width:100px;top:24px">142.6 GPM</div></div><div class="pipe"></div><div class="equip">P-101</div><div class="pipe"></div><div class="conn" style="width:180px;height:44px"><svg xmlns="http://www.w3.org/2000/svg"  width="180" height="44" viewBox="0 0 180 44">
+  <path id="body" d="M0.75,0.75 H158 L179.25,22 L158,43.25 H0.75 Z" fill="#F0F0F0" stroke="#5A5A5A" stroke-width="1.5"/>
+  <rect id="valueField" x="30" y="24" width="118" height="15" fill="#FFFFFF" stroke="#5A5A5A" stroke-width="1"/>
+  <path id="alarm" style="fill:#D0021B;stroke:#222;stroke-width:1" d="M15,13 L24,22 L15,31 L6,22 Z" fill="none" stroke="none"/>
+</svg>
+<div class="lbl" style="left:30px;right:22px;top:3px;font-size:11px">TO: AREA 2 REACTOR</div><div class="val" style="left:34px;width:110px;top:24px">38.1 PSIG</div></div></div>
+<div class="files">svg/D_Card_From.svg · svg/D_Card_To.svg · 180×44 px @1080p</div></section></body></html>

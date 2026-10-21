@@ -1,0 +1,531 @@
+{
+  "custom": {},
+  "params": {
+    "cardPath": "",
+    "ch": 0,
+    "chFolder": "CH00",
+    "alt": false
+  },
+  "propConfig": {
+    "custom.chPath": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "{view.params.cardPath} + \"/\" + {view.params.chFolder}"
+        }
+      }
+    },
+    "custom.raw": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/VALUE",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.err": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/CH_ERROR",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.val": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/HMI/Scaled",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.loop": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Doc/LoopTag",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.desc": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Doc/Description",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.spare": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Doc/Spare",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.units": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Doc/Units",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.emin": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Doc/EngMin",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.emax": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Doc/EngMax",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.diag": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/HMI/DiagText",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "params.cardPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.ch": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.chFolder": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.alt": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1000,
+      "height": 34
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {},
+    "props": {
+      "direction": "row",
+      "justify": "flex-start",
+      "alignItems": "center",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "Table/Row"
+      }
+    },
+    "propConfig": {
+      "props.style.classes": {
+        "binding": {
+          "type": "expr",
+          "config": {
+            "expression": "if({view.params.alt}, \"Table/Row Table/RowAlt\", \"Table/Row\")"
+          }
+        }
+      }
+    },
+    "children": [
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Ch"
+        },
+        "position": {
+          "basis": "3.148vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "text": "0",
+          "style": {
+            "classes": "Table/Cell"
+          }
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "toStr({view.params.ch})"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Loop"
+        },
+        "position": {
+          "basis": "9.63vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "text": "",
+          "style": {
+            "classes": "Table/Cell Text/Weight/Bold Text/Mod/Ellipsis"
+          }
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "if(coalesce({view.custom.spare}, false), \"—\", if(isNull({view.custom.loop}), \"\", toStr({view.custom.loop})))"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Desc"
+        },
+        "position": {
+          "basis": "0",
+          "grow": 1,
+          "shrink": 1
+        },
+        "props": {
+          "text": "",
+          "style": {
+            "classes": "Table/Cell Text/Mod/Ellipsis"
+          }
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "if(coalesce({view.custom.spare}, false), \"Spare\", if(isNull({view.custom.desc}), \"\", toStr({view.custom.desc})))"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Raw"
+        },
+        "position": {
+          "basis": "5.926vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "text": "",
+          "style": {
+            "classes": "Table/CellNumeric Text/Code"
+          }
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "if(coalesce({view.custom.spare}, false) || isNull({view.custom.raw}), \"\", toStr({view.custom.raw}))"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Value"
+        },
+        "position": {
+          "basis": "7.778vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "text": "",
+          "style": {
+            "classes": "Table/CellNumeric Text/Weight/Bold Text/Size/M"
+          }
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "if(coalesce({view.custom.spare}, false), \"\", if(coalesce({view.custom.err}, false), \"FAULT\", if(isNull({view.custom.val}), \"---\", numberFormat({view.custom.val}, \"#,##0.0\"))))"
+              }
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "\"Table/CellNumeric Text/Weight/Bold Text/Size/M\" + if(!coalesce({view.custom.spare}, false) && !isGood({view.custom.raw}), \" Value/BadQuality\", if(coalesce({view.custom.err}, false), \" Text/Color/Fault\", \"\"))"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Units"
+        },
+        "position": {
+          "basis": "5.0vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "text": "",
+          "style": {
+            "classes": "Table/Cell Text/Units"
+          }
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "if(coalesce({view.custom.spare}, false), \"\", if(isNull({view.custom.units}), \"\", toStr({view.custom.units})))"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "BarCell"
+        },
+        "position": {
+          "basis": "10.926vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Table/Cell"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Track"
+            },
+            "position": {
+              "basis": "0.926vh",
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": "Bar/Track"
+              }
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "!coalesce({view.custom.spare}, false) && !coalesce({view.custom.err}, false)"
+                  }
+                }
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Fill"
+                },
+                "position": {
+                  "basis": "0%",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Bar/Fill"
+                  }
+                },
+                "propConfig": {
+                  "position.basis": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "toStr(max(0, min(100, (coalesce({view.custom.val}, 0) - coalesce({view.custom.emin}, 0)) * 100.0 / if(coalesce({view.custom.emax}, 1) = coalesce({view.custom.emin}, 0), 1, coalesce({view.custom.emax}, 1) - coalesce({view.custom.emin}, 0))))) + \"%\""
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "HealthCell"
+        },
+        "position": {
+          "basis": "7.778vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Table/Cell"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Health",
+              "tooltip": {
+                "enabled": true,
+                "text": ""
+              }
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "OK",
+              "style": {
+                "classes": "State/Running"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(coalesce({view.custom.spare}, false), \"SPARE\", if(!isGood({view.custom.raw}), \"COMMS?\", if(coalesce({view.custom.err}, false), \"FAULT\", \"OK\")))"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(coalesce({view.custom.spare}, false), \"State/OutOfService\", if(!isGood({view.custom.raw}), \"State/Unknown\", if(coalesce({view.custom.err}, false), \"State/Fault\", \"State/Running\")))"
+                  }
+                }
+              },
+              "meta.tooltip.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(len(if(isNull({view.custom.diag}), \"\", toStr({view.custom.diag}))) > 0, \"Diagnostics: \" + {view.custom.diag}, \"No channel diagnostics active\")"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

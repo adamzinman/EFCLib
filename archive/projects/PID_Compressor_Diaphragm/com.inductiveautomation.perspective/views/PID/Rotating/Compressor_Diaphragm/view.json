@@ -1,0 +1,155 @@
+{
+  "custom": {
+    "fill": "#B4B4B4",
+    "outline": "#4D4D4D",
+    "outlineWidth": 2.34
+  },
+  "params": {
+    "state": 0,
+    "alarm": 0
+  },
+  "propConfig": {
+    "custom.fill": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "case({view.params.state},0,'#B4B4B4',1,'#FFFFFF',2,'#DCDCDC',3,'#E0001B','#B4B4B4')"
+        }
+      }
+    },
+    "custom.outline": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "case({view.params.alarm},1,'#00A0E0',2,'#FFD700',3,'#FF8C00',4,'#E0001B','#4D4D4D')"
+        }
+      }
+    },
+    "custom.outlineWidth": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.params.alarm}>0,4.69,2.34)"
+        }
+      }
+    },
+    "params.state": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.alarm": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 64,
+      "height": 64
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "children": [
+      {
+        "type": "ia.shapes.svg",
+        "meta": {
+          "name": "Compressor_Diaphragm"
+        },
+        "position": {
+          "basis": "100%",
+          "grow": 1,
+          "shrink": 1
+        },
+        "props": {
+          "viewBox": "0 0 100 100",
+          "preserveAspectRatio": "xMidYMid",
+          "elements": [
+            {
+              "type": "path",
+              "name": "nozzles",
+              "d": "M6,50 H12 M88,50 H94",
+              "fill": {
+                "paint": "none"
+              },
+              "stroke": {
+                "paint": "#4D4D4D",
+                "width": 2.34
+              }
+            },
+            {
+              "type": "circle",
+              "name": "body",
+              "cx": 50,
+              "cy": 50,
+              "r": 38,
+              "fill": {
+                "paint": "#B4B4B4"
+              },
+              "stroke": {
+                "paint": "#4D4D4D",
+                "width": 2.34
+              }
+            },
+            {
+              "type": "path",
+              "name": "detail",
+              "d": "M15.77,33.5 L87.25,42.5 M15.77,66.5 L87.25,57.5 ",
+              "fill": {
+                "paint": "none"
+              },
+              "stroke": {
+                "paint": "#4D4D4D",
+                "width": 1.56
+              }
+            },
+            {
+              "type": "path",
+              "name": "diaphragm",
+              "d": "M38,36.9 Q64,50 38,63.1",
+              "fill": {
+                "paint": "none"
+              },
+              "stroke": {
+                "paint": "#4D4D4D",
+                "width": 3.12
+              }
+            }
+          ]
+        },
+        "propConfig": {
+          "props.elements[1].fill.paint": {
+            "binding": {
+              "type": "property",
+              "config": {
+                "path": "view.custom.fill"
+              }
+            }
+          },
+          "props.elements[1].stroke.paint": {
+            "binding": {
+              "type": "property",
+              "config": {
+                "path": "view.custom.outline"
+              }
+            }
+          },
+          "props.elements[1].stroke.width": {
+            "binding": {
+              "type": "property",
+              "config": {
+                "path": "view.custom.outlineWidth"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

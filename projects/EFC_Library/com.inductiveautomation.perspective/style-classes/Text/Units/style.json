@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "1.019vh",
+      "fontWeight": "400",
+      "color": "#4D4D4D",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif",
+      "marginLeft": "0.278vh"
+    }
+  },
+  "variants": []
+}

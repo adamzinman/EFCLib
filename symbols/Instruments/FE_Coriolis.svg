@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36">
+<path id="pipe0" d="M2 70 H24" fill="none" stroke="#333333" stroke-width="5.556"/>
+<path id="pipe1" d="M76 70 H98" fill="none" stroke="#333333" stroke-width="5.556"/>
+<path id="pipe2" d="M24 70 V34 Q24 18 40 18 H60 Q76 18 76 34 V70" fill="none" stroke="#333333" stroke-width="5.556"/>
+<rect id="face3" x="40" y="26" width="20" height="14" fill="#FFFFFF" stroke="#262626" stroke-width="4.167"/>
+</svg>

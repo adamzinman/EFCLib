@@ -1,0 +1,40 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#FFF3F3",
+      "color": "#1F4E99",
+      "border": "0.093vh solid #7F7F7F",
+      "borderRadius": "0.185vh",
+      "fontSize": "1.296vh",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif",
+      "fontWeight": "600",
+      "padding": "0.185vh 0.37vh",
+      "fontVariantNumeric": "tabular-nums",
+      "borderColor": "#3A3A3A",
+      "borderWidth": "0.185vh"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "borderColor": "#595959"
+      }
+    },
+    {
+      "pseudo": "focus",
+      "style": {
+        "borderColor": "#1F4E99",
+        "outline": "0.093vh solid #1F4E99"
+      }
+    },
+    {
+      "pseudo": "disabled",
+      "style": {
+        "backgroundColor": "#EDEDED",
+        "color": "#9A9A9A",
+        "borderColor": "#A6A6A6"
+      }
+    }
+  ]
+}

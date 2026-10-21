@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#00A3E0",
+      "borderLeft": "0.093vh solid #7F7F7F"
+    }
+  },
+  "variants": []
+}

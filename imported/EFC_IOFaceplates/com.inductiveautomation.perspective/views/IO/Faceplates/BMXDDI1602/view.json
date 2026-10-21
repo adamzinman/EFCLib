@@ -1,0 +1,425 @@
+{
+  "custom": {},
+  "params": {
+    "cardPath": "[default]IO_Demo/Rack0/R0S2"
+  },
+  "propConfig": {
+    "custom.modErr": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Module/MOD_ERROR",
+          "references": {
+            "0": "{view.params.cardPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.modDiag": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Module/HMI/DiagText",
+          "references": {
+            "0": "{view.params.cardPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.rack": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Rack",
+          "references": {
+            "0": "{view.params.cardPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.slot": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Slot",
+          "references": {
+            "0": "{view.params.cardPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "params.cardPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 810,
+      "height": 302
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {},
+    "props": {
+      "direction": "column",
+      "justify": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "Container/Popup"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Container/PopupHeader"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Model"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "BMXDDI1602",
+              "style": {
+                "classes": "Text/Size/L Text/Weight/Bold"
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Desc"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "16 DI · 24 VDC",
+              "style": {
+                "classes": "Text/Size/S"
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Instance"
+            },
+            "position": {
+              "basis": "0",
+              "grow": 1,
+              "shrink": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Size/S Text/Mod/Ellipsis"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "substring({view.params.cardPath}, lastIndexOf({view.params.cardPath}, \"/\") + 1) + \"   ·   Rack \" + if(isNull({view.custom.rack}), \"\", toStr({view.custom.rack})) + \"  Slot \" + if(isNull({view.custom.slot}), \"\", toStr({view.custom.slot}))"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "ModHealth"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "MODULE HEALTHY",
+              "style": {
+                "classes": "State/Running"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(!isGood({view.custom.modErr}), \"COMMS?\", if({view.custom.modErr}, \"MODULE FAULT\", \"MODULE HEALTHY\"))"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(!isGood({view.custom.modErr}), \"State/Unknown\", if({view.custom.modErr}, \"State/Fault\", \"State/Running\"))"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.input.button",
+            "version": 0,
+            "meta": {
+              "name": "Close"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "✕",
+              "style": {
+                "classes": "Button/Icon"
+              }
+            },
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "type": "script",
+                  "scope": "G",
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup('')"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "StatusBar"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Container/Toolbar"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "ModDiag"
+            },
+            "position": {
+              "basis": "0",
+              "grow": 1,
+              "shrink": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Label"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(len(if(isNull({view.custom.modDiag}), \"\", toStr({view.custom.modDiag}))) > 0, \"Module: \" + {view.custom.modDiag}, \"No module diagnostics active\")"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Note",
+              "tooltip": {
+                "enabled": true,
+                "text": "Status bits (TRIP, SENSOR_FLT, MOD_FAIL …) refresh only when the PLC runs READ_STS on the channel or module. VALUE, CH_ERROR and MOD_ERROR are live every scan."
+              }
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "ⓘ READ_STS",
+              "style": {
+                "classes": "Text/Caption"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Body"
+        },
+        "position": {
+          "basis": "0",
+          "grow": 1,
+          "shrink": 1
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "flex-start",
+          "wrap": "wrap",
+          "style": {
+            "classes": "Util/Pad/S"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Group0"
+            },
+            "position": {
+              "basis": "100%",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": "Util/Pad/S"
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "GroupLbl0"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "INPUTS 00–15",
+                  "style": {
+                    "classes": "Text/Subheader"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.flex-repeater",
+                "version": 0,
+                "meta": {
+                  "name": "Tiles0"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "path": "IO/Parts/DiscreteTile",
+                  "instances": [],
+                  "direction": "row",
+                  "wrap": "wrap",
+                  "justify": "flex-start",
+                  "alignItems": "flex-start",
+                  "alignContent": "flex-start",
+                  "useDefaultViewWidth": false,
+                  "useDefaultViewHeight": true,
+                  "elementPosition": {
+                    "basis": "12.5%",
+                    "grow": 0,
+                    "shrink": 0
+                  },
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "propConfig": {
+                  "props.instances": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.params.cardPath}"
+                      },
+                      "transforms": [
+                        {
+                          "type": "script",
+                          "code": "\tn = 16\n\tp = str(value or '')\n\tif not p:\n\t\treturn []\n\treturn [{'cardPath': p, 'ch': i, 'chFolder': 'CH%02d' % i, 'alt': (i % 2 == 1)} for i in range(0, 16)]"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

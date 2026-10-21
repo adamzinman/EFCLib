@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "whiteSpace": "nowrap",
+      "overflow": "hidden",
+      "textOverflow": "ellipsis"
+    }
+  },
+  "variants": []
+}

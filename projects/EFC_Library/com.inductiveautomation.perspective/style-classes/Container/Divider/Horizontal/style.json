@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "borderTop": "0.093vh solid #7F7F7F",
+      "height": "0px",
+      "alignSelf": "stretch"
+    }
+  },
+  "variants": []
+}

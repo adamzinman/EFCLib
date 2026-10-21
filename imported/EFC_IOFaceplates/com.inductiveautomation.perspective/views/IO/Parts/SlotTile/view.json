@@ -1,0 +1,290 @@
+{
+  "custom": {},
+  "params": {
+    "cardPath": "",
+    "model": "",
+    "slot": 0
+  },
+  "propConfig": {
+    "custom.modErr": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Module/MOD_ERROR",
+          "references": {
+            "0": "{view.params.cardPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.desc": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/CardDesc",
+          "references": {
+            "0": "{view.params.cardPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.diag": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Module/HMI/DiagText",
+          "references": {
+            "0": "{view.params.cardPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "params.cardPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.model": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.slot": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 132,
+      "height": 150
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {},
+    "props": {
+      "direction": "column",
+      "justify": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "Util/Pad/S Util/Transparent"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Tile",
+          "tooltip": {
+            "enabled": true,
+            "text": ""
+          }
+        },
+        "position": {
+          "basis": "0",
+          "grow": 1,
+          "shrink": 1
+        },
+        "props": {
+          "direction": "column",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Container/Card Util/Pad/S Util/Pointer"
+          }
+        },
+        "propConfig": {
+          "props.style.classes": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "if(isGood({view.custom.modErr}) && {view.custom.modErr}, \"State/Fault\", \"Container/Card\") + \" Util/Pad/S Util/Pointer\""
+              }
+            }
+          },
+          "meta.tooltip.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "\"Open faceplate\" + if(len(if(isNull({view.custom.diag}), \"\", toStr({view.custom.diag}))) > 0, \"\\nModule: \" + {view.custom.diag}, \"\")"
+              }
+            }
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Slot"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Size/XS"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "\"Slot \" + toStr({view.params.slot})"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Model"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Size/S Text/Weight/Bold"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.params.model"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Desc"
+            },
+            "position": {
+              "basis": "0",
+              "grow": 1,
+              "shrink": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Size/XS Text/Mod/Wrap"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(isNull({view.custom.desc}), \"\", toStr({view.custom.desc}))"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Inst"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Size/XXS Text/Mod/Ellipsis"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "substring({view.params.cardPath}, lastIndexOf({view.params.cardPath}, \"/\") + 1)"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Health"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "HEALTHY",
+              "style": {
+                "classes": "State/Running"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(!isGood({view.custom.modErr}), \"COMMS?\", if({view.custom.modErr}, \"FAULT\", \"HEALTHY\"))"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(!isGood({view.custom.modErr}), \"State/Unknown\", if({view.custom.modErr}, \"State/Fault\", \"State/Running\"))"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "events": {
+          "dom": {
+            "onClick": {
+              "type": "script",
+              "scope": "G",
+              "config": {
+                "script": "\tmodel = self.view.params.model\n\tif not model:\n\t\treturn\n\tp = self.view.params.cardPath\n\tsystem.perspective.openPopup(\"io_\" + p, \"IO/Faceplates/\" + model, params={\"cardPath\": p},\n\t\ttitle=\"\", showCloseIcon=False, draggable=True, resizable=False, modal=False)"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

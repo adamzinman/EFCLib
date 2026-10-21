@@ -1,0 +1,711 @@
+{
+  "custom": {
+    "cmd": false,
+    "zso": false,
+    "zsc": true,
+    "fb": true,
+    "permMissing": false,
+    "intlk": false,
+    "ilist": null,
+    "manual": false,
+    "off": false,
+    "locked": false,
+    "name": "",
+    "desc": "",
+    "state": 0,
+    "command": 0,
+    "alarm": 0,
+    "fill": "#9E9E9E",
+    "head": "#9E9E9E",
+    "line": "#262626",
+    "lw": 4.167,
+    "con": "#262626",
+    "canCmd": false
+  },
+  "params": {
+    "tagPath": "[default]PID_Demo/XV103",
+    "useButton": true
+  },
+  "propConfig": {
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.useButton": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "custom.cmd": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/CMD"
+        }
+      }
+    },
+    "custom.zso": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/ZSO"
+        }
+      }
+    },
+    "custom.zsc": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/ZSC"
+        }
+      }
+    },
+    "custom.fb": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Feedback_Enabled"
+        }
+      }
+    },
+    "custom.permMissing": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Permissive"
+        }
+      }
+    },
+    "custom.intlk": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Interlock"
+        }
+      }
+    },
+    "custom.ilist": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/InterlockList"
+        }
+      }
+    },
+    "custom.manual": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Manual"
+        }
+      }
+    },
+    "custom.off": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Off"
+        }
+      }
+    },
+    "custom.locked": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/LockedOut"
+        }
+      }
+    },
+    "custom.name": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Name"
+        }
+      }
+    },
+    "custom.desc": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Description"
+        }
+      }
+    },
+    "custom.state": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if(coalesce({view.custom.zso}, false) && coalesce({view.custom.zsc}, false), 3, if(!coalesce({view.custom.fb}, true), if(coalesce({view.custom.cmd}, false), 1, 0), if(coalesce({view.custom.zso}, false), 1, if(coalesce({view.custom.zsc}, false), 0, 2))))"
+        }
+      }
+    },
+    "custom.command": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if(coalesce({view.custom.fb}, true), if(coalesce({view.custom.cmd}, false), 1, 0), -1)"
+        }
+      }
+    },
+    "custom.alarm": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if(forceQuality(coalesce(try(isAlarmActiveFiltered({view.params.tagPath} + \"/*\", \"*\", \"*\", 4, 4, 0, 1, 0), false), false)), 4, if(forceQuality(coalesce(try(isAlarmActiveFiltered({view.params.tagPath} + \"/*\", \"*\", \"*\", 3, 3, 0, 1, 0), false), false)), 3, if(forceQuality(coalesce(try(isAlarmActiveFiltered({view.params.tagPath} + \"/*\", \"*\", \"*\", 2, 2, 0, 1, 0), false), false)), 2, if(forceQuality(coalesce(try(isAlarmActiveFiltered({view.params.tagPath} + \"/*\", \"*\", \"*\", 1, 1, 0, 1, 0), false), false)), 1, 0))))"
+        }
+      }
+    },
+    "custom.fill": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "case({view.custom.state}, 0, \"#9E9E9E\", 1, \"#FFFFFF\", 2, \"#C4C4C4\", 3, \"#3A3A3A\", \"#C4C4C4\")"
+        }
+      }
+    },
+    "custom.head": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.command} < 0, {view.custom.fill}, if({view.custom.command} = 1, \"#FFFFFF\", \"#9E9E9E\"))"
+        }
+      }
+    },
+    "custom.line": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.state} = 3, \"#D50000\", case({view.custom.alarm}, 1, \"#00A3E0\", 2, \"#FFD200\", 3, \"#FF7A00\", 4, \"#D50000\", \"#262626\"))"
+        }
+      }
+    },
+    "custom.con": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.state} = 3, \"#F2F2F2\", \"#262626\")"
+        }
+      }
+    },
+    "custom.lw": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.alarm} > 0 || {view.custom.state} = 3, 8.333, 4.167)"
+        }
+      }
+    },
+    "custom.canCmd": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "coalesce({view.custom.manual}, false) && !coalesce({view.custom.locked}, false) && !coalesce({view.custom.off}, false) && (coalesce({view.custom.cmd}, false) || (!coalesce({view.custom.permMissing}, false) && !coalesce({view.custom.intlk}, false)))"
+        }
+      }
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 120,
+      "height": 100
+    }
+  },
+  "root": {
+    "type": "ia.container.coord",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent"
+    },
+    "children": [
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Tag",
+          "tooltip": {
+            "enabled": false,
+            "text": ""
+          }
+        },
+        "position": {
+          "x": 0.0,
+          "y": 0.01,
+          "width": 1.0,
+          "height": 0.15
+        },
+        "props": {
+          "text": "",
+          "style": {
+            "classes": "Text/TagName Text/Mod/Center Text/Mod/NoWrap"
+          }
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "if(len(coalesce({view.custom.name}, \"\")) > 0, {view.custom.name}, substring({view.params.tagPath}, lastIndexOf({view.params.tagPath}, \"/\") + 1))"
+              }
+            }
+          },
+          "meta.tooltip.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "coalesce({view.custom.desc}, \"\")"
+              }
+            }
+          },
+          "meta.tooltip.enabled": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "len(coalesce({view.custom.desc}, \"\")) > 0"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.shapes.svg",
+        "version": 0,
+        "meta": {
+          "name": "Symbol"
+        },
+        "position": {
+          "x": 0.3167,
+          "y": 0.18,
+          "width": 0.3667,
+          "height": 0.44
+        },
+        "props": {
+          "viewBox": "0 0 100 100",
+          "preserveAspectRatio": "xMidYMid",
+          "elements": [
+            {
+              "type": "path",
+              "name": "detail0",
+              "d": "M50,70 L50,36",
+              "fill": {
+                "paint": "transparent"
+              },
+              "stroke": {
+                "paint": "#262626",
+                "width": 2.778,
+                "linejoin": "round"
+              }
+            },
+            {
+              "type": "circle",
+              "name": "head1",
+              "cx": 50,
+              "cy": 22,
+              "r": 14,
+              "fill": {
+                "paint": "#9E9E9E"
+              },
+              "stroke": {
+                "paint": "#262626",
+                "width": 4.167,
+                "linejoin": "round"
+              }
+            },
+            {
+              "type": "path",
+              "name": "detail2",
+              "d": "M45.5,28 L45.5,16 L50,23.2 L54.5,16 L54.5,28",
+              "fill": {
+                "paint": "transparent"
+              },
+              "stroke": {
+                "paint": "#262626",
+                "width": 2.778,
+                "linejoin": "round"
+              }
+            },
+            {
+              "type": "path",
+              "name": "state3",
+              "d": "M10,54 L10,86 L50,70 Z M90,54 L90,86 L50,70 Z",
+              "fill": {
+                "paint": "#9E9E9E"
+              },
+              "stroke": {
+                "paint": "#262626",
+                "width": 4.167,
+                "linejoin": "round"
+              }
+            }
+          ]
+        },
+        "propConfig": {
+          "props.elements[1].fill.paint": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.head}"
+              }
+            }
+          },
+          "props.elements[1].stroke.paint": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.line}"
+              }
+            }
+          },
+          "props.elements[1].stroke.width": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.lw}"
+              }
+            }
+          },
+          "props.elements[3].fill.paint": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.fill}"
+              }
+            }
+          },
+          "props.elements[3].stroke.paint": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.line}"
+              }
+            }
+          },
+          "props.elements[3].stroke.width": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.lw}"
+              }
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "if(!{view.params.useButton} && {view.custom.canCmd}, \"Util/Pointer\", \"\")"
+              }
+            }
+          }
+        },
+        "events": {
+          "dom": {
+            "onClick": {
+              "type": "script",
+              "scope": "G",
+              "config": {
+                "script": "\tif self.view.params.useButton or not self.view.custom.canCmd:\n\t\treturn\n\tcmd = bool(self.view.custom.cmd)\n\tsystem.tag.writeBlocking([self.view.params.tagPath + '/HMI_CMD'], [not cmd])"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "P",
+          "tooltip": {
+            "enabled": true,
+            "text": "Permissive missing - start/open blocked"
+          }
+        },
+        "position": {
+          "x": 0.3067,
+          "y": 0.207,
+          "width": 0.1167,
+          "height": 0.14
+        },
+        "props": {
+          "text": "P",
+          "style": {
+            "classes": "Indicator/PermissiveBadge"
+          }
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "coalesce({view.custom.permMissing}, false)"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "I",
+          "tooltip": {
+            "enabled": true,
+            "text": "Interlock active - start/open blocked"
+          }
+        },
+        "position": {
+          "x": 0.5767,
+          "y": 0.207,
+          "width": 0.1167,
+          "height": 0.14
+        },
+        "props": {
+          "text": "I",
+          "style": {
+            "classes": "Indicator/InterlockBadge"
+          }
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "coalesce({view.custom.intlk}, false)"
+              }
+            }
+          },
+          "meta.tooltip.text": {
+            "binding": {
+              "type": "property",
+              "config": {
+                "path": "view.custom.ilist"
+              },
+              "transforms": [
+                {
+                  "type": "script",
+                  "code": "\t# InterlockList is a document: {Status, Description[], InterlockName[], Used[]}\n\thead = \"Interlock active - open blocked\"\n\ttry:\n\t\tnames = list(value[\"InterlockName\"] or [])\n\t\tused = list(value[\"Used\"] or [])\n\t\tdesc = list(value[\"Description\"] or [])\n\t\titems = []\n\t\tfor i in range(len(names)):\n\t\t\tif i < len(used) and used[i] and names[i]:\n\t\t\t\td = desc[i] if i < len(desc) and desc[i] else \"\"\n\t\t\t\titems.append(str(names[i]) + (\" - \" + str(d) if d else \"\"))\n\t\treturn head + (\":\\n\" + \"\\n\".join(items) if items else \"\")\n\texcept:\n\t\treturn head"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "StatusGroup"
+        },
+        "position": {
+          "x": 0.1667,
+          "y": 0.65,
+          "width": 0.6667,
+          "height": 0.18
+        },
+        "props": {
+          "direction": "row",
+          "justify": "center",
+          "alignItems": "stretch",
+          "style": {
+            "classes": ""
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "M"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0,
+              "grow": 0
+            },
+            "props": {
+              "text": "M",
+              "style": {
+                "classes": "Util/Collapsed"
+              }
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "!{view.params.useButton} && coalesce({view.custom.manual}, false)"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(!{view.params.useButton} && coalesce({view.custom.manual}, false), \"Mode/ManualSplit\", \"Util/Collapsed\")"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Status"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "State/Stopped"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "case({view.custom.state}, 0, \"CLOSED\", 1, \"OPEN\", 2, if(coalesce({view.custom.cmd}, false), \"OPENING\", \"CLOSING\"), 3, \"FAULT\", \"???\")"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "case({view.custom.state}, 0, \"State/Stopped\", 1, \"State/Running\", 2, \"State/Transition\", 3, \"State/Fault\", \"State/Unknown\") + if(!{view.params.useButton} && coalesce({view.custom.manual}, false), \" Mode/ManualJoined\", \"\")"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.input.button",
+        "version": 0,
+        "meta": {
+          "name": "PB",
+          "tooltip": {
+            "enabled": true,
+            "text": "Open"
+          }
+        },
+        "position": {
+          "x": 0.025,
+          "y": 0.65,
+          "width": 0.15,
+          "height": 0.18
+        },
+        "props": {
+          "text": "",
+          "enabled": false,
+          "style": {
+            "classes": "Button/Command"
+          }
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.params.useButton} && coalesce({view.custom.manual}, false)"
+              }
+            }
+          },
+          "props.enabled": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.canCmd}"
+              }
+            }
+          },
+          "meta.tooltip.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "if(coalesce({view.custom.locked}, false), \"Locked out\", if(!coalesce({view.custom.manual}, false), \"Manual mode required\", if(coalesce({view.custom.cmd}, false), \"Close\", \"Open\")))"
+              }
+            }
+          }
+        },
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "type": "script",
+              "scope": "G",
+              "config": {
+                "script": "\tcmd = bool(self.view.custom.cmd)\n\tsystem.tag.writeBlocking([self.view.params.tagPath + '/HMI_CMD'], [not cmd])"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

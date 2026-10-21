@@ -1,0 +1,19 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "1.019vh",
+      "fontWeight": "700",
+      "letterSpacing": "0.04em",
+      "textTransform": "uppercase",
+      "borderRadius": "0.185vh",
+      "padding": "0.093vh 0.37vh",
+      "border": "0.093vh solid #7F7F7F",
+      "textAlign": "center",
+      "justifyContent": "center",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif",
+      "backgroundColor": "#E6E6E6",
+      "color": "#1F1F1F"
+    }
+  },
+  "variants": []
+}

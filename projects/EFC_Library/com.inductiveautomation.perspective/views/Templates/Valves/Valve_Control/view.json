@@ -1,0 +1,627 @@
+{
+  "custom": {
+    "out": 0.0,
+    "pos": 0.0,
+    "fb": true,
+    "perm": true,
+    "intlk": false,
+    "fault": false,
+    "mode": 0,
+    "name": "",
+    "desc": "",
+    "state": 0,
+    "command": 0,
+    "alarm": 0,
+    "fill": "#9E9E9E",
+    "head": "#9E9E9E",
+    "line": "#262626",
+    "lw": 4.167,
+    "con": "#262626",
+    "posC": 0.0,
+    "outC": 0.0
+  },
+  "params": {
+    "tagPath": "[default]PID_Demo/FV101"
+  },
+  "propConfig": {
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "custom.out": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Out"
+        }
+      }
+    },
+    "custom.pos": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Pos"
+        }
+      }
+    },
+    "custom.fb": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Feedback_Enabled"
+        }
+      }
+    },
+    "custom.perm": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/PermOK"
+        }
+      }
+    },
+    "custom.intlk": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Intlk"
+        }
+      }
+    },
+    "custom.fault": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Fault"
+        }
+      }
+    },
+    "custom.mode": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Mode"
+        }
+      }
+    },
+    "custom.name": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Name"
+        }
+      }
+    },
+    "custom.desc": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "fallbackDelay": 2.5,
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "tagPath": "{0}/Description"
+        }
+      }
+    },
+    "custom.state": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if(coalesce({view.custom.fault}, false), 3, if((if(coalesce({view.custom.fb}, true), coalesce({view.custom.pos}, 0), coalesce({view.custom.out}, 0))) > 1, 1, 0))"
+        }
+      }
+    },
+    "custom.command": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if(coalesce({view.custom.fb}, true), if(coalesce({view.custom.out}, 0) > 1, 1, 0), -1)"
+        }
+      }
+    },
+    "custom.alarm": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if(forceQuality(coalesce(try(isAlarmActiveFiltered({view.params.tagPath} + \"/*\", \"*\", \"*\", 4, 4, 0, 1, 0), false), false)), 4, if(forceQuality(coalesce(try(isAlarmActiveFiltered({view.params.tagPath} + \"/*\", \"*\", \"*\", 3, 3, 0, 1, 0), false), false)), 3, if(forceQuality(coalesce(try(isAlarmActiveFiltered({view.params.tagPath} + \"/*\", \"*\", \"*\", 2, 2, 0, 1, 0), false), false)), 2, if(forceQuality(coalesce(try(isAlarmActiveFiltered({view.params.tagPath} + \"/*\", \"*\", \"*\", 1, 1, 0, 1, 0), false), false)), 1, 0))))"
+        }
+      }
+    },
+    "custom.fill": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "case({view.custom.state}, 0, \"#9E9E9E\", 1, \"#FFFFFF\", 2, \"#C4C4C4\", 3, \"#3A3A3A\", \"#C4C4C4\")"
+        }
+      }
+    },
+    "custom.head": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.command} < 0, {view.custom.fill}, if({view.custom.command} = 1, \"#FFFFFF\", \"#9E9E9E\"))"
+        }
+      }
+    },
+    "custom.line": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.state} = 3, \"#D50000\", case({view.custom.alarm}, 1, \"#00A3E0\", 2, \"#FFD200\", 3, \"#FF7A00\", 4, \"#D50000\", \"#262626\"))"
+        }
+      }
+    },
+    "custom.con": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.state} = 3, \"#F2F2F2\", \"#262626\")"
+        }
+      }
+    },
+    "custom.lw": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.alarm} > 0 || {view.custom.state} = 3, 8.333, 4.167)"
+        }
+      }
+    },
+    "custom.posC": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max(0, min(100, coalesce(coalesce({view.custom.pos}, 0), 0)))"
+        }
+      }
+    },
+    "custom.outC": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max(0, min(100, coalesce(coalesce({view.custom.out}, 0), 0)))"
+        }
+      }
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 120,
+      "height": 100
+    }
+  },
+  "root": {
+    "type": "ia.container.coord",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent"
+    },
+    "children": [
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Tag",
+          "tooltip": {
+            "enabled": false,
+            "text": ""
+          }
+        },
+        "position": {
+          "x": 0.0,
+          "y": 0.01,
+          "width": 1.0,
+          "height": 0.15
+        },
+        "props": {
+          "text": "",
+          "style": {
+            "classes": "Text/TagName Text/Mod/Center Text/Mod/NoWrap"
+          }
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "if(len(coalesce({view.custom.name}, \"\")) > 0, {view.custom.name}, substring({view.params.tagPath}, lastIndexOf({view.params.tagPath}, \"/\") + 1))"
+              }
+            }
+          },
+          "meta.tooltip.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "coalesce({view.custom.desc}, \"\")"
+              }
+            }
+          },
+          "meta.tooltip.enabled": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "len(coalesce({view.custom.desc}, \"\")) > 0"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.shapes.svg",
+        "version": 0,
+        "meta": {
+          "name": "Symbol"
+        },
+        "position": {
+          "x": 0.3167,
+          "y": 0.18,
+          "width": 0.3667,
+          "height": 0.44
+        },
+        "props": {
+          "viewBox": "0 0 100 100",
+          "preserveAspectRatio": "xMidYMid",
+          "elements": [
+            {
+              "type": "path",
+              "name": "detail0",
+              "d": "M50,70 L50,32",
+              "fill": {
+                "paint": "transparent"
+              },
+              "stroke": {
+                "paint": "#262626",
+                "width": 2.778,
+                "linejoin": "round"
+              }
+            },
+            {
+              "type": "path",
+              "name": "head1",
+              "d": "M28,32 A22,16 0 0 1 72,32 Z",
+              "fill": {
+                "paint": "#9E9E9E"
+              },
+              "stroke": {
+                "paint": "#262626",
+                "width": 4.167,
+                "linejoin": "round"
+              }
+            },
+            {
+              "type": "path",
+              "name": "state2",
+              "d": "M10,54 L10,86 L50,70 Z M90,54 L90,86 L50,70 Z",
+              "fill": {
+                "paint": "#9E9E9E"
+              },
+              "stroke": {
+                "paint": "#262626",
+                "width": 4.167,
+                "linejoin": "round"
+              }
+            }
+          ]
+        },
+        "propConfig": {
+          "props.elements[1].fill.paint": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.head}"
+              }
+            }
+          },
+          "props.elements[1].stroke.paint": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.line}"
+              }
+            }
+          },
+          "props.elements[1].stroke.width": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.lw}"
+              }
+            }
+          },
+          "props.elements[2].fill.paint": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.fill}"
+              }
+            }
+          },
+          "props.elements[2].stroke.paint": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.line}"
+              }
+            }
+          },
+          "props.elements[2].stroke.width": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "{view.custom.lw}"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "P",
+          "tooltip": {
+            "enabled": true,
+            "text": "Permissive missing - start/open blocked"
+          }
+        },
+        "position": {
+          "x": 0.2775,
+          "y": 0.216,
+          "width": 0.1167,
+          "height": 0.14
+        },
+        "props": {
+          "text": "P",
+          "style": {
+            "classes": "Indicator/PermissiveBadge"
+          }
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "!coalesce({view.custom.perm}, true)"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "I",
+          "tooltip": {
+            "enabled": true,
+            "text": "Interlock active - start/open blocked"
+          }
+        },
+        "position": {
+          "x": 0.6058,
+          "y": 0.216,
+          "width": 0.1167,
+          "height": 0.14
+        },
+        "props": {
+          "text": "I",
+          "style": {
+            "classes": "Indicator/InterlockBadge"
+          }
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "coalesce({view.custom.intlk}, false)"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "StatusGroup"
+        },
+        "position": {
+          "x": 0.1667,
+          "y": 0.65,
+          "width": 0.6667,
+          "height": 0.18
+        },
+        "props": {
+          "direction": "row",
+          "justify": "center",
+          "alignItems": "stretch",
+          "style": {
+            "classes": ""
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Status"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "State/Stopped"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if({view.custom.state} = 3, \"FAULT\", numberFormat(if(coalesce({view.custom.fb}, true), coalesce({view.custom.pos}, 0), coalesce({view.custom.out}, 0)), \"0\") + \" %\")"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "case({view.custom.state}, 0, \"State/Stopped\", 1, \"State/Running\", 2, \"State/Transition\", 3, \"State/Fault\", \"State/Unknown\") + \" Text/Mod/Tabular\""
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.shapes.svg",
+        "version": 0,
+        "meta": {
+          "name": "PositionBar",
+          "tooltip": {
+            "enabled": true,
+            "text": ""
+          }
+        },
+        "position": {
+          "x": 0.15,
+          "y": 0.09,
+          "width": 0.1083,
+          "height": 0.37
+        },
+        "props": {
+          "viewBox": "0 -6 20 112",
+          "preserveAspectRatio": "none",
+          "elements": [
+            {
+              "type": "rect",
+              "name": "track",
+              "x": 8,
+              "y": 2,
+              "width": 11,
+              "height": 96,
+              "fill": {
+                "paint": "#FFFFFF"
+              },
+              "stroke": {
+                "paint": "#595959",
+                "width": 1.5
+              }
+            },
+            {
+              "type": "rect",
+              "name": "pos",
+              "x": 8,
+              "y": 98,
+              "width": 11,
+              "height": 0,
+              "fill": {
+                "paint": "#4D4D4D"
+              },
+              "stroke": {
+                "paint": "transparent",
+                "width": 0
+              }
+            },
+            {
+              "type": "path",
+              "name": "cmd",
+              "d": "M0 91 L7 98 L0 105 Z",
+              "fill": {
+                "paint": "#1F4E99"
+              },
+              "stroke": {
+                "paint": "transparent",
+                "width": 0
+              }
+            }
+          ]
+        },
+        "propConfig": {
+          "props.elements[1].y": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "98 - 0.96 * {view.custom.posC}"
+              }
+            }
+          },
+          "props.elements[1].height": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "0.96 * {view.custom.posC}"
+              }
+            }
+          },
+          "props.elements[2].d": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "\"M0 \" + toStr(91 - 0.96 * {view.custom.outC}) + \" L7 \" + toStr(98 - 0.96 * {view.custom.outC}) + \" L0 \" + toStr(105 - 0.96 * {view.custom.outC}) + \" Z\""
+              }
+            }
+          },
+          "meta.tooltip.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "\"Position \" + numberFormat({view.custom.posC}, \"0\") + \" % / Command \" + numberFormat({view.custom.outC}, \"0\") + \" %\""
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

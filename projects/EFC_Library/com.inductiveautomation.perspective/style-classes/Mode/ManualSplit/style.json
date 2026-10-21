@@ -1,0 +1,20 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#3A3A3A",
+      "color": "#FFD200",
+      "fontSize": "1.019vh",
+      "fontWeight": "700",
+      "letterSpacing": "0.04em",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif",
+      "border": "0.093vh solid #1F1F1F",
+      "borderRight": "none",
+      "borderRadius": "0.185vh 0 0 0.185vh",
+      "padding": "0.093vh 0.463vh",
+      "textAlign": "center",
+      "justifyContent": "center",
+      "alignItems": "center"
+    }
+  },
+  "variants": []
+}

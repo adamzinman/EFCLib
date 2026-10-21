@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="B_Chevron_To" width="160" height="32" viewBox="0 0 160 32">
+  <rect id="body" x="0.75" y="0.75" width="158.5" height="30.5" rx="4" fill="#F0F0F0" stroke="#5A5A5A" stroke-width="1.5"/>
+  <path id="chevron" d="M142,9 L149,16 L142,23" fill="none" stroke="#4A4A4A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

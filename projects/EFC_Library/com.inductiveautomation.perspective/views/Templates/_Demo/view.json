@@ -1,0 +1,928 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Container/Screen",
+        "gap": "10px",
+        "padding": "10px",
+        "overflowY": "auto"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Sec"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "classes": "Container/Panel",
+            "gap": "14px"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "T"
+            },
+            "position": {
+              "basis": "28px",
+              "shrink": 0
+            },
+            "props": {
+              "text": "Templates bound to [default]PID_Demo (1.5x). Params: tagPath (+ useButton on valves and running equipment)",
+              "style": {
+                "classes": "Text/Header"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Grid"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "classes": "",
+                "gap": "14px"
+              },
+              "wrap": "wrap"
+            },
+            "children": [
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V"
+                    },
+                    "position": {
+                      "basis": "150.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Valves/Valve_OnOff_Pneumatic",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/XV101"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "XV101 \u00b7 Valve_OnOff_Pneumatic",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_1"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_1"
+                    },
+                    "position": {
+                      "basis": "150.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Valves/Valve_Solenoid",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/XV102"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_1"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "XV102 \u00b7 Valve_Solenoid",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_2"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_2"
+                    },
+                    "position": {
+                      "basis": "150.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Valves/Valve_MOV",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/XV103",
+                        "useButton": false
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_2"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "XV103 \u00b7 Valve_MOV \u00b7 useButton=false",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_3"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_3"
+                    },
+                    "position": {
+                      "basis": "150.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Valves/Valve_OnOff_Pneumatic",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/XV104"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_3"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "XV104 \u00b7 Valve_OnOff_Pneumatic",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_4"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_4"
+                    },
+                    "position": {
+                      "basis": "150.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Valves/Valve_OnOff_Pneumatic",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/XV105"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_4"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "XV105 \u00b7 Valve_OnOff_Pneumatic",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_5"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_5"
+                    },
+                    "position": {
+                      "basis": "150.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Valves/Valve_Control",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/FV101"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_5"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "FV101 \u00b7 Valve_Control",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_6"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_6"
+                    },
+                    "position": {
+                      "basis": "150.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Valves/Valve_Control",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/FV102"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_6"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "FV102 \u00b7 Valve_Control",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_7"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_7"
+                    },
+                    "position": {
+                      "basis": "174.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Rotating/Pump_Centrifugal",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/P101"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_7"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "P101 \u00b7 Pump_Centrifugal",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_8"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_8"
+                    },
+                    "position": {
+                      "basis": "174.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Rotating/Pump_PD_Rotary",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/P102"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_8"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "P102 \u00b7 Pump_PD_Rotary",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_9"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_9"
+                    },
+                    "position": {
+                      "basis": "174.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Rotating/Compressor_Diaphragm",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/K201"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_9"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "K201 \u00b7 Compressor_Diaphragm",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_10"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_10"
+                    },
+                    "position": {
+                      "basis": "174.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Rotating/Compressor_Centrifugal",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/K202"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_10"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "K202 \u00b7 Compressor_Centrifugal",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_11"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_11"
+                    },
+                    "position": {
+                      "basis": "174.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Rotating/Blower",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/B301"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_11"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "B301 \u00b7 Blower",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_12"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_12"
+                    },
+                    "position": {
+                      "basis": "174.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/Rotating/Pump_Vacuum",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/PV501",
+                        "useButton": false
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_12"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "PV501 \u00b7 Pump_Vacuum \u00b7 useButton=false",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Item_13"
+                },
+                "position": {
+                  "basis": "180.0px",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "column",
+                  "style": {
+                    "classes": "",
+                    "gap": "2px",
+                    "alignItems": "center"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.view",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_13"
+                    },
+                    "position": {
+                      "basis": "174.0px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "path": "Templates/HeatTransfer/Heater_Electric",
+                      "params": {
+                        "tagPath": "[default]PID_Demo/E401"
+                      },
+                      "useDefaultViewWidth": false,
+                      "useDefaultViewHeight": false,
+                      "style": {
+                        "width": "180.0px"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cap_13"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "E401 \u00b7 Heater_Electric",
+                      "style": {
+                        "classes": "Text/Caption Text/Mod/Center"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

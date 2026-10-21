@@ -1,0 +1,551 @@
+{
+  "custom": {},
+  "params": {
+    "cardPath": "[default]IO_Demo/Rack0/R0S5"
+  },
+  "propConfig": {
+    "custom.modErr": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Module/MOD_ERROR",
+          "references": {
+            "0": "{view.params.cardPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.modDiag": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Module/HMI/DiagText",
+          "references": {
+            "0": "{view.params.cardPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.rack": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Rack",
+          "references": {
+            "0": "{view.params.cardPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.slot": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Slot",
+          "references": {
+            "0": "{view.params.cardPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "params.cardPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 920,
+      "height": 442
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {},
+    "props": {
+      "direction": "column",
+      "justify": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "Container/Popup"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Container/PopupHeader"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Model"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "BMXART0814",
+              "style": {
+                "classes": "Text/Size/L Text/Weight/Bold"
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Desc"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "8 RTD / TC · isolated",
+              "style": {
+                "classes": "Text/Size/S"
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Instance"
+            },
+            "position": {
+              "basis": "0",
+              "grow": 1,
+              "shrink": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Size/S Text/Mod/Ellipsis"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "substring({view.params.cardPath}, lastIndexOf({view.params.cardPath}, \"/\") + 1) + \"   ·   Rack \" + if(isNull({view.custom.rack}), \"\", toStr({view.custom.rack})) + \"  Slot \" + if(isNull({view.custom.slot}), \"\", toStr({view.custom.slot}))"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "ModHealth"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "MODULE HEALTHY",
+              "style": {
+                "classes": "State/Running"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(!isGood({view.custom.modErr}), \"COMMS?\", if({view.custom.modErr}, \"MODULE FAULT\", \"MODULE HEALTHY\"))"
+                  }
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(!isGood({view.custom.modErr}), \"State/Unknown\", if({view.custom.modErr}, \"State/Fault\", \"State/Running\"))"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.input.button",
+            "version": 0,
+            "meta": {
+              "name": "Close"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "✕",
+              "style": {
+                "classes": "Button/Icon"
+              }
+            },
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "type": "script",
+                  "scope": "G",
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup('')"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "StatusBar"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Container/Toolbar"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "ModDiag"
+            },
+            "position": {
+              "basis": "0",
+              "grow": 1,
+              "shrink": 1
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Label"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(len(if(isNull({view.custom.modDiag}), \"\", toStr({view.custom.modDiag}))) > 0, \"Module: \" + {view.custom.modDiag}, \"No module diagnostics active\")"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Note",
+              "tooltip": {
+                "enabled": true,
+                "text": "Status bits (TRIP, SENSOR_FLT, MOD_FAIL …) refresh only when the PLC runs READ_STS on the channel or module. VALUE, CH_ERROR and MOD_ERROR are live every scan."
+              }
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "ⓘ READ_STS",
+              "style": {
+                "classes": "Text/Caption"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Body"
+        },
+        "position": {
+          "basis": "0",
+          "grow": 1,
+          "shrink": 1
+        },
+        "props": {
+          "direction": "column",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Util/Pad/M"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "ColHeader"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": ""
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "H_Ch"
+                },
+                "position": {
+                  "basis": "3.148vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Ch",
+                  "style": {
+                    "classes": "Table/Header"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "H_Loop"
+                },
+                "position": {
+                  "basis": "9.63vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Loop tag",
+                  "style": {
+                    "classes": "Table/Header"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "H_Desc"
+                },
+                "position": {
+                  "basis": "0",
+                  "grow": 1,
+                  "shrink": 1
+                },
+                "props": {
+                  "text": "Description",
+                  "style": {
+                    "classes": "Table/Header"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "H_Raw"
+                },
+                "position": {
+                  "basis": "5.926vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Raw",
+                  "style": {
+                    "classes": "Table/Header Text/Mod/Right"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "H_Value"
+                },
+                "position": {
+                  "basis": "7.778vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Value",
+                  "style": {
+                    "classes": "Table/Header Text/Mod/Right"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "H_Units"
+                },
+                "position": {
+                  "basis": "5.0vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Units",
+                  "style": {
+                    "classes": "Table/Header"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "H_Flags"
+                },
+                "position": {
+                  "basis": "5.741vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Limit",
+                  "style": {
+                    "classes": "Table/Header"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "H_Health"
+                },
+                "position": {
+                  "basis": "7.778vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Health",
+                  "style": {
+                    "classes": "Table/Header"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.display.flex-repeater",
+            "version": 0,
+            "meta": {
+              "name": "Rows"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "IO/Parts/AnalogRow_TEMP",
+              "instances": [],
+              "direction": "column",
+              "wrap": "nowrap",
+              "justify": "flex-start",
+              "alignItems": "flex-start",
+              "alignContent": "flex-start",
+              "useDefaultViewWidth": true,
+              "useDefaultViewHeight": true,
+              "elementPosition": {
+                "basis": "auto",
+                "grow": 0,
+                "shrink": 0
+              },
+              "style": {
+                "classes": ""
+              }
+            },
+            "propConfig": {
+              "props.instances": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "{view.params.cardPath}"
+                  },
+                  "transforms": [
+                    {
+                      "type": "script",
+                      "code": "\tn = 8\n\tp = str(value or '')\n\tif not p:\n\t\treturn []\n\treturn [{'cardPath': p, 'ch': i, 'chFolder': 'CH%02d' % i, 'alt': (i % 2 == 1)} for i in range(0, 8)]"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

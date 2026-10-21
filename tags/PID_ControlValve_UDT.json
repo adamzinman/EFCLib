@@ -1,0 +1,69 @@
+{
+  "name": "PID_ControlValve",
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "name": "Out",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 0.0
+    },
+    {
+      "name": "Pos",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 0.0
+    },
+    {
+      "name": "PermOK",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": true
+    },
+    {
+      "name": "Intlk",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "Fault",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "Mode",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Int2",
+      "value": 0
+    },
+    {
+      "name": "Name",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "String",
+      "value": ""
+    },
+    {
+      "name": "Description",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "String",
+      "value": ""
+    },
+    {
+      "name": "Feedback_Enabled",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": true
+    }
+  ]
+}

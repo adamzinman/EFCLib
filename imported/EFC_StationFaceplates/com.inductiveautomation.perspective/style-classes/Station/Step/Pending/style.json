@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#CFCFCF",
+      "border": "0.093vh solid #A6A6A6",
+      "borderRadius": "0.093vh"
+    }
+  },
+  "variants": []
+}

@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#D50000",
+      "color": "#FFFFFF",
+      "fontWeight": "700",
+      "padding": "0 0.278vh",
+      "borderRadius": "0.185vh"
+    }
+  },
+  "variants": []
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 160" width="64" height="102">
+<path id="pipe0" d="M50 152 V160" fill="none" stroke="#333333" stroke-width="3.125"/>
+<path id="detail1" d="M26 148 L22 158 M74 148 L78 158" fill="none" stroke="#262626" stroke-width="2.344"/>
+<path id="shell2" d="M18 34 Q18 10 50 10 Q82 10 82 34 V136 Q82 152 50 152 Q18 152 18 136 Z" fill="#EBEBEB" stroke="#262626" stroke-width="2.344"/>
+<rect id="level3" x="28" y="86.0" width="44" height="48.0" fill="#7F8FA6" stroke="none"/>
+<path id="detail4" d="M26 38 Q26 18 50 18 Q74 18 74 38 V134 Q74 144 50 144 Q26 144 26 134 Z" fill="none" stroke="#262626" stroke-width="1.562" stroke-dasharray="7.812 6.25"/>
+</svg>

@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "2.963vh",
+      "fontWeight": "700",
+      "color": "#1F1F1F",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif",
+      "fontVariantNumeric": "tabular-nums"
+    }
+  },
+  "variants": []
+}

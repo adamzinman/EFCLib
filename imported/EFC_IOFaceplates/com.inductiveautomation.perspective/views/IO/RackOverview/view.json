@@ -1,0 +1,163 @@
+{
+  "custom": {
+    "cards": []
+  },
+  "params": {
+    "rackPath": "[default]IO_Demo/Rack0"
+  },
+  "propConfig": {
+    "custom.cards": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "{view.params.rackPath}"
+        },
+        "transforms": [
+          {
+            "type": "script",
+            "code": "\tlog = system.util.getLogger(\"EFC_IO\")\n\tout = []\n\tif not value:\n\t\treturn out\n\ttry:\n\t\tres = system.tag.browse(str(value), {\"tagType\": \"UdtInstance\"}).getResults()\n\texcept Exception as e:\n\t\tlog.warn(\"Rack browse failed for %s: %s\" % (value, e))\n\t\treturn out\n\tpaths = [str(r[\"fullPath\"]) for r in res]\n\tif not paths:\n\t\treturn out\n\tqv = system.tag.readBlocking([p + \"/CardModel\" for p in paths] + [p + \"/Slot\" for p in paths])\n\tn = len(paths)\n\tfor i, p in enumerate(paths):\n\t\tmodel = qv[i].value\n\t\tif not model:\n\t\t\tcontinue\n\t\tslot = qv[n + i].value\n\t\tout.append({\"cardPath\": p, \"model\": str(model), \"slot\": slot if slot is not None else 99})\n\treturn sorted(out, key=lambda c: c[\"slot\"])"
+          }
+        ]
+      }
+    },
+    "params.rackPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1200,
+      "height": 220
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {},
+    "props": {
+      "direction": "column",
+      "justify": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "Container/Panel"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Head"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "baseline",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Util/Pad/S"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Header"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "\"I/O Rack  \" + substring({view.params.rackPath}, lastIndexOf({view.params.rackPath}, \"/\") + 1)"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Hint"
+            },
+            "position": {
+              "basis": "0",
+              "grow": 1,
+              "shrink": 1
+            },
+            "props": {
+              "text": "Click a card to open its faceplate",
+              "style": {
+                "classes": "Text/Caption"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.display.flex-repeater",
+        "version": 0,
+        "meta": {
+          "name": "Slots"
+        },
+        "position": {
+          "basis": "0",
+          "grow": 1,
+          "shrink": 1
+        },
+        "props": {
+          "path": "IO/Parts/SlotTile",
+          "instances": [],
+          "direction": "row",
+          "wrap": "wrap",
+          "justify": "flex-start",
+          "alignItems": "flex-start",
+          "alignContent": "flex-start",
+          "useDefaultViewWidth": true,
+          "useDefaultViewHeight": true,
+          "elementPosition": {
+            "basis": "auto",
+            "grow": 0,
+            "shrink": 0
+          },
+          "style": {
+            "classes": ""
+          }
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "type": "property",
+              "config": {
+                "path": "view.custom.cards"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

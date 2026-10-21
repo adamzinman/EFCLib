@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" width="56" height="67">
+<path id="plain0" d="M42 30 V6 H58 V30" fill="#FFFFFF" stroke="#262626" stroke-width="1.786"/>
+<path id="body1" d="M18 112 V52 L34 30 H66 L82 52 V112 Z" fill="#9E9E9E" stroke="#262626" stroke-width="2.679"/>
+<path id="detail2" d="M30 100 V60 H40 V100 H50 V60 H60 V100 H70 V60" fill="none" stroke="#262626" stroke-width="2.679"/>
+<path id="dark3" d="M50 112 Q40 102 50 90 Q60 102 50 112 Z" fill="#262626" stroke="none"/>
+</svg>

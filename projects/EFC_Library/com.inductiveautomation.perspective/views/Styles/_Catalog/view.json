@@ -1,0 +1,4495 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "Container/Screen",
+        "gap": "12px",
+        "padding": "12px",
+        "overflowY": "auto"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Lbl_EFC_Style_Library"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "text": "EFC Style Library",
+          "style": {
+            "classes": "Text/Title Container/Header",
+            "padding": "10px 16px"
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Lbl_Every_style_class_in_the_library__Select_a_component_to_see_its_class_in_props_style_classes_"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "text": "Every style class in the library. Select a component to see its class in props.style.classes.",
+          "style": {
+            "classes": "Text/Caption Util/Pad/M"
+          }
+        }
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Sec_Text"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": "0.741vh",
+            "classes": "Container/Panel"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Lbl_Text"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "Text",
+              "style": {
+                "classes": "Text/Header"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Text"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Text_1"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Text",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Title"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Title",
+                  "style": {
+                    "classes": "Text/Title"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Header"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Header",
+                  "style": {
+                    "classes": "Text/Header"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Subheader"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Subheader",
+                  "style": {
+                    "classes": "Text/Subheader"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Body"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Body",
+                  "style": {
+                    "classes": "Text/Body"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Label"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Label",
+                  "style": {
+                    "classes": "Text/Label"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Caption"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Caption",
+                  "style": {
+                    "classes": "Text/Caption"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Micro"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Micro",
+                  "style": {
+                    "classes": "Text/Micro"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_TagName"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "TagName",
+                  "style": {
+                    "classes": "Text/TagName"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Value"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Value",
+                  "style": {
+                    "classes": "Text/Value"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_ValueLarge"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "ValueLarge",
+                  "style": {
+                    "classes": "Text/ValueLarge"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_ValueHero"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "ValueHero",
+                  "style": {
+                    "classes": "Text/ValueHero"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Units"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Units",
+                  "style": {
+                    "classes": "Text/Units"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Status"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Status",
+                  "style": {
+                    "classes": "Text/Status"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_MenuItem"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "MenuItem",
+                  "style": {
+                    "classes": "Text/MenuItem"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Link"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Link",
+                  "style": {
+                    "classes": "Text/Link"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Code"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Code",
+                  "style": {
+                    "classes": "Text/Code"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Text_Size"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Text_Size"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Text/Size",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Size_XXS"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Size/XXS",
+                  "style": {
+                    "classes": "Text/Size/XXS"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Size_XS"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Size/XS",
+                  "style": {
+                    "classes": "Text/Size/XS"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Size_S"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Size/S",
+                  "style": {
+                    "classes": "Text/Size/S"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Size_M"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Size/M",
+                  "style": {
+                    "classes": "Text/Size/M"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Size_L"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Size/L",
+                  "style": {
+                    "classes": "Text/Size/L"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Size_XL"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Size/XL",
+                  "style": {
+                    "classes": "Text/Size/XL"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Size_XXL"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Size/XXL",
+                  "style": {
+                    "classes": "Text/Size/XXL"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Size_XXXL"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Size/XXXL",
+                  "style": {
+                    "classes": "Text/Size/XXXL"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Text_Weight"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Text_Weight"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Text/Weight",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Weight_Light"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Weight/Light",
+                  "style": {
+                    "classes": "Text/Weight/Light"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Weight_Regular"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Weight/Regular",
+                  "style": {
+                    "classes": "Text/Weight/Regular"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Weight_Semibold"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Weight/Semibold",
+                  "style": {
+                    "classes": "Text/Weight/Semibold"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Weight_Bold"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Weight/Bold",
+                  "style": {
+                    "classes": "Text/Weight/Bold"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Text_Color"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Text_Color"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Text/Color",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Color_Default"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Color/Default",
+                  "style": {
+                    "classes": "Text/Color/Default"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Color_Muted"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Color/Muted",
+                  "style": {
+                    "classes": "Text/Color/Muted"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Color_Faint"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Color/Faint",
+                  "style": {
+                    "classes": "Text/Color/Faint"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Color_Disabled"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Color/Disabled",
+                  "style": {
+                    "classes": "Text/Color/Disabled"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Color_Inverse"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Color/Inverse",
+                  "style": {
+                    "classes": "Text/Color/Inverse"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Color_Editable"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Color/Editable",
+                  "style": {
+                    "classes": "Text/Color/Editable"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Color_Fault"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Color/Fault",
+                  "style": {
+                    "classes": "Text/Color/Fault"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Text_Mod"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Text_Mod"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Text/Mod",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mod_Italic"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mod/Italic",
+                  "style": {
+                    "classes": "Text/Mod/Italic"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mod_Underline"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mod/Underline",
+                  "style": {
+                    "classes": "Text/Mod/Underline"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mod_Upper"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mod/Upper",
+                  "style": {
+                    "classes": "Text/Mod/Upper"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mod_Left"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mod/Left",
+                  "style": {
+                    "classes": "Text/Mod/Left"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mod_Center"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mod/Center",
+                  "style": {
+                    "classes": "Text/Mod/Center"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mod_Right"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mod/Right",
+                  "style": {
+                    "classes": "Text/Mod/Right"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mod_Ellipsis"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mod/Ellipsis",
+                  "style": {
+                    "classes": "Text/Mod/Ellipsis"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mod_Wrap"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mod/Wrap",
+                  "style": {
+                    "classes": "Text/Mod/Wrap"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mod_NoWrap"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mod/NoWrap",
+                  "style": {
+                    "classes": "Text/Mod/NoWrap"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mod_Tabular"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mod/Tabular",
+                  "style": {
+                    "classes": "Text/Mod/Tabular"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mod_NoSelect"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mod/NoSelect",
+                  "style": {
+                    "classes": "Text/Mod/NoSelect"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Sec_Containers"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": "0.741vh",
+            "classes": "Container/Panel"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Lbl_Containers"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "Containers",
+              "style": {
+                "classes": "Text/Header"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Container"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Container"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Container",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Screen"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Screen",
+                  "style": {
+                    "classes": "Container/Screen Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Header_1"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Header",
+                  "style": {
+                    "classes": "Container/Header Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Menu"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Menu",
+                  "style": {
+                    "classes": "Container/Menu Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_TrendPanel"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "TrendPanel",
+                  "style": {
+                    "classes": "Container/TrendPanel Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_AlarmBar"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "AlarmBar",
+                  "style": {
+                    "classes": "Container/AlarmBar Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_ProcessArea"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "ProcessArea",
+                  "style": {
+                    "classes": "Container/ProcessArea Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Panel"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Panel",
+                  "style": {
+                    "classes": "Container/Panel Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Card"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Card",
+                  "style": {
+                    "classes": "Container/Card Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Inset"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Inset",
+                  "style": {
+                    "classes": "Container/Inset Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_GroupBox"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "GroupBox",
+                  "style": {
+                    "classes": "Container/GroupBox Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Toolbar"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Toolbar",
+                  "style": {
+                    "classes": "Container/Toolbar Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Popup"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Popup",
+                  "style": {
+                    "classes": "Container/Popup Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_PopupHeader"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "PopupHeader",
+                  "style": {
+                    "classes": "Container/PopupHeader Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Faceplate"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Faceplate",
+                  "style": {
+                    "classes": "Container/Faceplate Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_ValueBox"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "ValueBox",
+                  "style": {
+                    "classes": "Container/ValueBox Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Scroll"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Scroll",
+                  "style": {
+                    "classes": "Container/Scroll Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Container_Divider"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Container_Divider"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Container/Divider",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Divider_Horizontal"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Divider/Horizontal",
+                  "style": {
+                    "classes": "Container/Divider/Horizontal Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Divider_Vertical"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Divider/Vertical",
+                  "style": {
+                    "classes": "Container/Divider/Vertical Text/Body",
+                    "minWidth": "140px",
+                    "minHeight": "48px",
+                    "padding": "6px"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Sec_Buttons"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": "0.741vh",
+            "classes": "Container/Panel"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Lbl_Buttons"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "Buttons",
+              "style": {
+                "classes": "Text/Header"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Button"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Button"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Button",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Default"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Default",
+                  "style": {
+                    "classes": "Button/Default"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Primary"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Primary",
+                  "style": {
+                    "classes": "Button/Primary"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Subtle"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Subtle",
+                  "style": {
+                    "classes": "Button/Subtle"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Danger"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Danger",
+                  "style": {
+                    "classes": "Button/Danger"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Start"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Start",
+                  "style": {
+                    "classes": "Button/Start"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Stop"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Stop",
+                  "style": {
+                    "classes": "Button/Stop"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Small"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Small",
+                  "style": {
+                    "classes": "Button/Small"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Large"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Large",
+                  "style": {
+                    "classes": "Button/Large"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Icon"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Icon",
+                  "style": {
+                    "classes": "Button/Icon"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Momentary"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Momentary",
+                  "style": {
+                    "classes": "Button/Momentary"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Nav"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Nav",
+                  "style": {
+                    "classes": "Button/Nav"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_NavActive"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "NavActive",
+                  "style": {
+                    "classes": "Button/NavActive"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Tab"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Tab",
+                  "style": {
+                    "classes": "Button/Tab"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_TabActive"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "TabActive",
+                  "style": {
+                    "classes": "Button/TabActive"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Command"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Command",
+                  "style": {
+                    "classes": "Button/Command"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Button_Toggle"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Button_Toggle"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Button/Toggle",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Toggle_Off"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Toggle/Off",
+                  "style": {
+                    "classes": "Button/Toggle/Off"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.button",
+                "version": 0,
+                "meta": {
+                  "name": "Btn_Toggle_On"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Toggle/On",
+                  "style": {
+                    "classes": "Button/Toggle/On"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Sec_Inputs"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": "0.741vh",
+            "classes": "Container/Panel"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Lbl_Inputs"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "Inputs",
+              "style": {
+                "classes": "Text/Header"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Input"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Input"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Input",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.text-field",
+                "version": 0,
+                "meta": {
+                  "name": "Fld_42_0"
+                },
+                "position": {
+                  "basis": "150px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "42.0",
+                  "style": {
+                    "classes": "Input/Field"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.text-field",
+                "version": 0,
+                "meta": {
+                  "name": "Fld_42_0_1"
+                },
+                "position": {
+                  "basis": "150px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "42.0",
+                  "style": {
+                    "classes": "Input/Setpoint"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.text-field",
+                "version": 0,
+                "meta": {
+                  "name": "Fld_Dropdown"
+                },
+                "position": {
+                  "basis": "150px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Dropdown",
+                  "style": {
+                    "classes": "Input/Dropdown"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.text-field",
+                "version": 0,
+                "meta": {
+                  "name": "Fld_ReadOnly"
+                },
+                "position": {
+                  "basis": "150px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "ReadOnly",
+                  "style": {
+                    "classes": "Input/ReadOnly"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.text-field",
+                "version": 0,
+                "meta": {
+                  "name": "Fld_Invalid"
+                },
+                "position": {
+                  "basis": "150px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Invalid",
+                  "style": {
+                    "classes": "Input/Invalid"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.text-field",
+                "version": 0,
+                "meta": {
+                  "name": "Fld_Pending"
+                },
+                "position": {
+                  "basis": "150px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Pending",
+                  "style": {
+                    "classes": "Input/Pending"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Check"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Check",
+                  "style": {
+                    "classes": "Input/Check"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Sec_Values"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": "0.741vh",
+            "classes": "Container/Panel"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Lbl_Values"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "Values",
+              "style": {
+                "classes": "Text/Header"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Value"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Value_1"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Value",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Normal"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Normal",
+                  "style": {
+                    "classes": "Value/Normal"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Setpoint"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Setpoint",
+                  "style": {
+                    "classes": "Value/Setpoint"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Output"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Output",
+                  "style": {
+                    "classes": "Value/Output"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_BadQuality"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "BadQuality",
+                  "style": {
+                    "classes": "Value/BadQuality"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Stale"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Stale",
+                  "style": {
+                    "classes": "Value/Stale"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Forced"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Forced",
+                  "style": {
+                    "classes": "Value/Forced"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Simulated"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Simulated",
+                  "style": {
+                    "classes": "Value/Simulated"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Sec_States___Modes"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": "0.741vh",
+            "classes": "Container/Panel"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Lbl_States___Modes"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "States & Modes",
+              "style": {
+                "classes": "Text/Header"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_State"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_State"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "State",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Running"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Running",
+                  "style": {
+                    "classes": "State/Running"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Stopped"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Stopped",
+                  "style": {
+                    "classes": "State/Stopped"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Transition"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Transition",
+                  "style": {
+                    "classes": "State/Transition"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Fault"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Fault",
+                  "style": {
+                    "classes": "State/Fault"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_OutOfService"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "OutOfService",
+                  "style": {
+                    "classes": "State/OutOfService"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Unknown"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Unknown",
+                  "style": {
+                    "classes": "State/Unknown"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Mode"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Mode"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Mode",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Auto"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Auto",
+                  "style": {
+                    "classes": "Mode/Auto"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Cascade"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Cascade",
+                  "style": {
+                    "classes": "Mode/Cascade"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Manual"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Manual",
+                  "style": {
+                    "classes": "Mode/Manual"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Local"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Local",
+                  "style": {
+                    "classes": "Mode/Local"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Simulated_1"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Simulated",
+                  "style": {
+                    "classes": "Mode/Simulated"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_ManualSplit"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "ManualSplit",
+                  "style": {
+                    "classes": "Mode/ManualSplit"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_ManualJoined"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "ManualJoined",
+                  "style": {
+                    "classes": "Mode/ManualJoined"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_ManualSplitStatus"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "ManualSplitStatus",
+                  "style": {
+                    "classes": "Mode/ManualSplitStatus"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Sec_Indicators___Bars"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": "0.741vh",
+            "classes": "Container/Panel"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Lbl_Indicators___Bars"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "Indicators & Bars",
+              "style": {
+                "classes": "Text/Header"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Indicator_LED"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Indicator_LED"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Indicator/LED",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "LED_LED_On"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.37vh"
+                  },
+                  "wrap": "wrap",
+                  "alignItems": "center"
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Lbl_"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Indicator/LED/On",
+                        "width": "1.296vh",
+                        "height": "1.296vh"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Lbl_LED_On"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "LED/On",
+                      "style": {
+                        "classes": "Text/Caption"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "LED_LED_Off"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.37vh"
+                  },
+                  "wrap": "wrap",
+                  "alignItems": "center"
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Lbl__1"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Indicator/LED/Off",
+                        "width": "1.296vh",
+                        "height": "1.296vh"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Lbl_LED_Off"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "LED/Off",
+                      "style": {
+                        "classes": "Text/Caption"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "LED_LED_Fault"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.37vh"
+                  },
+                  "wrap": "wrap",
+                  "alignItems": "center"
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Lbl__2"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Indicator/LED/Fault",
+                        "width": "1.296vh",
+                        "height": "1.296vh"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Lbl_LED_Fault"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "LED/Fault",
+                      "style": {
+                        "classes": "Text/Caption"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "LED_LED_Unknown"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.37vh"
+                  },
+                  "wrap": "wrap",
+                  "alignItems": "center"
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Lbl__3"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Indicator/LED/Unknown",
+                        "width": "1.296vh",
+                        "height": "1.296vh"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Lbl_LED_Unknown"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "LED/Unknown",
+                      "style": {
+                        "classes": "Text/Caption"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Indicator"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Indicator"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Indicator",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Permissive"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Permissive",
+                  "style": {
+                    "classes": "Indicator/Permissive"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Interlock"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Interlock",
+                  "style": {
+                    "classes": "Indicator/Interlock"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Badge"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Badge",
+                  "style": {
+                    "classes": "Indicator/Badge"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_PermissiveBadge"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "PermissiveBadge",
+                  "style": {
+                    "classes": "Indicator/PermissiveBadge"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_InterlockBadge"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "InterlockBadge",
+                  "style": {
+                    "classes": "Indicator/InterlockBadge"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Bar"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Bar"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Bar",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Track"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Track",
+                  "style": {
+                    "classes": "Bar/Track Text/Caption",
+                    "minWidth": "120px",
+                    "minHeight": "1.296vh",
+                    "padding": "0 4px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Fill"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Fill",
+                  "style": {
+                    "classes": "Bar/Fill Text/Caption",
+                    "minWidth": "120px",
+                    "minHeight": "1.296vh",
+                    "padding": "0 4px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_FillAlarm"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "FillAlarm",
+                  "style": {
+                    "classes": "Bar/FillAlarm Text/Caption",
+                    "minWidth": "120px",
+                    "minHeight": "1.296vh",
+                    "padding": "0 4px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Marker"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Marker",
+                  "style": {
+                    "classes": "Bar/Marker Text/Caption",
+                    "minWidth": "120px",
+                    "minHeight": "1.296vh",
+                    "padding": "0 4px"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Sec_Alarms"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": "0.741vh",
+            "classes": "Container/Panel"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Lbl_Alarms"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "Alarms",
+              "style": {
+                "classes": "Text/Header"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Alarm_Critical"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Alarm_Critical"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Alarm/Critical",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Critical_Fill"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Critical/Fill",
+                  "style": {
+                    "classes": "Alarm/Critical/Fill"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Critical_Unacked"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Critical/Unacked",
+                  "style": {
+                    "classes": "Alarm/Critical/Unacked"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Critical_Outline"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Critical/Outline",
+                  "style": {
+                    "classes": "Alarm/Critical/Outline"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Critical_Text"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Critical/Text",
+                  "style": {
+                    "classes": "Alarm/Critical/Text"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Alarm_High"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Alarm_High"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Alarm/High",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_High_Fill"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "High/Fill",
+                  "style": {
+                    "classes": "Alarm/High/Fill"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_High_Unacked"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "High/Unacked",
+                  "style": {
+                    "classes": "Alarm/High/Unacked"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_High_Outline"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "High/Outline",
+                  "style": {
+                    "classes": "Alarm/High/Outline"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_High_Text"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "High/Text",
+                  "style": {
+                    "classes": "Alarm/High/Text"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Alarm_Medium"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Alarm_Medium"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Alarm/Medium",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Medium_Fill"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Medium/Fill",
+                  "style": {
+                    "classes": "Alarm/Medium/Fill"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Medium_Unacked"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Medium/Unacked",
+                  "style": {
+                    "classes": "Alarm/Medium/Unacked"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Medium_Outline"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Medium/Outline",
+                  "style": {
+                    "classes": "Alarm/Medium/Outline"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Medium_Text"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Medium/Text",
+                  "style": {
+                    "classes": "Alarm/Medium/Text"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Alarm_Low"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Alarm_Low"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Alarm/Low",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Low_Fill"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Low/Fill",
+                  "style": {
+                    "classes": "Alarm/Low/Fill"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Low_Unacked"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Low/Unacked",
+                  "style": {
+                    "classes": "Alarm/Low/Unacked"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Low_Outline"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Low/Outline",
+                  "style": {
+                    "classes": "Alarm/Low/Outline"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Low_Text"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Low/Text",
+                  "style": {
+                    "classes": "Alarm/Low/Text"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Alarm_Diagnostic"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Alarm_Diagnostic"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Alarm/Diagnostic",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Diagnostic_Fill"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Diagnostic/Fill",
+                  "style": {
+                    "classes": "Alarm/Diagnostic/Fill"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Diagnostic_Unacked"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Diagnostic/Unacked",
+                  "style": {
+                    "classes": "Alarm/Diagnostic/Unacked"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Diagnostic_Outline"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Diagnostic/Outline",
+                  "style": {
+                    "classes": "Alarm/Diagnostic/Outline"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Diagnostic_Text"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Diagnostic/Text",
+                  "style": {
+                    "classes": "Alarm/Diagnostic/Text"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Alarm_Status"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Alarm_Status"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Alarm/Status",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Status_ClearedUnacked"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Status/ClearedUnacked",
+                  "style": {
+                    "classes": "Alarm/Status/ClearedUnacked"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Status_Shelved"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Status/Shelved",
+                  "style": {
+                    "classes": "Alarm/Status/Shelved"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Status_Suppressed"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Status/Suppressed",
+                  "style": {
+                    "classes": "Alarm/Status/Suppressed"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Alarm"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Alarm"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Alarm",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Banner"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Banner",
+                  "style": {
+                    "classes": "Alarm/Banner"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Sec_Table"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": "0.741vh",
+            "classes": "Container/Panel"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Lbl_Table"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "Table",
+              "style": {
+                "classes": "Text/Header"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Table"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Table_1"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Table",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Header_2"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Header",
+                  "style": {
+                    "classes": "Table/Header"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Row"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Row",
+                  "style": {
+                    "classes": "Table/Row"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_RowAlt"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "RowAlt",
+                  "style": {
+                    "classes": "Table/RowAlt"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Cell"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Cell",
+                  "style": {
+                    "classes": "Table/Cell"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_CellNumeric"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "CellNumeric",
+                  "style": {
+                    "classes": "Table/CellNumeric"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Selected"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Selected",
+                  "style": {
+                    "classes": "Table/Selected"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Sec_Utility"
+        },
+        "position": {
+          "basis": "auto",
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": "0.741vh",
+            "classes": "Container/Panel"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Lbl_Utility"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "text": "Utility",
+              "style": {
+                "classes": "Text/Header"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Util_Pad"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Util_Pad"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Util/Pad",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Pad_S"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Pad/S",
+                  "style": {
+                    "classes": "Util/Pad/S Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Pad_M"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Pad/M",
+                  "style": {
+                    "classes": "Util/Pad/M Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Pad_L"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Pad/L",
+                  "style": {
+                    "classes": "Util/Pad/L Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Pad_None"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Pad/None",
+                  "style": {
+                    "classes": "Util/Pad/None Text/Body Container/Card"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Row_Util"
+            },
+            "position": {
+              "basis": "auto",
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.741vh"
+              },
+              "wrap": "wrap",
+              "alignItems": "center"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Util"
+                },
+                "position": {
+                  "basis": "160px",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Util",
+                  "style": {
+                    "classes": "Text/Label",
+                    "width": "160px"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Border"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Border",
+                  "style": {
+                    "classes": "Util/Border Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_BorderDashed"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "BorderDashed",
+                  "style": {
+                    "classes": "Util/BorderDashed Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Rounded"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Rounded",
+                  "style": {
+                    "classes": "Util/Rounded Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Shadow"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Shadow",
+                  "style": {
+                    "classes": "Util/Shadow Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Pointer"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Pointer",
+                  "style": {
+                    "classes": "Util/Pointer Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Disabled"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Disabled",
+                  "style": {
+                    "classes": "Util/Disabled Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Transparent"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Transparent",
+                  "style": {
+                    "classes": "Util/Transparent Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Highlight"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Highlight",
+                  "style": {
+                    "classes": "Util/Highlight Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Collapsed"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Collapsed",
+                  "style": {
+                    "classes": "Util/Collapsed Text/Body Container/Card"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_Clip"
+                },
+                "position": {
+                  "basis": "auto",
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Clip",
+                  "style": {
+                    "classes": "Util/Clip Text/Body Container/Card"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

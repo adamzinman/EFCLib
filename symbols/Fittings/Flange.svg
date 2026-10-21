@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36">
+<path id="pipe0" d="M2 50 H46" fill="none" stroke="#333333" stroke-width="5.556"/>
+<path id="pipe1" d="M54 50 H98" fill="none" stroke="#333333" stroke-width="5.556"/>
+<path id="detail2" d="M46 30 V70 M54 30 V70" fill="none" stroke="#262626" stroke-width="5.556"/>
+</svg>

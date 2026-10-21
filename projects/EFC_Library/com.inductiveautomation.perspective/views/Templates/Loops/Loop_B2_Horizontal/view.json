@@ -1,0 +1,945 @@
+{
+  "custom": {
+    "pv": 0,
+    "sp": 0,
+    "out": 0,
+    "mode": 0,
+    "almHi": 0,
+    "almLo": 0,
+    "pvLo": 0,
+    "pvHi": 0,
+    "units": "",
+    "pvPct": 0,
+    "spPct": 0,
+    "hiPct": 0,
+    "loPct": 0,
+    "outPct": 0,
+    "alarm": false,
+    "modeText": "",
+    "name": ""
+  },
+  "params": {
+    "tagPath": "[default]PID_Demo/TIC101",
+    "label": ""
+  },
+  "propConfig": {
+    "custom.pv": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/PV"
+        }
+      }
+    },
+    "custom.sp": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/SP"
+        }
+      }
+    },
+    "custom.out": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/OUT"
+        }
+      }
+    },
+    "custom.mode": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/Mode"
+        }
+      }
+    },
+    "custom.almHi": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/AlmHi"
+        }
+      }
+    },
+    "custom.almLo": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/AlmLo"
+        }
+      }
+    },
+    "custom.pvLo": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/PV.engLow"
+        }
+      }
+    },
+    "custom.pvHi": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/PV.engHigh"
+        }
+      }
+    },
+    "custom.units": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/PV.engUnit"
+        }
+      }
+    },
+    "custom.pvPct": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "min(100, max(0, ({view.custom.pv} - {view.custom.pvLo}) / max(0.000001, {view.custom.pvHi} - {view.custom.pvLo}) * 100))"
+        }
+      }
+    },
+    "custom.spPct": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "min(100, max(0, ({view.custom.sp} - {view.custom.pvLo}) / max(0.000001, {view.custom.pvHi} - {view.custom.pvLo}) * 100))"
+        }
+      }
+    },
+    "custom.hiPct": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "min(100, max(0, ({view.custom.almHi} - {view.custom.pvLo}) / max(0.000001, {view.custom.pvHi} - {view.custom.pvLo}) * 100))"
+        }
+      }
+    },
+    "custom.loPct": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "min(100, max(0, ({view.custom.almLo} - {view.custom.pvLo}) / max(0.000001, {view.custom.pvHi} - {view.custom.pvLo}) * 100))"
+        }
+      }
+    },
+    "custom.outPct": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "min(100, max(0, {view.custom.out}))"
+        }
+      }
+    },
+    "custom.alarm": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "{view.custom.pv} >= {view.custom.almHi} || {view.custom.pv} <= {view.custom.almLo}"
+        }
+      }
+    },
+    "custom.modeText": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "case({view.custom.mode}, 0, \"MAN\", 1, \"AUTO\", 2, \"CAS\", \"---\")"
+        }
+      }
+    },
+    "custom.name": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if(len({view.params.label}) > 0, {view.params.label}, substring({view.params.tagPath}, lastIndexOf({view.params.tagPath}, \"/\") + 1))"
+        }
+      }
+    },
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 260,
+      "height": 92
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "#F7F8F9",
+        "borderRadius": "0.741vh",
+        "boxShadow": "0 1px 2px rgba(20,30,40,0.08)",
+        "padding": "0.741vh 1.111vh 0.926vh 1.111vh",
+        "cursor": "pointer",
+        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+        "overflow": "hidden"
+      }
+    },
+    "position": {
+      "shrink": 0
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "meta": {
+          "name": "header"
+        },
+        "props": {
+          "direction": "row",
+          "style": {
+            "marginBottom": "0.741vh"
+          },
+          "justify": "space-between",
+          "alignItems": "center"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "meta": {
+              "name": "title"
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "gap": "0.463vh",
+                "height": "1.481vh"
+              },
+              "alignItems": "center"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "meta": {
+                  "name": "tag"
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                    "color": "#1E2329",
+                    "fontWeight": 600,
+                    "fontSize": "1.157vh",
+                    "whiteSpace": "nowrap"
+                  }
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "property",
+                      "config": {
+                        "path": "view.custom.name"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.shapes.svg",
+                "meta": {
+                  "name": "alarmIcon"
+                },
+                "props": {
+                  "viewBox": "0 0 12 12",
+                  "preserveAspectRatio": "xMidYMid",
+                  "elements": [
+                    {
+                      "type": "path",
+                      "name": "d",
+                      "d": "M6,0.8 L11.2,6 L6,11.2 L0.8,6 Z",
+                      "fill": {
+                        "paint": "#FF8C00"
+                      },
+                      "stroke": {
+                        "paint": "#222222",
+                        "width": 0.8
+                      }
+                    }
+                  ]
+                },
+                "position": {
+                  "shrink": 0,
+                  "basis": "1.019vh"
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "type": "property",
+                      "config": {
+                        "path": "view.custom.alarm"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.display.label",
+            "meta": {
+              "name": "mode"
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                "color": "#1E2329",
+                "fontSize": "0.926vh",
+                "fontWeight": 600,
+                "letterSpacing": "0.04em",
+                "padding": "0.185vh 0.648vh",
+                "borderRadius": "999px",
+                "lineHeight": 1.2
+              }
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "property",
+                  "config": {
+                    "path": "view.custom.modeText"
+                  }
+                }
+              },
+              "props.style.backgroundColor": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "case({view.custom.mode}, 0, \"#2B3138\", 2, \"#DCE6F7\", \"#E9ECEF\")"
+                  }
+                }
+              },
+              "props.style.color": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "case({view.custom.mode}, 0, \"#FFFFFF\", 2, \"#1F4E99\", \"#454D55\")"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "meta": {
+          "name": "mid"
+        },
+        "props": {
+          "direction": "row",
+          "style": {
+            "gap": "0.926vh"
+          },
+          "alignItems": "center"
+        },
+        "position": {
+          "grow": 1,
+          "basis": "0px"
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "meta": {
+              "name": "vals"
+            },
+            "props": {
+              "direction": "column",
+              "style": {}
+            },
+            "position": {
+              "shrink": 0,
+              "basis": "9.259vh"
+            },
+            "children": [
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "pvRow"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {},
+                  "alignItems": "baseline"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "pv"
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#1E2329",
+                        "fontSize": "1.852vh",
+                        "fontWeight": 600,
+                        "fontVariantNumeric": "tabular-nums",
+                        "lineHeight": 1
+                      }
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "numberFormat({view.custom.pv}, \"#,##0.0\")"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "units"
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "0.926vh",
+                        "marginLeft": "0.278vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.units"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "spRow"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "marginTop": "0.463vh"
+                  },
+                  "alignItems": "baseline"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "spLbl"
+                    },
+                    "props": {
+                      "text": "SP",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#2F6FD6",
+                        "fontSize": "0.926vh",
+                        "fontWeight": 600,
+                        "letterSpacing": "0.05em",
+                        "marginRight": "0.37vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "sp"
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#2F6FD6",
+                        "fontSize": "1.204vh",
+                        "fontWeight": 600,
+                        "fontVariantNumeric": "tabular-nums",
+                        "lineHeight": 1
+                      }
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "numberFormat({view.custom.sp}, \"#,##0.0\")"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "meta": {
+              "name": "barWrap"
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "height": "2.593vh"
+              },
+              "alignItems": "center"
+            },
+            "position": {
+              "grow": 1,
+              "basis": "0px"
+            },
+            "children": [
+              {
+                "type": "ia.shapes.svg",
+                "meta": {
+                  "name": "pvBar"
+                },
+                "props": {
+                  "viewBox": "-6 -1 212 27",
+                  "preserveAspectRatio": "none",
+                  "elements": [
+                    {
+                      "type": "rect",
+                      "name": "track",
+                      "x": 0,
+                      "y": 9,
+                      "width": 200,
+                      "height": 10,
+                      "rx": 5,
+                      "ry": 5,
+                      "fill": {
+                        "paint": "#E6E9EC"
+                      },
+                      "stroke": {
+                        "paint": "none",
+                        "width": 0
+                      }
+                    },
+                    {
+                      "type": "rect",
+                      "name": "band",
+                      "x": 0,
+                      "y": 9,
+                      "width": 0,
+                      "height": 10,
+                      "rx": 0,
+                      "ry": 0,
+                      "fill": {
+                        "paint": "#CBD2D9"
+                      },
+                      "stroke": {
+                        "paint": "none",
+                        "width": 0
+                      }
+                    },
+                    {
+                      "type": "rect",
+                      "name": "fill",
+                      "x": 0,
+                      "y": 9,
+                      "width": 0,
+                      "height": 10,
+                      "rx": 5,
+                      "ry": 5,
+                      "fill": {
+                        "paint": "#7C858F"
+                      },
+                      "stroke": {
+                        "paint": "none",
+                        "width": 0
+                      }
+                    },
+                    {
+                      "type": "rect",
+                      "name": "lo",
+                      "x": 0,
+                      "y": 21,
+                      "width": 2,
+                      "height": 5,
+                      "rx": 1,
+                      "ry": 1,
+                      "fill": {
+                        "paint": "#FF8C00"
+                      },
+                      "stroke": {
+                        "paint": "none",
+                        "width": 0
+                      }
+                    },
+                    {
+                      "type": "rect",
+                      "name": "hi",
+                      "x": 0,
+                      "y": 21,
+                      "width": 2,
+                      "height": 5,
+                      "rx": 1,
+                      "ry": 1,
+                      "fill": {
+                        "paint": "#FF8C00"
+                      },
+                      "stroke": {
+                        "paint": "none",
+                        "width": 0
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "name": "sp",
+                      "d": "",
+                      "fill": {
+                        "paint": "#2F6FD6"
+                      },
+                      "stroke": {
+                        "paint": "none",
+                        "width": 0
+                      }
+                    }
+                  ]
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 1,
+                  "basis": "0px"
+                },
+                "propConfig": {
+                  "props.elements[1].x": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "2 * {view.custom.loPct}"
+                      }
+                    }
+                  },
+                  "props.elements[1].width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "2 * max(0, {view.custom.hiPct} - {view.custom.loPct})"
+                      }
+                    }
+                  },
+                  "props.elements[2].width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "2 * {view.custom.pvPct}"
+                      }
+                    }
+                  },
+                  "props.elements[3].x": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "2 * {view.custom.loPct} - 1"
+                      }
+                    }
+                  },
+                  "props.elements[4].x": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "2 * {view.custom.hiPct} - 1"
+                      }
+                    }
+                  },
+                  "props.elements[5].d": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "\"M\" + (2*{view.custom.spPct} - 5) + \",0 L\" + (2*{view.custom.spPct} + 5) + \",0 L\" + (2*{view.custom.spPct}) + \",7 Z\""
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "meta": {
+          "name": "outRow"
+        },
+        "props": {
+          "direction": "row",
+          "style": {
+            "gap": "0.741vh",
+            "marginTop": "0.556vh"
+          },
+          "alignItems": "center"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "meta": {
+              "name": "outLbl"
+            },
+            "props": {
+              "text": "OUT",
+              "style": {
+                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                "color": "#6B737C",
+                "fontSize": "0.926vh",
+                "fontWeight": 600,
+                "letterSpacing": "0.05em"
+              }
+            },
+            "position": {
+              "shrink": 0
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "meta": {
+              "name": "ob"
+            },
+            "props": {
+              "direction": "row",
+              "style": {
+                "height": "0.463vh"
+              }
+            },
+            "position": {
+              "grow": 1,
+              "basis": "0px"
+            },
+            "children": [
+              {
+                "type": "ia.shapes.svg",
+                "meta": {
+                  "name": "outBar"
+                },
+                "props": {
+                  "viewBox": "0 0 200 5",
+                  "preserveAspectRatio": "none",
+                  "elements": [
+                    {
+                      "type": "rect",
+                      "name": "track",
+                      "x": 0,
+                      "y": 0,
+                      "width": 200,
+                      "height": 5,
+                      "rx": 2.5,
+                      "ry": 2.5,
+                      "fill": {
+                        "paint": "#E6E9EC"
+                      },
+                      "stroke": {
+                        "paint": "none",
+                        "width": 0
+                      }
+                    },
+                    {
+                      "type": "rect",
+                      "name": "fill",
+                      "x": 0,
+                      "y": 0,
+                      "width": 0,
+                      "height": 5,
+                      "rx": 2.5,
+                      "ry": 2.5,
+                      "fill": {
+                        "paint": "#7C858F"
+                      },
+                      "stroke": {
+                        "paint": "none",
+                        "width": 0
+                      }
+                    }
+                  ]
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 1,
+                  "basis": "0px"
+                },
+                "propConfig": {
+                  "props.elements[1].width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "2 * {view.custom.outPct}"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.display.label",
+            "meta": {
+              "name": "out"
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                "color": "#1E2329",
+                "fontSize": "1.111vh",
+                "fontWeight": 600,
+                "fontVariantNumeric": "tabular-nums",
+                "lineHeight": 1,
+                "minWidth": "4.259vh",
+                "textAlign": "right"
+              }
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "numberFormat({view.custom.out}, \"#,##0.0\")"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "meta": {
+              "name": "pctU"
+            },
+            "props": {
+              "text": "%",
+              "style": {
+                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                "color": "#6B737C",
+                "fontSize": "0.972vh"
+              }
+            },
+            "position": {
+              "shrink": 0
+            }
+          }
+        ]
+      }
+    ],
+    "propConfig": {
+      "props.style.border": {
+        "binding": {
+          "type": "expr",
+          "config": {
+            "expression": "if({view.custom.alarm}, \"2px solid #FF8C00\", \"1px solid #C3C8CE\")"
+          }
+        }
+      }
+    },
+    "events": {
+      "dom": {
+        "onClick": {
+          "type": "script",
+          "scope": "G",
+          "config": {
+            "script": "\ttp = self.view.params.tagPath\n\tsystem.perspective.openPopup(\"loopcfg_\" + tp, \"Templates/Loops/Popups/LoopConfig\", params={\"tagPath\": tp},\n\t\ttitle=self.view.custom.name, showCloseIcon=True, draggable=True, resizable=False, modal=False,\n\t\toverlayDismiss=True)"
+          }
+        }
+      }
+    }
+  }
+}

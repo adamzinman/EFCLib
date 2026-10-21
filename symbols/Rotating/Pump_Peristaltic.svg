@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="56" height="56">
+<path id="pipe0" d="M2 50 H20" fill="none" stroke="#333333" stroke-width="3.571"/>
+<path id="pipe1" d="M80 50 H98" fill="none" stroke="#333333" stroke-width="3.571"/>
+<circle id="body2" cx="50" cy="50" r="30" fill="#9E9E9E" stroke="#262626" stroke-width="2.679"/>
+<circle id="detail3" cx="50" cy="50" r="16" fill="none" stroke="#262626" stroke-width="1.786"/>
+<circle id="dark4" cx="50" cy="34" r="4" fill="#262626" stroke="none"/>
+<circle id="dark5" cx="64" cy="58" r="4" fill="#262626" stroke="none"/>
+<circle id="dark6" cx="36" cy="58" r="4" fill="#262626" stroke="none"/>
+<path id="detail7" d="M32 74 L24 92 H76 L68 74" fill="none" stroke="#262626" stroke-width="1.786"/>
+</svg>

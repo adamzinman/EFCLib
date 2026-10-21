@@ -1,0 +1,8 @@
+{
+  "base": {
+    "style": {
+      "boxShadow": "0 0.2vh 0.6vh rgba(0,0,0,0.3)"
+    }
+  },
+  "variants": []
+}

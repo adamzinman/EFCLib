@@ -1,0 +1,1001 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 1200,
+      "height": 700
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {},
+    "props": {
+      "direction": "column",
+      "justify": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "Container/Screen Util/Pad/L",
+        "gap": "0.741vh"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Title"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "text": "Process Value templates: PV_StatusStrip (A1) and PV_RangeBar (B2)",
+          "style": {
+            "classes": "Text/Title"
+          }
+        }
+      },
+      {
+        "type": "ia.display.label",
+        "version": 0,
+        "meta": {
+          "name": "Hint"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "text": "Demo tags: [default]PV_Demo (DDT_Process_Value_Demo). Type a PV to cross the limits (LL 5, L 10, H 35, HH 42, range 0-50). Acknowledge in an alarm table to see blink -> solid; return to normal before acking to see the faded cleared-unacked state.",
+          "style": {
+            "classes": "Text/Caption Text/Mod/Wrap"
+          }
+        }
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Row_PT001"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Util/Pad/S",
+            "gap": "1.481vh"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Desc_PT001"
+            },
+            "position": {
+              "basis": "12.963vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "Normal",
+              "style": {
+                "classes": "Text/Label"
+              }
+            }
+          },
+          {
+            "type": "ia.display.view",
+            "version": 0,
+            "meta": {
+              "name": "PV_StatusStrip_PT001"
+            },
+            "position": {
+              "basis": "9.63vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "Templates/ProcessValues/PV_StatusStrip",
+              "params": {
+                "tagPath": "[default]PV_Demo/PT001"
+              },
+              "style": {
+                "height": "5.0vh"
+              }
+            }
+          },
+          {
+            "type": "ia.display.view",
+            "version": 0,
+            "meta": {
+              "name": "PV_RangeBar_PT001"
+            },
+            "position": {
+              "basis": "9.63vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "Templates/ProcessValues/PV_RangeBar",
+              "params": {
+                "tagPath": "[default]PV_Demo/PT001"
+              },
+              "style": {
+                "height": "5.0vh"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Ctl_PT001"
+            },
+            "position": {
+              "basis": "14.815vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": ""
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_PT001"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "PT001  PV:",
+                  "style": {
+                    "classes": "Text/Caption"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.numeric-entry-field",
+                "version": 0,
+                "meta": {
+                  "name": "PV_PT001"
+                },
+                "position": {
+                  "basis": "2.222vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "format": "0,0.0",
+                  "style": {
+                    "classes": "Input/Setpoint"
+                  }
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "type": "tag",
+                      "config": {
+                        "bidirectional": true,
+                        "mode": "direct",
+                        "tagPath": "[default]PV_Demo/PT001/PV",
+                        "fallbackDelay": 2.5
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.input.checkbox",
+                "version": 0,
+                "meta": {
+                  "name": "Flt_PT001"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "HW_Fault",
+                  "style": {
+                    "classes": "Input/Check"
+                  }
+                },
+                "propConfig": {
+                  "props.selected": {
+                    "binding": {
+                      "type": "tag",
+                      "config": {
+                        "bidirectional": true,
+                        "mode": "direct",
+                        "tagPath": "[default]PV_Demo/PT001/HW_Fault",
+                        "fallbackDelay": 2.5
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Row_PT002"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Util/Pad/S",
+            "gap": "1.481vh"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Desc_PT002"
+            },
+            "position": {
+              "basis": "12.963vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "High (H)",
+              "style": {
+                "classes": "Text/Label"
+              }
+            }
+          },
+          {
+            "type": "ia.display.view",
+            "version": 0,
+            "meta": {
+              "name": "PV_StatusStrip_PT002"
+            },
+            "position": {
+              "basis": "9.63vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "Templates/ProcessValues/PV_StatusStrip",
+              "params": {
+                "tagPath": "[default]PV_Demo/PT002"
+              },
+              "style": {
+                "height": "5.0vh"
+              }
+            }
+          },
+          {
+            "type": "ia.display.view",
+            "version": 0,
+            "meta": {
+              "name": "PV_RangeBar_PT002"
+            },
+            "position": {
+              "basis": "9.63vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "Templates/ProcessValues/PV_RangeBar",
+              "params": {
+                "tagPath": "[default]PV_Demo/PT002"
+              },
+              "style": {
+                "height": "5.0vh"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Ctl_PT002"
+            },
+            "position": {
+              "basis": "14.815vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": ""
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_PT002"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "PT002  PV:",
+                  "style": {
+                    "classes": "Text/Caption"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.numeric-entry-field",
+                "version": 0,
+                "meta": {
+                  "name": "PV_PT002"
+                },
+                "position": {
+                  "basis": "2.222vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "format": "0,0.0",
+                  "style": {
+                    "classes": "Input/Setpoint"
+                  }
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "type": "tag",
+                      "config": {
+                        "bidirectional": true,
+                        "mode": "direct",
+                        "tagPath": "[default]PV_Demo/PT002/PV",
+                        "fallbackDelay": 2.5
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.input.checkbox",
+                "version": 0,
+                "meta": {
+                  "name": "Flt_PT002"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "HW_Fault",
+                  "style": {
+                    "classes": "Input/Check"
+                  }
+                },
+                "propConfig": {
+                  "props.selected": {
+                    "binding": {
+                      "type": "tag",
+                      "config": {
+                        "bidirectional": true,
+                        "mode": "direct",
+                        "tagPath": "[default]PV_Demo/PT002/HW_Fault",
+                        "fallbackDelay": 2.5
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Row_PT003"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Util/Pad/S",
+            "gap": "1.481vh"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Desc_PT003"
+            },
+            "position": {
+              "basis": "12.963vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "High-high (HH + H)",
+              "style": {
+                "classes": "Text/Label"
+              }
+            }
+          },
+          {
+            "type": "ia.display.view",
+            "version": 0,
+            "meta": {
+              "name": "PV_StatusStrip_PT003"
+            },
+            "position": {
+              "basis": "9.63vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "Templates/ProcessValues/PV_StatusStrip",
+              "params": {
+                "tagPath": "[default]PV_Demo/PT003"
+              },
+              "style": {
+                "height": "5.0vh"
+              }
+            }
+          },
+          {
+            "type": "ia.display.view",
+            "version": 0,
+            "meta": {
+              "name": "PV_RangeBar_PT003"
+            },
+            "position": {
+              "basis": "9.63vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "Templates/ProcessValues/PV_RangeBar",
+              "params": {
+                "tagPath": "[default]PV_Demo/PT003"
+              },
+              "style": {
+                "height": "5.0vh"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Ctl_PT003"
+            },
+            "position": {
+              "basis": "14.815vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": ""
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_PT003"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "PT003  PV:",
+                  "style": {
+                    "classes": "Text/Caption"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.numeric-entry-field",
+                "version": 0,
+                "meta": {
+                  "name": "PV_PT003"
+                },
+                "position": {
+                  "basis": "2.222vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "format": "0,0.0",
+                  "style": {
+                    "classes": "Input/Setpoint"
+                  }
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "type": "tag",
+                      "config": {
+                        "bidirectional": true,
+                        "mode": "direct",
+                        "tagPath": "[default]PV_Demo/PT003/PV",
+                        "fallbackDelay": 2.5
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.input.checkbox",
+                "version": 0,
+                "meta": {
+                  "name": "Flt_PT003"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "HW_Fault",
+                  "style": {
+                    "classes": "Input/Check"
+                  }
+                },
+                "propConfig": {
+                  "props.selected": {
+                    "binding": {
+                      "type": "tag",
+                      "config": {
+                        "bidirectional": true,
+                        "mode": "direct",
+                        "tagPath": "[default]PV_Demo/PT003/HW_Fault",
+                        "fallbackDelay": 2.5
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Row_PT004"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Util/Pad/S",
+            "gap": "1.481vh"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Desc_PT004"
+            },
+            "position": {
+              "basis": "12.963vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "Low-low (LL + L)",
+              "style": {
+                "classes": "Text/Label"
+              }
+            }
+          },
+          {
+            "type": "ia.display.view",
+            "version": 0,
+            "meta": {
+              "name": "PV_StatusStrip_PT004"
+            },
+            "position": {
+              "basis": "9.63vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "Templates/ProcessValues/PV_StatusStrip",
+              "params": {
+                "tagPath": "[default]PV_Demo/PT004"
+              },
+              "style": {
+                "height": "5.0vh"
+              }
+            }
+          },
+          {
+            "type": "ia.display.view",
+            "version": 0,
+            "meta": {
+              "name": "PV_RangeBar_PT004"
+            },
+            "position": {
+              "basis": "9.63vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "Templates/ProcessValues/PV_RangeBar",
+              "params": {
+                "tagPath": "[default]PV_Demo/PT004"
+              },
+              "style": {
+                "height": "5.0vh"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Ctl_PT004"
+            },
+            "position": {
+              "basis": "14.815vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": ""
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_PT004"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "PT004  PV:",
+                  "style": {
+                    "classes": "Text/Caption"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.numeric-entry-field",
+                "version": 0,
+                "meta": {
+                  "name": "PV_PT004"
+                },
+                "position": {
+                  "basis": "2.222vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "format": "0,0.0",
+                  "style": {
+                    "classes": "Input/Setpoint"
+                  }
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "type": "tag",
+                      "config": {
+                        "bidirectional": true,
+                        "mode": "direct",
+                        "tagPath": "[default]PV_Demo/PT004/PV",
+                        "fallbackDelay": 2.5
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.input.checkbox",
+                "version": 0,
+                "meta": {
+                  "name": "Flt_PT004"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "HW_Fault",
+                  "style": {
+                    "classes": "Input/Check"
+                  }
+                },
+                "propConfig": {
+                  "props.selected": {
+                    "binding": {
+                      "type": "tag",
+                      "config": {
+                        "bidirectional": true,
+                        "mode": "direct",
+                        "tagPath": "[default]PV_Demo/PT004/HW_Fault",
+                        "fallbackDelay": 2.5
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Row_PT005"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Util/Pad/S",
+            "gap": "1.481vh"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Desc_PT005"
+            },
+            "position": {
+              "basis": "12.963vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "HW fault",
+              "style": {
+                "classes": "Text/Label"
+              }
+            }
+          },
+          {
+            "type": "ia.display.view",
+            "version": 0,
+            "meta": {
+              "name": "PV_StatusStrip_PT005"
+            },
+            "position": {
+              "basis": "9.63vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "Templates/ProcessValues/PV_StatusStrip",
+              "params": {
+                "tagPath": "[default]PV_Demo/PT005"
+              },
+              "style": {
+                "height": "5.0vh"
+              }
+            }
+          },
+          {
+            "type": "ia.display.view",
+            "version": 0,
+            "meta": {
+              "name": "PV_RangeBar_PT005"
+            },
+            "position": {
+              "basis": "9.63vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "Templates/ProcessValues/PV_RangeBar",
+              "params": {
+                "tagPath": "[default]PV_Demo/PT005"
+              },
+              "style": {
+                "height": "5.0vh"
+              }
+            }
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Ctl_PT005"
+            },
+            "position": {
+              "basis": "14.815vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": ""
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Lbl_PT005"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "PT005  PV:",
+                  "style": {
+                    "classes": "Text/Caption"
+                  }
+                }
+              },
+              {
+                "type": "ia.input.numeric-entry-field",
+                "version": 0,
+                "meta": {
+                  "name": "PV_PT005"
+                },
+                "position": {
+                  "basis": "2.222vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "format": "0,0.0",
+                  "style": {
+                    "classes": "Input/Setpoint"
+                  }
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "type": "tag",
+                      "config": {
+                        "bidirectional": true,
+                        "mode": "direct",
+                        "tagPath": "[default]PV_Demo/PT005/PV",
+                        "fallbackDelay": 2.5
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.input.checkbox",
+                "version": 0,
+                "meta": {
+                  "name": "Flt_PT005"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "HW_Fault",
+                  "style": {
+                    "classes": "Input/Check"
+                  }
+                },
+                "propConfig": {
+                  "props.selected": {
+                    "binding": {
+                      "type": "tag",
+                      "config": {
+                        "bidirectional": true,
+                        "mode": "direct",
+                        "tagPath": "[default]PV_Demo/PT005/HW_Fault",
+                        "fallbackDelay": 2.5
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

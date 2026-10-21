@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "borderRadius": "50%",
+      "border": "0.093vh dashed #B000B0",
+      "minWidth": "0.926vh",
+      "minHeight": "0.926vh",
+      "backgroundColor": "#EDEDED"
+    }
+  },
+  "variants": []
+}

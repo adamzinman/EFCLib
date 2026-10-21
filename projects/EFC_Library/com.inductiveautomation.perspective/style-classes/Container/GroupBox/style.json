@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "border": "0.093vh solid #7F7F7F",
+      "borderRadius": "0.278vh",
+      "padding": "0.741vh"
+    }
+  },
+  "variants": []
+}

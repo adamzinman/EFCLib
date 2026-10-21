@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="112" height="34">
+<path id="pipe0" d="M24 18 V2" fill="none" stroke="#333333" stroke-width="3.571"/>
+<path id="pipe1" d="M176 42 V58" fill="none" stroke="#333333" stroke-width="3.571"/>
+<rect id="body2" x="10" y="18" width="180" height="24" fill="#9E9E9E" stroke="#262626" stroke-width="2.679"/>
+<path id="detail3" d="M20 42 L30 18 M34 42 L44 18 M48 42 L58 18 M62 42 L72 18 M76 42 L86 18 M90 42 L100 18 M104 42 L114 18 M118 42 L128 18 M132 42 L142 18 M146 42 L156 18 M160 42 L170 18 M174 42 L184 18" fill="none" stroke="#262626" stroke-width="1.786"/>
+</svg>

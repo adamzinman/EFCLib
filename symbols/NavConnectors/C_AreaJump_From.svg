@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="C_AreaJump_From" width="160" height="32" viewBox="0 0 160 32">
+  <rect id="body" x="0.75" y="0.75" width="158.5" height="30.5" fill="#F0F0F0" stroke="#5A5A5A" stroke-width="1.5"/>
+  <rect id="cell" x="0.75" y="0.75" width="31.25" height="30.5" fill="#4A4A4A" stroke="none"/>
+  <path id="chevrons" d="M26,10 L20,16 L26,22 M17,10 L11,16 L17,22" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

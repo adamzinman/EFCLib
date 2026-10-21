@@ -1,0 +1,149 @@
+{
+  "name": "PID_Loop",
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "name": "PV",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 0.0,
+      "engUnit": "EU",
+      "engLow": 0.0,
+      "engHigh": 100.0,
+      "formatString": "#,##0.0",
+      "alarms": [
+        {
+          "name": "PV_High",
+          "mode": "AboveValue",
+          "priority": "High",
+          "setpointA": {
+            "bindType": "Tag",
+            "value": "[.]AlmHi"
+          }
+        },
+        {
+          "name": "PV_Low",
+          "mode": "BelowValue",
+          "priority": "High",
+          "setpointA": {
+            "bindType": "Tag",
+            "value": "[.]AlmLo"
+          }
+        }
+      ]
+    },
+    {
+      "name": "SP",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 0.0
+    },
+    {
+      "name": "OUT",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 0.0,
+      "engUnit": "%",
+      "engLow": 0.0,
+      "engHigh": 100.0
+    },
+    {
+      "name": "Mode",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Int2",
+      "value": 1,
+      "documentation": "0 = MAN, 1 = AUTO, 2 = CAS"
+    },
+    {
+      "name": "Kp",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 1.0
+    },
+    {
+      "name": "Ti",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 30.0,
+      "engUnit": "s"
+    },
+    {
+      "name": "Td",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 0.0,
+      "engUnit": "s"
+    },
+    {
+      "name": "Action",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Int2",
+      "value": 0,
+      "documentation": "0 = Reverse, 1 = Direct"
+    },
+    {
+      "name": "SP_Lo",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 0.0
+    },
+    {
+      "name": "SP_Hi",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 100.0
+    },
+    {
+      "name": "OUT_Lo",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 0.0
+    },
+    {
+      "name": "OUT_Hi",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 100.0
+    },
+    {
+      "name": "AlmHi",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 90.0
+    },
+    {
+      "name": "AlmLo",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 10.0
+    },
+    {
+      "name": "AlmDev",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "value": 10.0
+    },
+    {
+      "name": "Description",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "String",
+      "value": ""
+    }
+  ]
+}

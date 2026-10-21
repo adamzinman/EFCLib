@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "overflowY": "auto",
+      "overflowX": "hidden"
+    }
+  },
+  "variants": []
+}

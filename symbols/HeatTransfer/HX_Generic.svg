@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="48" height="48">
+<path id="pipe0" d="M50 16 V2" fill="none" stroke="#333333" stroke-width="4.167"/>
+<path id="pipe1" d="M50 84 V98" fill="none" stroke="#333333" stroke-width="4.167"/>
+<circle id="shell2" cx="50" cy="50" r="34" fill="#EBEBEB" stroke="#262626" stroke-width="3.125"/>
+<path id="pipe3" d="M2 50 H22 L32 30 L44 70 L56 30 L68 70 L78 50 H98" fill="none" stroke="#333333" stroke-width="4.167"/>
+</svg>

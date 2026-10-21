@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="56" height="56">
+<path id="pipe0" d="M2,52 L22,52 M92,30 L98,30" fill="none" stroke="#333333" stroke-width="3.571" stroke-linejoin="round"/>
+<path id="body1" d="M32,80 L68,80 L78,94 L22,94 Z" fill="#EBEBEB" stroke="#262626" stroke-width="2.679" stroke-linejoin="round"/>
+<path id="state2" d="M50,24 L92,24 L92,36 L72.98,36 A28,28 0 1 1 50,24 Z" fill="#9E9E9E" stroke="#262626" stroke-width="2.679" stroke-linejoin="round"/>
+<circle id="cfill3" cx="50" cy="52" r="6" fill="#262626"/>
+</svg>

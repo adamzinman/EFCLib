@@ -1,0 +1,218 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PID Loop Templates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#C9CDD2;--screen:#DADDE1;--card:#F7F8F9;--line:#C3C8CE;--line2:#9AA1A9;--txt:#1E2329;--muted:#6B737C;
+--sp:#2F6FD6;--bar:#7C858F;--track:#E6E9EC;--chip:#E9ECEF;--dark:#2B3138;
+--alL:#00A0E0;--alM:#F2C200;--alH:#FF8C00;--alC:#E0001B;--r:8px}
+*{box-sizing:border-box}
+body{margin:0;padding:28px 16px;background:var(--bg);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--txt);-webkit-font-smoothing:antialiased}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+h1{font-size:20px;font-weight:700;margin:0 0 6px;letter-spacing:-.01em}.sub{font-size:13px;margin:0 0 20px;color:#3A424A;max-width:900px;line-height:1.45}
+section{background:var(--screen);border-radius:12px;padding:16px 18px 18px;margin-bottom:16px;max-width:900px}
+h2{font-size:15px;font-weight:600;margin:0 0 4px}section>p{font-size:13px;margin:0 0 14px;color:#454D55;line-height:1.45}
+.row{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.ex{display:flex;flex-direction:column;align-items:center;gap:7px}.ex small{font-size:11px;color:var(--muted)}
+.tag{white-space:nowrap;font-weight:600;font-size:12.5px;letter-spacing:.01em;display:flex;align-items:center;gap:5px}
+.chip{font-size:10px;font-weight:600;letter-spacing:.04em;padding:2px 7px;border-radius:999px;background:var(--chip);color:#454D55}
+.chip.man{background:var(--dark);color:#fff}
+.chip.cas{background:#DCE6F7;color:#1F4E99}
+.ai{width:10px;height:10px;background:var(--alH);transform:rotate(45deg);border-radius:1.5px;flex:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 1px 2px rgba(20,30,40,.08)}
+.card.alarm{border:2px solid var(--alH);box-shadow:0 0 0 3px rgba(255,140,0,.15)}
+.ibtn{width:22px;height:22px;border-radius:6px;border:1px solid var(--line);background:#fff;cursor:pointer;display:grid;place-items:center;padding:0;color:#4A535C;flex:none}
+.ibtn:hover{background:var(--dark);color:#fff;border-color:var(--dark)}
+.ibtn svg{width:13px;height:13px}
+/* ---------- A ---------- */
+.a{width:168px;padding:8px 10px 6px}
+.a .hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.a .rt{display:flex;gap:6px;align-items:center}
+.a .ln{display:grid;grid-template-columns:28px 1fr 34px;align-items:baseline;padding:2px 0}
+.a .ln span:first-child{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.05em}
+.a .v{text-align:right;font-size:13px}.a .u{font-size:10px;color:var(--muted);padding-left:5px}
+.a .pv .v{font-size:17px;font-weight:600}.a .sp .v{color:var(--sp);font-weight:500}
+.a .ob{height:4px;border-radius:2px;background:var(--track);margin:5px 0 2px;overflow:hidden}.a .ob i{display:block;height:100%;background:var(--bar);border-radius:2px}
+/* ---------- B ---------- */
+.b{width:140px;padding:8px 10px 10px;cursor:pointer;transition:box-shadow .15s,transform .15s}
+.b:hover{box-shadow:0 4px 14px rgba(20,30,40,.18);transform:translateY(-1px)}
+.b .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.b .body{display:flex;gap:10px}
+.b .bar{position:relative;width:12px;height:88px;border-radius:6px;background:var(--track);margin-left:6px}
+.b .bar .f{position:absolute;left:0;right:0;bottom:0;background:var(--bar);border-radius:6px}
+.b .bar .ptr{position:absolute;left:-8px;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid var(--sp);transform:translateY(-5px)}
+.b .bar .hi,.b .bar .lo{position:absolute;left:14px;width:6px;height:2px;border-radius:1px;background:var(--alH)}
+.b .vals{flex:1;display:flex;flex-direction:column;justify-content:space-between;text-align:right}
+.b .pv{font-size:20px;font-weight:600;line-height:1}.b .u{font-size:10px;color:var(--muted);margin-top:3px}
+.b .spv{font-size:12px;color:var(--sp);font-weight:500}.b .spv small{font-size:9.5px;font-weight:600;letter-spacing:.05em;margin-right:4px}
+.b .ol{display:flex;justify-content:space-between;margin:10px 0 4px;font-size:10px;color:var(--muted)}
+.b .ol span:first-child{font-weight:600;letter-spacing:.05em}
+.b .ob{height:6px;border-radius:3px;background:var(--track);overflow:hidden}.b .ob i{display:block;height:100%;background:var(--bar);border-radius:3px}
+/* ---------- C ---------- */
+.c{display:flex;align-items:center}
+.bub{width:54px;height:54px;border-radius:50%;border:1.5px solid var(--line2);background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;font-size:11px;font-weight:600;line-height:1.1;z-index:1;transition:background .15s,box-shadow .15s}
+.bub:before{content:"";position:absolute;left:4px;right:4px;top:50%;border-top:1px solid var(--line2)}
+.bub span{padding:3px 0}.bub:hover{background:#fff;box-shadow:0 0 0 4px rgba(47,111,214,.18)}
+.bub.alarm{border:2.5px solid var(--alH)}
+.flag{margin-left:-6px;padding:5px 10px 5px 14px;min-width:116px;border-radius:0 var(--r) var(--r) 0}
+.flag .l{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.flag .pv{font-size:15px;font-weight:600}.flag .u{font-size:10px;color:var(--muted)}
+.flag .spv{font-size:11.5px;color:var(--sp);font-weight:500}.flag .o{font-size:11px;color:#454D55}
+/* process sketch */
+.proc{display:flex;align-items:center;margin-top:16px;padding-top:12px;border-top:1px dashed #B5BBC2}
+.pipe{height:3px;background:#7C858F;flex:1;min-width:30px;border-radius:2px}
+.cv{width:30px;height:24px;flex:none}
+/* ---------- popup ---------- */
+.ov{position:fixed;inset:0;background:rgba(30,35,41,.35);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;padding:16px;z-index:9}
+.ov.on{display:flex}
+.pop{width:440px;max-width:100%;background:#fff;border-radius:14px;box-shadow:0 18px 50px rgba(20,30,40,.35);font-size:13px;overflow:hidden}
+.pop .t{display:flex;align-items:flex-start;justify-content:space-between;padding:16px 18px 10px}
+.pop .t b{font-size:17px;font-weight:700;display:block}.pop .t span{font-size:12.5px;color:var(--muted)}
+.pop .x{width:30px;height:30px;border-radius:8px;border:none;background:var(--chip);color:#454D55;font-size:18px;cursor:pointer;line-height:1}
+.pop .x:hover{background:#DDE1E5}
+.tabs{display:flex;gap:20px;padding:0 18px;border-bottom:1px solid #E3E6E9}
+.tabs button{padding:8px 0 10px;border:none;background:none;cursor:pointer;font:inherit;font-size:12.5px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--txt);border-bottom-color:var(--txt);font-weight:600}
+.pane{display:none;padding:16px 18px}.pane.on{display:block}
+.seg{display:flex;background:var(--chip);border-radius:10px;padding:3px;margin-bottom:16px}
+.seg button{flex:1;padding:8px 0;border:none;background:none;border-radius:8px;cursor:pointer;font:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;color:#4A535C}
+.seg button.on{background:#fff;color:var(--txt);box-shadow:0 1px 3px rgba(20,30,40,.18)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid #E3E6E9;border-radius:10px;padding:9px 11px}
+.kpi label{display:block;font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+.kpi .val{font-size:20px;font-weight:600}.kpi .u{font-size:11px;color:var(--muted);margin-left:3px}
+.kpi input{width:100%;border:none;background:transparent;font:inherit;font-size:20px;font-weight:600;padding:0;color:var(--txt);outline:none}
+.kpi.ed{background:#fff;border-color:var(--line2);cursor:text}.kpi.ed:focus-within{border-color:var(--sp);box-shadow:0 0 0 3px rgba(47,111,214,.15)}
+.kpi.sp input{color:var(--sp)}
+.kpi.dis{opacity:.55}
+.kpi .row2{display:flex;align-items:baseline}
+.trend{width:100%;height:84px;background:var(--card);border:1px solid #E3E6E9;border-radius:10px;display:block}
+.leg{display:flex;gap:14px;font-size:11px;color:var(--muted);margin-top:6px}.leg i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:5px}
+.note{font-size:11.5px;color:var(--muted);margin-top:10px;line-height:1.4}
+.grid{display:grid;grid-template-columns:1fr 130px 44px;gap:8px 10px;align-items:center}
+.grid label{color:#3A424A;font-size:12.5px}
+.grid input,.grid select{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:8px;font:inherit;text-align:right;background:#fff;font-variant-numeric:tabular-nums}
+.grid input:focus,.grid select:focus{outline:none;border-color:var(--sp);box-shadow:0 0 0 3px rgba(47,111,214,.15)}
+.grid .u{font-size:11px;color:var(--muted)}
+.grid h4{grid-column:1/-1;margin:6px 0 0;font-size:10.5px;font-weight:600;letter-spacing:.06em;color:var(--muted)}
+.lock{display:flex;gap:8px;align-items:center;font-size:12px;background:#FFF7E0;color:#6A5300;border-radius:8px;padding:8px 10px;margin-bottom:14px}
+.foot{display:flex;justify-content:flex-end;gap:8px;padding:12px 18px 16px}
+.foot button{padding:8px 18px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;font:inherit;font-weight:600;font-size:12.5px}
+.foot button.pri{background:var(--dark);border-color:var(--dark);color:#fff}
+</style></head><body>
+<h1>PID loop templates: three on-screen options + config popup</h1>
+<p class="sub">All three show the same loop data (PV, SP, OUT, mode, alarm) in a flat, modern style that still follows ISA-101: neutral grays, blue for setpoint, and color only for alarms. Click each one's hot spot to open the shared configuration popup. Values update live from a simulated loop, so you can change the mode, SP and OUT and watch the response.</p>
+
+<section><h2>Option A — Compact numeric card (168×96 @1080p)</h2>
+<p>The settings icon button in the header opens the popup. A thin OUT bar sits under the numbers. It's the densest option and good for screens with many loops.</p>
+<div class="row" id="rowA"></div></section>
+
+<section><h2>Option B — Bar-graph card (140×150)</h2>
+<p>A rounded PV bar with a blue SP pointer and orange high/low alarm ticks, plus an OUT bar. The whole card is the click target and lifts on hover. Operators can see at a glance how far PV is from SP.</p>
+<div class="row" id="rowB"></div></section>
+
+<section><h2>Option C — ISA instrument bubble + value flag</h2>
+<p>A P&amp;ID-style instrument bubble (TIC / 101) on the process line, with a rounded value flag tucked behind it. Click the bubble to open the popup. It looks most like the drawings.</p>
+<div class="row" id="rowC"></div>
+<div class="proc"><div class="pipe"></div><svg class="cv" viewBox="0 0 30 24"><path d="M1,4 L29,20 L29,4 L1,20 Z" fill="#F7F8F9" stroke="#7C858F" stroke-width="1.5" stroke-linejoin="round"/></svg><div class="pipe"></div><div id="procC"></div><div class="pipe"></div></div>
+</section>
+
+<div class="ov" id="ov"><div class="pop" role="dialog">
+ <div class="t"><div><b id="pTag">TIC-101</b><span id="pDesc"></span></div><button class="x" onclick="closeP()" aria-label="Close">×</button></div>
+ <div class="tabs"><button class="on" data-p="op">Operate</button><button data-p="tu">Tuning</button><button data-p="al">Limits &amp; Alarms</button></div>
+ <div class="pane on" id="op">
+  <div class="seg"><button data-m="MAN">MAN</button><button data-m="AUTO">AUTO</button><button data-m="CAS">CAS</button></div>
+  <div class="kpis">
+   <div class="kpi"><label>PV</label><div class="row2"><span class="val num" id="pPV"></span><span class="u" id="pU1"></span></div></div>
+   <div class="kpi ed sp" id="kSP"><label>SP</label><div class="row2"><input id="pSP" class="num" type="number" step="0.1"><span class="u" id="pU2"></span></div></div>
+   <div class="kpi ed" id="kOUT"><label>OUT</label><div class="row2"><input id="pOUT" class="num" type="number" step="0.5"><span class="u">%</span></div></div>
+  </div>
+  <svg class="trend" id="trend" viewBox="0 0 400 84" preserveAspectRatio="none"></svg>
+  <div class="leg"><span><i style="background:#1E2329"></i>PV</span><span><i style="background:#2F6FD6"></i>SP</span><span><i style="background:#A9B0B8"></i>OUT</span></div>
+  <div class="note">OUT can be written only in MAN. SP is locked in CAS (it comes from the primary loop).</div>
+ </div>
+ <div class="pane" id="tu">
+  <div class="lock"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Engineer role required. Changes are written on Apply and logged.</div>
+  <div class="grid">
+   <label>Kp (gain)</label><input type="number" step="0.01" value="1.20"><span class="u"></span>
+   <label>Ti (integral)</label><input type="number" step="0.1" value="45.0"><span class="u">s</span>
+   <label>Td (derivative)</label><input type="number" step="0.1" value="0.0"><span class="u">s</span>
+   <label>Action</label><select><option>Reverse</option><option>Direct</option></select><span class="u"></span>
+   <label>SP tracking in MAN</label><select><option>On</option><option>Off</option></select><span class="u"></span>
+  </div>
+ </div>
+ <div class="pane" id="al">
+  <div class="grid">
+   <h4>RANGES</h4>
+   <label>PV range low / high</label><input value="0.0"><span class="u">EU</span>
+   <label></label><input value="200.0"><span class="u">EU</span>
+   <label>SP limits low / high</label><input value="20.0"><span class="u">EU</span>
+   <label></label><input value="150.0"><span class="u">EU</span>
+   <label>OUT limits low / high</label><input value="0.0"><span class="u">%</span>
+   <label></label><input value="100.0"><span class="u">%</span>
+   <h4>ALARMS</h4>
+   <label>PV high</label><input id="aH"><span class="u">P3</span>
+   <label>PV low</label><input id="aL"><span class="u">P3</span>
+   <label>Deviation</label><input value="10.0"><span class="u">± EU</span>
+  </div>
+ </div>
+ <div class="foot"><button onclick="closeP()">Cancel</button><button class="pri" onclick="closeP()">Apply</button></div>
+</div></div>
+
+<script>
+const loops={
+ TIC101:{tag:'TIC-101',desc:'Reactor jacket temperature',u:'°F',lo:0,hi:200,pv:118.4,sp:120,out:46,mode:'AUTO',aH:130,aL:40},
+ PIC205:{tag:'PIC-205',desc:'Compressor discharge pressure',u:'PSIG',lo:0,hi:300,pv:262,sp:210,out:88,mode:'MAN',aH:250,aL:150},
+ FIC310:{tag:'FIC-310',desc:'N2 feed flow',u:'SCFM',lo:0,hi:500,pv:296,sp:300,out:63,mode:'CAS',aH:350,aL:50}
+};
+const hist={};Object.keys(loops).forEach(k=>hist[k]=[]);
+const f1=v=>Number(v).toFixed(1);const pct=(l,v)=>Math.max(0,Math.min(100,(v-l.lo)/(l.hi-l.lo)*100));
+const alarm=l=>l.pv>=l.aH||l.pv<=l.aL;
+const chip=m=>`<span class="chip ${m.toLowerCase()}">${m}</span>`;
+const ai=l=>alarm(l)?'<i class="ai"></i>':'';
+const cap=l=>`<small>${l.mode}${alarm(l)?' · PV high alarm':''}</small>`;
+const gear='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>';
+function A(k){const l=loops[k];return `<div class="ex"><div class="card a ${alarm(l)?'alarm':''}">
+ <div class="hd"><span class="tag">${l.tag}${ai(l)}</span><span class="rt">${chip(l.mode)}<button class="ibtn" title="Configure ${l.tag}" onclick="openP('${k}')">${gear}</button></span></div>
+ <div class="ln pv"><span>PV</span><span class="v num">${f1(l.pv)}</span><span class="u">${l.u}</span></div>
+ <div class="ln sp"><span>SP</span><span class="v num">${f1(l.sp)}</span><span class="u">${l.u}</span></div>
+ <div class="ln"><span>OUT</span><span class="v num">${f1(l.out)}</span><span class="u">%</span></div>
+ <div class="ob"><i style="width:${l.out}%"></i></div></div>${cap(l)}</div>`}
+function B(k){const l=loops[k];return `<div class="ex"><div class="card b ${alarm(l)?'alarm':''}" onclick="openP('${k}')" title="Configure ${l.tag}">
+ <div class="hd"><span class="tag">${l.tag}${ai(l)}</span>${chip(l.mode)}</div>
+ <div class="body"><div class="bar"><div class="f" style="height:${pct(l,l.pv)}%"></div><div class="ptr" style="top:${100-pct(l,l.sp)}%"></div>
+ <div class="hi" style="top:${100-pct(l,l.aH)}%"></div><div class="lo" style="top:${100-pct(l,l.aL)}%"></div></div>
+ <div class="vals"><div><div class="pv num">${f1(l.pv)}</div><div class="u">${l.u}</div></div><div class="spv"><small>SP</small><span class="num">${f1(l.sp)}</span></div></div></div>
+ <div class="ol"><span>OUT</span><span class="num">${f1(l.out)} %</span></div><div class="ob"><i style="width:${l.out}%"></i></div></div>${cap(l)}</div>`}
+function C(k,noCap){const l=loops[k];const [a,n]=l.tag.split('-');return `<div class="ex"><div class="c"><div class="bub ${alarm(l)?'alarm':''}" onclick="openP('${k}')" title="Configure ${l.tag}"><span>${a}</span><span>${n}</span></div>
+ <div class="card flag"><div class="l"><span class="pv num">${f1(l.pv)}</span><span class="u">${l.u}</span></div><div class="l"><span class="spv num">SP ${f1(l.sp)}</span>${chip(l.mode)}</div><div class="l"><span class="o num">OUT ${f1(l.out)}%</span>${ai(l)}</div></div></div>${noCap?'':cap(l)}</div>`}
+function render(){const ks=Object.keys(loops);
+ rowA.innerHTML=ks.map(k=>A(k)).join('');rowB.innerHTML=ks.map(k=>B(k)).join('');rowC.innerHTML=ks.map(k=>C(k)).join('');procC.innerHTML=C('TIC101',true);}
+let cur=null;
+function openP(k){cur=k;const l=loops[k];pTag.textContent=l.tag;pDesc.textContent=l.desc;pU1.textContent=pU2.textContent=l.u;
+ pSP.value=f1(l.sp);pOUT.value=f1(l.out);aH.value=f1(l.aH);aL.value=f1(l.aL);syncP();ov.classList.add('on')}
+function closeP(){ov.classList.remove('on');cur=null}
+ov.addEventListener('click',e=>{if(e.target===ov)closeP()});
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button,.pane').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById(b.dataset.p).classList.add('on')});
+document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{if(!cur)return;loops[cur].mode=b.dataset.m;syncP();render()});
+pSP.onchange=()=>{if(cur){loops[cur].sp=+pSP.value;render()}};
+pOUT.onchange=()=>{if(cur){loops[cur].out=Math.max(0,Math.min(100,+pOUT.value));render()}};
+aH.onchange=()=>{if(cur){loops[cur].aH=+aH.value;render()}};aL.onchange=()=>{if(cur){loops[cur].aL=+aL.value;render()}};
+function syncP(){const l=loops[cur];document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on',b.dataset.m===l.mode));
+ pOUT.disabled=l.mode!=='MAN';kOUT.classList.toggle('dis',pOUT.disabled);pSP.disabled=l.mode==='CAS';kSP.classList.toggle('dis',pSP.disabled);
+ pPV.textContent=f1(l.pv);
+ if(document.activeElement!==pOUT)pOUT.value=f1(l.out);if(document.activeElement!==pSP)pSP.value=f1(l.sp);
+ const h=hist[cur],n=h.length;if(n>1){const y=v=>80-pct(l,v)*0.76,x=i=>i*(400/59),pth=(f)=>h.map((p,i)=>(i?'L':'M')+x(i).toFixed(1)+','+f(p).toFixed(1)).join(' ');
+  trend.innerHTML=`<path d="${pth(p=>80-p.out*0.76)}" fill="none" stroke="#A9B0B8" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
+  <path d="${pth(p=>y(p.sp))}" fill="none" stroke="#2F6FD6" stroke-width="1.5" stroke-dasharray="5 4" vector-effect="non-scaling-stroke"/>
+  <path d="${pth(p=>y(p.pv))}" fill="none" stroke="#1E2329" stroke-width="1.75" vector-effect="non-scaling-stroke"/>`}}
+function step(){for(const k in loops){const l=loops[k],span=l.hi-l.lo;
+ if(l.mode!=='MAN'){const e=(l.sp-l.pv)/span*100;l.out=Math.max(0,Math.min(100,l.out+0.29*e));}
+ const target=l.lo+span*(l.out/100)*(k==='FIC310'?0.95:1.0)+(k==='TIC101'?20:0);
+ l.pv+=(target-l.pv)*0.08+(Math.random()-.5)*span*0.002;
+ hist[k].push({pv:l.pv,sp:l.sp,out:l.out});if(hist[k].length>60)hist[k].shift();}
+ render();if(cur)syncP();}
+for(let i=0;i<40;i++){for(const k in loops){const l=loops[k];hist[k].push({pv:l.pv+(Math.random()-.5)*l.hi*0.004,sp:l.sp,out:l.out})}}
+render();setInterval(step,700);
+</script>
+</body></html>

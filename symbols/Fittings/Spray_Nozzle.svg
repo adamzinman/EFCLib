@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36">
+<path id="pipe0" d="M50 2 V40" fill="none" stroke="#333333" stroke-width="5.556"/>
+<path id="plain1" d="M40 40 H60 L50 56 Z" fill="#FFFFFF" stroke="#262626" stroke-width="2.778"/>
+<path id="detail2" d="M50 58 L32 92 M50 58 L50 94 M50 58 L68 92" fill="none" stroke="#262626" stroke-width="2.778" stroke-dasharray="11.111 8.333"/>
+</svg>

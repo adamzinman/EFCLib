@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#E6E6E6",
+      "border": "0.093vh solid #595959",
+      "boxShadow": "0 0.4vh 1.2vh rgba(0,0,0,0.35)"
+    }
+  },
+  "variants": []
+}

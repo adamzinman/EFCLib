@@ -1,0 +1,1499 @@
+{
+  "custom": {
+    "tick": null,
+    "pv": null,
+    "name": "",
+    "desc": "",
+    "units": "",
+    "hwFault": false,
+    "inhHH": false,
+    "inhH": false,
+    "inhL": false,
+    "inhLL": false,
+    "aFLT": -1,
+    "aHH": -1,
+    "aH": -1,
+    "aL": -1,
+    "aLL": -1,
+    "aOVR": -1,
+    "aUNR": -1,
+    "aFLTalm": -1,
+    "alm": {
+      "FLT": -1,
+      "HH": -1,
+      "H": -1,
+      "L": -1,
+      "LL": -1,
+      "OVR": -1,
+      "UNR": -1
+    },
+    "fltActive": false,
+    "anyUnacked": false,
+    "activePri": -1,
+    "clearedPri": -1,
+    "inh": false,
+    "badValue": false,
+    "engMin": 0,
+    "engMax": 100,
+    "spLL": 10,
+    "spL": 20,
+    "spH": 80,
+    "spHH": 90,
+    "fLL": 0.1,
+    "fL": 0.2,
+    "fH": 0.8,
+    "fHH": 0.9,
+    "fPV": 0.5
+  },
+  "params": {
+    "tagPath": ""
+  },
+  "propConfig": {
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "custom.tick": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "now(1000)"
+        }
+      }
+    },
+    "custom.pv": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/PV",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.name": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Name",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.desc": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Description",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.units": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Units",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.hwFault": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/HW_Fault",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.inhHH": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/HH/Inhibit",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.inhH": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/H/Inhibit",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.inhL": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/L/Inhibit",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.inhLL": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/LL/Inhibit",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.alm": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "{view.custom.tick}"
+        },
+        "transforms": [
+          {
+            "type": "script",
+            "code": "\t# One alarm-status query per refresh for this UDT instance. Returns {key: code}:\n\t# -1 = none, else state*10 + priority (state 0 active-acked, 1 active-unacked, 2 cleared-unacked;\n\t# priority 0 Diagnostic .. 4 Critical). Replaces isAlarmActiveFiltered (gateway scope needs the\n\t# provider in the path and Perspective never re-runs it on alarm changes).\n\tout = {\"FLT\": -1, \"HH\": -1, \"H\": -1, \"L\": -1, \"LL\": -1, \"OVR\": -1, \"UNR\": -1}\n\ttp = self.view.params.tagPath\n\tif not tp:\n\t\treturn out\n\ttp = str(tp).strip()\n\tprov = \"*\"\n\tpath = tp\n\tif tp.startswith(\"[\") and \"]\" in tp:\n\t\tprov = tp[1:tp.index(\"]\")] or \"*\"\n\t\tpath = tp[tp.index(\"]\") + 1:]\n\tpath = path.strip(\"/\")\n\tkeys = {\"hw_fault\": \"FLT\", \"hh/alarm\": \"HH\", \"h/alarm\": \"H\", \"l/alarm\": \"L\",\n\t\t\t\"ll/alarm\": \"LL\", \"overrange\": \"OVR\", \"underrange\": \"UNR\"}\n\ttry:\n\t\tevents = system.alarm.queryStatus(source=[\"prov:%s:/tag:%s/*\" % (prov, path)])\n\texcept Exception as e:\n\t\tsystem.util.getLogger(\"EFC_PV\").warn(\"queryStatus failed for %s: %s\" % (tp, e))\n\t\treturn out\n\tagg = {}\n\tfor ev in events:\n\t\tst = str(ev.getState())\n\t\tif st not in (\"ActiveUnacked\", \"ActiveAcked\", \"ClearUnacked\"):\n\t\t\tcontinue\n\t\tsrc = str(ev.getSource())\n\t\tif \":/tag:\" not in src:\n\t\t\tcontinue\n\t\ttag = src.split(\":/tag:\", 1)[1].split(\":/alm:\", 1)[0].strip(\"/\")\n\t\tif not tag.lower().startswith(path.lower() + \"/\"):\n\t\t\tcontinue\n\t\tkey = keys.get(tag[len(path) + 1:].lower())\n\t\tif key is None:\n\t\t\tcontinue\n\t\tpri = int(ev.getPriority().ordinal())\n\t\ta = agg.setdefault(key, {\"act\": -1, \"unack\": False, \"clr\": -1})\n\t\tif st == \"ClearUnacked\":\n\t\t\ta[\"clr\"] = max(a[\"clr\"], pri)\n\t\telse:\n\t\t\ta[\"act\"] = max(a[\"act\"], pri)\n\t\t\tif st == \"ActiveUnacked\":\n\t\t\t\ta[\"unack\"] = True\n\tfor key, a in agg.items():\n\t\tif a[\"act\"] >= 0:\n\t\t\tout[key] = (10 if a[\"unack\"] else 0) + a[\"act\"]\n\t\telif a[\"clr\"] >= 0:\n\t\t\tout[key] = 20 + a[\"clr\"]\n\treturn out"
+          }
+        ]
+      }
+    },
+    "custom.aFLTalm": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "coalesce({view.custom.alm.FLT}, -1)"
+        }
+      }
+    },
+    "custom.aFLT": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.aFLTalm} >= 0, {view.custom.aFLTalm},\n  if(toBoolean(coalesce({view.custom.hwFault}, false)), 3, -1))"
+        }
+      }
+    },
+    "custom.aHH": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "coalesce({view.custom.alm.HH}, -1)"
+        }
+      }
+    },
+    "custom.aH": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "coalesce({view.custom.alm.H}, -1)"
+        }
+      }
+    },
+    "custom.aL": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "coalesce({view.custom.alm.L}, -1)"
+        }
+      }
+    },
+    "custom.aLL": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "coalesce({view.custom.alm.LL}, -1)"
+        }
+      }
+    },
+    "custom.aOVR": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "coalesce({view.custom.alm.OVR}, -1)"
+        }
+      }
+    },
+    "custom.aUNR": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "coalesce({view.custom.alm.UNR}, -1)"
+        }
+      }
+    },
+    "custom.fltActive": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "{view.custom.aFLT} >= 0 && {view.custom.aFLT} < 20"
+        }
+      }
+    },
+    "custom.anyUnacked": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "({view.custom.aFLT} >= 10 && {view.custom.aFLT} < 20) || ({view.custom.aHH} >= 10 && {view.custom.aHH} < 20) || ({view.custom.aH} >= 10 && {view.custom.aH} < 20) || ({view.custom.aL} >= 10 && {view.custom.aL} < 20) || ({view.custom.aLL} >= 10 && {view.custom.aLL} < 20) || ({view.custom.aOVR} >= 10 && {view.custom.aOVR} < 20) || ({view.custom.aUNR} >= 10 && {view.custom.aUNR} < 20)"
+        }
+      }
+    },
+    "custom.activePri": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max(-1, if({view.custom.aHH} >= 0 && {view.custom.aHH} < 20, {view.custom.aHH} % 10, -1), if({view.custom.aH} >= 0 && {view.custom.aH} < 20, {view.custom.aH} % 10, -1), if({view.custom.aL} >= 0 && {view.custom.aL} < 20, {view.custom.aL} % 10, -1), if({view.custom.aLL} >= 0 && {view.custom.aLL} < 20, {view.custom.aLL} % 10, -1), if({view.custom.aOVR} >= 0 && {view.custom.aOVR} < 20, {view.custom.aOVR} % 10, -1), if({view.custom.aUNR} >= 0 && {view.custom.aUNR} < 20, {view.custom.aUNR} % 10, -1))"
+        }
+      }
+    },
+    "custom.clearedPri": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "max(-1, if({view.custom.aHH} >= 20, {view.custom.aHH} % 10, -1), if({view.custom.aH} >= 20, {view.custom.aH} % 10, -1), if({view.custom.aL} >= 20, {view.custom.aL} % 10, -1), if({view.custom.aLL} >= 20, {view.custom.aLL} % 10, -1), if({view.custom.aOVR} >= 20, {view.custom.aOVR} % 10, -1), if({view.custom.aUNR} >= 20, {view.custom.aUNR} % 10, -1))"
+        }
+      }
+    },
+    "custom.inh": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "toBoolean(coalesce({view.custom.inhHH}, false)) || toBoolean(coalesce({view.custom.inhH}, false)) || toBoolean(coalesce({view.custom.inhL}, false)) || toBoolean(coalesce({view.custom.inhLL}, false))"
+        }
+      }
+    },
+    "custom.badValue": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "!isGood({view.custom.pv}) || {view.custom.fltActive}"
+        }
+      }
+    },
+    "custom.engMin": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Eng_Min",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.engMax": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Eng_Max",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.spLL": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/LL/SP",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.spL": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/L/SP",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.spH": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/H/SP",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.spHH": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/HH/SP",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.fLL": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.engMax} = {view.custom.engMin} || isNull({view.custom.spLL}), 0, max(0, min(1, ({view.custom.spLL} - {view.custom.engMin}) / ({view.custom.engMax} - {view.custom.engMin}))))"
+        }
+      }
+    },
+    "custom.fL": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.engMax} = {view.custom.engMin} || isNull({view.custom.spL}), 0, max(0, min(1, ({view.custom.spL} - {view.custom.engMin}) / ({view.custom.engMax} - {view.custom.engMin}))))"
+        }
+      }
+    },
+    "custom.fH": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.engMax} = {view.custom.engMin} || isNull({view.custom.spH}), 0, max(0, min(1, ({view.custom.spH} - {view.custom.engMin}) / ({view.custom.engMax} - {view.custom.engMin}))))"
+        }
+      }
+    },
+    "custom.fHH": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.engMax} = {view.custom.engMin} || isNull({view.custom.spHH}), 0, max(0, min(1, ({view.custom.spHH} - {view.custom.engMin}) / ({view.custom.engMax} - {view.custom.engMin}))))"
+        }
+      }
+    },
+    "custom.fPV": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "if({view.custom.engMax} = {view.custom.engMin} || isNull({view.custom.pv}), 0, max(0, min(1, ({view.custom.pv} - {view.custom.engMin}) / ({view.custom.engMax} - {view.custom.engMin}))))"
+        }
+      }
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 104,
+      "height": 54
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {},
+    "props": {
+      "direction": "column",
+      "justify": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "PV/Shell"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Card"
+        },
+        "position": {
+          "basis": "auto",
+          "grow": 1,
+          "shrink": 1
+        },
+        "props": {
+          "direction": "column",
+          "justify": "space-between",
+          "alignItems": "stretch",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "PV/Card PV/BodyBar"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "HeaderRow"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "justify": "space-between",
+              "alignItems": "center",
+              "wrap": "nowrap",
+              "style": {
+                "classes": "PV/HeaderRow"
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Tag",
+                  "tooltip": {
+                    "enabled": true,
+                    "text": ""
+                  }
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 1,
+                  "shrink": 1
+                },
+                "props": {
+                  "text": "PT002",
+                  "style": {
+                    "classes": "PV/Tag Text/Mod/Ellipsis"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if(isNull({view.custom.name}) || len(toStr({view.custom.name})) = 0 || toStr({view.custom.name}) = \"null\",\n  substring({view.params.tagPath}, max(lastIndexOf({view.params.tagPath}, \"/\"), lastIndexOf({view.params.tagPath}, \"]\")) + 1),\n  toStr({view.custom.name}))"
+                      }
+                    }
+                  },
+                  "meta.tooltip.text": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if(isNull({view.custom.desc}) || toStr({view.custom.desc}) = \"null\", \"\", toStr({view.custom.desc}))"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Chips"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-end",
+                  "alignItems": "center",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "PV/ChipRow"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Chip_FLT",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "Hardware / transmitter fault"
+                      }
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0,
+                      "display": false
+                    },
+                    "props": {
+                      "text": "FLT",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "({view.custom.aFLT} >= 0) && 0 < 2"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.aFLT} < 0, \"PV/Chip/Fault\", \"PV/Chip/Fault\" + if({view.custom.aFLT} >= 20, \" Alarm/Mod/ClearedUnacked\", if({view.custom.aFLT} >= 10, \" Alarm/Mod/Blink\", \"\")))"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Chip_HH",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "High-high alarm"
+                      }
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0,
+                      "display": false
+                    },
+                    "props": {
+                      "text": "HH",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "({view.custom.aHH} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0)) < 2"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.aHH} < 0, \"\", \"PV/Chip/\" + case({view.custom.aHH} % 10, 4, \"Critical\", 3, \"High\", 2, \"Medium\", 1, \"Low\", \"Diagnostic\") + if({view.custom.aHH} >= 20, \" Alarm/Mod/ClearedUnacked\", if({view.custom.aHH} >= 10, \" Alarm/Mod/Blink\", \"\")))"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Chip_H",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "High alarm"
+                      }
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0,
+                      "display": false
+                    },
+                    "props": {
+                      "text": "H",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "({view.custom.aH} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0)) < 2"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.aH} < 0, \"\", \"PV/Chip/\" + case({view.custom.aH} % 10, 4, \"Critical\", 3, \"High\", 2, \"Medium\", 1, \"Low\", \"Diagnostic\") + if({view.custom.aH} >= 20, \" Alarm/Mod/ClearedUnacked\", if({view.custom.aH} >= 10, \" Alarm/Mod/Blink\", \"\")))"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Chip_L",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "Low alarm"
+                      }
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0,
+                      "display": false
+                    },
+                    "props": {
+                      "text": "L",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "({view.custom.aL} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0)) < 2"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.aL} < 0, \"\", \"PV/Chip/\" + case({view.custom.aL} % 10, 4, \"Critical\", 3, \"High\", 2, \"Medium\", 1, \"Low\", \"Diagnostic\") + if({view.custom.aL} >= 20, \" Alarm/Mod/ClearedUnacked\", if({view.custom.aL} >= 10, \" Alarm/Mod/Blink\", \"\")))"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Chip_LL",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "Low-low alarm"
+                      }
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0,
+                      "display": false
+                    },
+                    "props": {
+                      "text": "LL",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "({view.custom.aLL} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0)) < 2"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.aLL} < 0, \"\", \"PV/Chip/\" + case({view.custom.aLL} % 10, 4, \"Critical\", 3, \"High\", 2, \"Medium\", 1, \"Low\", \"Diagnostic\") + if({view.custom.aLL} >= 20, \" Alarm/Mod/ClearedUnacked\", if({view.custom.aLL} >= 10, \" Alarm/Mod/Blink\", \"\")))"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Chip_OVR",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "Signal over range"
+                      }
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0,
+                      "display": false
+                    },
+                    "props": {
+                      "text": "OVR",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "({view.custom.aOVR} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0) + if({view.custom.aLL} >= 0, 1, 0)) < 2"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.aOVR} < 0, \"\", \"PV/Chip/\" + case({view.custom.aOVR} % 10, 4, \"Critical\", 3, \"High\", 2, \"Medium\", 1, \"Low\", \"Diagnostic\") + if({view.custom.aOVR} >= 20, \" Alarm/Mod/ClearedUnacked\", if({view.custom.aOVR} >= 10, \" Alarm/Mod/Blink\", \"\")))"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Chip_UNR",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "Signal under range"
+                      }
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0,
+                      "display": false
+                    },
+                    "props": {
+                      "text": "UNR",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "({view.custom.aUNR} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0) + if({view.custom.aLL} >= 0, 1, 0) + if({view.custom.aOVR} >= 0, 1, 0)) < 2"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.aUNR} < 0, \"\", \"PV/Chip/\" + case({view.custom.aUNR} % 10, 4, \"Critical\", 3, \"High\", 2, \"Medium\", 1, \"Low\", \"Diagnostic\") + if({view.custom.aUNR} >= 20, \" Alarm/Mod/ClearedUnacked\", if({view.custom.aUNR} >= 10, \" Alarm/Mod/Blink\", \"\")))"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Chip_INH",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": "A limit alarm is inhibited"
+                      }
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0,
+                      "display": false
+                    },
+                    "props": {
+                      "text": "INH",
+                      "style": {
+                        "classes": "PV/Chip/Inhibit"
+                      }
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "({view.custom.inh}) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0) + if({view.custom.aLL} >= 0, 1, 0) + if({view.custom.aOVR} >= 0, 1, 0) + if({view.custom.aUNR} >= 0, 1, 0)) < 2"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Chip_More",
+                      "tooltip": {
+                        "enabled": true,
+                        "text": ""
+                      }
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0,
+                      "display": false
+                    },
+                    "props": {
+                      "text": "+1",
+                      "style": {
+                        "classes": "PV/Chip/More"
+                      }
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "(if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0) + if({view.custom.aLL} >= 0, 1, 0) + if({view.custom.aOVR} >= 0, 1, 0) + if({view.custom.aUNR} >= 0, 1, 0) + if({view.custom.inh}, 1, 0)) > 2"
+                          }
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "\"+\" + toStr((if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0) + if({view.custom.aLL} >= 0, 1, 0) + if({view.custom.aOVR} >= 0, 1, 0) + if({view.custom.aUNR} >= 0, 1, 0) + if({view.custom.inh}, 1, 0)) - 2)"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "\"PV/Chip/More\" + if(((({view.custom.aFLT} >= 0) && 0 >= 2) && {view.custom.aFLT} >= 10 && {view.custom.aFLT} < 20) || ((({view.custom.aHH} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0)) >= 2) && {view.custom.aHH} >= 10 && {view.custom.aHH} < 20) || ((({view.custom.aH} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0)) >= 2) && {view.custom.aH} >= 10 && {view.custom.aH} < 20) || ((({view.custom.aL} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0)) >= 2) && {view.custom.aL} >= 10 && {view.custom.aL} < 20) || ((({view.custom.aLL} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0)) >= 2) && {view.custom.aLL} >= 10 && {view.custom.aLL} < 20) || ((({view.custom.aOVR} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0) + if({view.custom.aLL} >= 0, 1, 0)) >= 2) && {view.custom.aOVR} >= 10 && {view.custom.aOVR} < 20) || ((({view.custom.aUNR} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0) + if({view.custom.aLL} >= 0, 1, 0) + if({view.custom.aOVR} >= 0, 1, 0)) >= 2) && {view.custom.aUNR} >= 10 && {view.custom.aUNR} < 20), \" Alarm/Mod/Blink\", \"\")"
+                          }
+                        }
+                      },
+                      "meta.tooltip.text": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "\"Also: \" + if((({view.custom.aFLT} >= 0) && 0 >= 2), \"FLT \", \"\") + if((({view.custom.aHH} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0)) >= 2), \"HH \", \"\") + if((({view.custom.aH} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0)) >= 2), \"H \", \"\") + if((({view.custom.aL} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0)) >= 2), \"L \", \"\") + if((({view.custom.aLL} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0)) >= 2), \"LL \", \"\") + if((({view.custom.aOVR} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0) + if({view.custom.aLL} >= 0, 1, 0)) >= 2), \"OVR \", \"\") + if((({view.custom.aUNR} >= 0) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0) + if({view.custom.aLL} >= 0, 1, 0) + if({view.custom.aOVR} >= 0, 1, 0)) >= 2), \"UNR \", \"\") + if((({view.custom.inh}) && (if({view.custom.aFLT} >= 0, 1, 0) + if({view.custom.aHH} >= 0, 1, 0) + if({view.custom.aH} >= 0, 1, 0) + if({view.custom.aL} >= 0, 1, 0) + if({view.custom.aLL} >= 0, 1, 0) + if({view.custom.aOVR} >= 0, 1, 0) + if({view.custom.aUNR} >= 0, 1, 0)) >= 2), \"INH \", \"\")"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "ValueRow"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "justify": "space-between",
+              "alignItems": "baseline",
+              "wrap": "nowrap",
+              "style": {
+                "classes": ""
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Value"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 1,
+                  "shrink": 1
+                },
+                "props": {
+                  "text": "28.2",
+                  "style": {
+                    "classes": "PV/ValueSmall"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if(isNull({view.custom.pv}), \"---\", numberFormat({view.custom.pv}, \"#,##0.0\"))"
+                      }
+                    }
+                  },
+                  "props.style.classes": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "\"PV/ValueSmall Text/Mod/NoWrap\" + if({view.custom.badValue}, \" Value/BadQuality\", \"\")"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Units"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "PSIG",
+                  "style": {
+                    "classes": "PV/Units Text/Mod/NoWrap"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if(isNull({view.custom.units}) || toStr({view.custom.units}) = \"null\", \"\", toStr({view.custom.units}))"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.coord",
+            "version": 0,
+            "meta": {
+              "name": "Track",
+              "tooltip": {
+                "enabled": true,
+                "text": ""
+              }
+            },
+            "position": {
+              "basis": "1.111vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "mode": "percent",
+              "style": {
+                "classes": ""
+              }
+            },
+            "propConfig": {
+              "meta.tooltip.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "\"Range \" + numberFormat({view.custom.engMin}, \"#,##0.##\") + \" to \" + numberFormat({view.custom.engMax}, \"#,##0.##\") + \" \" + if(isNull({view.custom.units}) || toStr({view.custom.units}) = \"null\", \"\", toStr({view.custom.units}))"
+                  }
+                }
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Band_LL"
+                },
+                "position": {
+                  "x": 0,
+                  "y": 0.4166666666666667,
+                  "width": 0.1,
+                  "height": 0.5
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Bar/Band/Extreme"
+                  }
+                },
+                "propConfig": {
+                  "position.width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "max(0, {view.custom.fLL} - 0)"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Band_L"
+                },
+                "position": {
+                  "x": 0.1,
+                  "y": 0.4166666666666667,
+                  "width": 0.1,
+                  "height": 0.5
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Bar/Band/Alarm"
+                  }
+                },
+                "propConfig": {
+                  "position.x": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.fLL}"
+                      }
+                    }
+                  },
+                  "position.width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "max(0, {view.custom.fL} - {view.custom.fLL})"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Band_N"
+                },
+                "position": {
+                  "x": 0.2,
+                  "y": 0.4166666666666667,
+                  "width": 0.6,
+                  "height": 0.5
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Bar/Band/Normal"
+                  }
+                },
+                "propConfig": {
+                  "position.x": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.fL}"
+                      }
+                    }
+                  },
+                  "position.width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "max(0, {view.custom.fH} - {view.custom.fL})"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Band_H"
+                },
+                "position": {
+                  "x": 0.8,
+                  "y": 0.4166666666666667,
+                  "width": 0.1,
+                  "height": 0.5
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Bar/Band/Alarm"
+                  }
+                },
+                "propConfig": {
+                  "position.x": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.fH}"
+                      }
+                    }
+                  },
+                  "position.width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "max(0, {view.custom.fHH} - {view.custom.fH})"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Band_HH"
+                },
+                "position": {
+                  "x": 0.9,
+                  "y": 0.4166666666666667,
+                  "width": 0.1,
+                  "height": 0.5
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Bar/Band/Extreme"
+                  }
+                },
+                "propConfig": {
+                  "position.x": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.fHH}"
+                      }
+                    }
+                  },
+                  "position.width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "max(0, 1 - {view.custom.fHH})"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Alarm_LL"
+                },
+                "position": {
+                  "x": 0,
+                  "y": 0.4166666666666667,
+                  "width": 0.1,
+                  "height": 0.5,
+                  "display": false
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.aLL} >= 0"
+                      }
+                    }
+                  },
+                  "position.width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "max(0, {view.custom.fLL} - 0)"
+                      }
+                    }
+                  },
+                  "props.style.classes": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if({view.custom.aLL} < 0, \"\", \"Bar/Band/\" + case({view.custom.aLL} % 10, 4, \"Critical\", 3, \"High\", 2, \"Medium\", 1, \"Low\", \"Diagnostic\") + if({view.custom.aLL} >= 20, \" Alarm/Mod/ClearedUnacked\", if({view.custom.aLL} >= 10, \" Alarm/Mod/Blink\", \"\")))"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Alarm_L"
+                },
+                "position": {
+                  "x": 0.1,
+                  "y": 0.4166666666666667,
+                  "width": 0.1,
+                  "height": 0.5,
+                  "display": false
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.aL} >= 0"
+                      }
+                    }
+                  },
+                  "position.width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "max(0, {view.custom.fL} - {view.custom.fLL})"
+                      }
+                    }
+                  },
+                  "props.style.classes": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if({view.custom.aL} < 0, \"\", \"Bar/Band/\" + case({view.custom.aL} % 10, 4, \"Critical\", 3, \"High\", 2, \"Medium\", 1, \"Low\", \"Diagnostic\") + if({view.custom.aL} >= 20, \" Alarm/Mod/ClearedUnacked\", if({view.custom.aL} >= 10, \" Alarm/Mod/Blink\", \"\")))"
+                      }
+                    }
+                  },
+                  "position.x": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.fLL}"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Alarm_H"
+                },
+                "position": {
+                  "x": 0.8,
+                  "y": 0.4166666666666667,
+                  "width": 0.1,
+                  "height": 0.5,
+                  "display": false
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.aH} >= 0"
+                      }
+                    }
+                  },
+                  "position.width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "max(0, {view.custom.fHH} - {view.custom.fH})"
+                      }
+                    }
+                  },
+                  "props.style.classes": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if({view.custom.aH} < 0, \"\", \"Bar/Band/\" + case({view.custom.aH} % 10, 4, \"Critical\", 3, \"High\", 2, \"Medium\", 1, \"Low\", \"Diagnostic\") + if({view.custom.aH} >= 20, \" Alarm/Mod/ClearedUnacked\", if({view.custom.aH} >= 10, \" Alarm/Mod/Blink\", \"\")))"
+                      }
+                    }
+                  },
+                  "position.x": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.fH}"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Alarm_HH"
+                },
+                "position": {
+                  "x": 0.9,
+                  "y": 0.4166666666666667,
+                  "width": 0.1,
+                  "height": 0.5,
+                  "display": false
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.aHH} >= 0"
+                      }
+                    }
+                  },
+                  "position.width": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "max(0, 1 - {view.custom.fHH})"
+                      }
+                    }
+                  },
+                  "props.style.classes": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if({view.custom.aHH} < 0, \"\", \"Bar/Band/\" + case({view.custom.aHH} % 10, 4, \"Critical\", 3, \"High\", 2, \"Medium\", 1, \"Low\", \"Diagnostic\") + if({view.custom.aHH} >= 20, \" Alarm/Mod/ClearedUnacked\", if({view.custom.aHH} >= 10, \" Alarm/Mod/Blink\", \"\")))"
+                      }
+                    }
+                  },
+                  "position.x": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.fHH}"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Frame"
+                },
+                "position": {
+                  "x": 0,
+                  "y": 0.4166666666666667,
+                  "width": 1,
+                  "height": 0.5
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Bar/Frame"
+                  }
+                }
+              },
+              {
+                "type": "ia.display.image",
+                "version": 0,
+                "meta": {
+                  "name": "Pointer"
+                },
+                "position": {
+                  "x": 0.45454545454545453,
+                  "y": 0,
+                  "width": 0.09090909090909091,
+                  "height": 1
+                },
+                "props": {
+                  "source": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 12' preserveAspectRatio='none'><polygon points='0,0 8,0 4,5' fill='%231F1F1F'/><rect x='2' y='5' width='4' height='7' fill='%23FFFFFF'/><rect x='3' y='5' width='2' height='7' fill='%231F1F1F'/></svg>",
+                  "fit": {
+                    "mode": "fill"
+                  }
+                },
+                "propConfig": {
+                  "position.x": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.fPV} * (1 - 0.09091)"
+                      }
+                    }
+                  },
+                  "props.source": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if({view.custom.badValue}, \"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 12' preserveAspectRatio='none'><polygon points='0,0 8,0 4,5' fill='%23B000B0'/></svg>\", \"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 12' preserveAspectRatio='none'><polygon points='0,0 8,0 4,5' fill='%231F1F1F'/><rect x='2' y='5' width='4' height='7' fill='%23FFFFFF'/><rect x='3' y='5' width='2' height='7' fill='%231F1F1F'/></svg>\")"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

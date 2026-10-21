@@ -1,0 +1,318 @@
+{
+  "custom": {},
+  "params": {
+    "cardPath": "",
+    "ch": 0,
+    "chFolder": "CH00",
+    "alt": false
+  },
+  "propConfig": {
+    "custom.chPath": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "{view.params.cardPath} + \"/\" + {view.params.chFolder}"
+        }
+      }
+    },
+    "custom.value": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/VALUE",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.err": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/CH_ERROR",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.loop": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Doc/LoopTag",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.desc": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Doc/Description",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.spare": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Doc/Spare",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.diag": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/HMI/DiagText",
+          "references": {
+            "0": "{view.custom.chPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "params.cardPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.ch": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.chFolder": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.alt": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 96,
+      "height": 70
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {},
+    "props": {
+      "direction": "column",
+      "justify": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "Util/Pad/S Util/Transparent"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Tile",
+          "tooltip": {
+            "enabled": true,
+            "text": ""
+          }
+        },
+        "position": {
+          "basis": "0",
+          "grow": 1,
+          "shrink": 1
+        },
+        "props": {
+          "direction": "column",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Container/Card Util/Pad/S"
+          }
+        },
+        "propConfig": {
+          "props.style.classes": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "if(coalesce({view.custom.spare}, false), \"Container/Inset Util/BorderDashed\", if(coalesce({view.custom.err}, false), \"State/Fault\", \"Container/Card\")) + \" Util/Pad/S\""
+              }
+            }
+          },
+          "meta.tooltip.text": {
+            "binding": {
+              "type": "expr",
+              "config": {
+                "expression": "\"CH \" + numberFormat({view.params.ch}, \"00\") + \"  \" + if(isNull({view.custom.loop}), \"\", toStr({view.custom.loop})) + \"\\n\" + if(isNull({view.custom.desc}), \"\", toStr({view.custom.desc})) + if(len(if(isNull({view.custom.diag}), \"\", toStr({view.custom.diag}))) > 0, \"\\nDiagnostics: \" + {view.custom.diag}, \"\") + if(!isGood({view.custom.value}), \"\\nBad OPC quality\", \"\")"
+              }
+            }
+          }
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Top"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "justify": "space-between",
+              "alignItems": "center",
+              "wrap": "nowrap",
+              "style": {
+                "classes": ""
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Ch"
+                },
+                "position": {
+                  "basis": "0",
+                  "grow": 1,
+                  "shrink": 1
+                },
+                "props": {
+                  "text": "CH 00",
+                  "style": {
+                    "classes": "Text/Size/XS"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "\"CH \" + numberFormat({view.params.ch}, \"00\")"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Led"
+                },
+                "position": {
+                  "basis": "1.111vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Indicator/LED/Off"
+                  }
+                },
+                "propConfig": {
+                  "props.style.classes": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if(coalesce({view.custom.spare}, false), \"\", if(!isGood({view.custom.value}), \"Indicator/LED/Unknown\", if(coalesce({view.custom.err}, false), \"Indicator/LED/Fault\", if({view.custom.value}, \"Indicator/LED/On\", \"Indicator/LED/Off\"))))"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Loop"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Size/S Text/Weight/Bold Text/Mod/Ellipsis"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(coalesce({view.custom.spare}, false), \"Spare\", if(len(if(isNull({view.custom.loop}), \"\", toStr({view.custom.loop}))) > 0, {view.custom.loop}, \"—\"))"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.display.label",
+            "version": 0,
+            "meta": {
+              "name": "Sub"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "text": "",
+              "style": {
+                "classes": "Text/Size/XXS Text/Mod/Ellipsis"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "if(coalesce({view.custom.spare}, false), \"\", if(coalesce({view.custom.err}, false), \"FAULT \" + if(isNull({view.custom.diag}), \"\", toStr({view.custom.diag})), if(isNull({view.custom.desc}), \"\", toStr({view.custom.desc}))))"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

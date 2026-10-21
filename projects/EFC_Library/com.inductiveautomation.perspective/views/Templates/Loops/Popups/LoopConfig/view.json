@@ -1,0 +1,2439 @@
+{
+  "custom": {
+    "pv": 0,
+    "mode": 0,
+    "units": "",
+    "pvLo": 0,
+    "pvHi": 100,
+    "engineerRole": "Engineer",
+    "isEngineer": false,
+    "edit": {
+      "Kp": 0,
+      "Ti": 0,
+      "Td": 0,
+      "Action": 0,
+      "SP_Lo": 0,
+      "SP_Hi": 0,
+      "OUT_Lo": 0,
+      "OUT_Hi": 0,
+      "AlmHi": 0,
+      "AlmLo": 0,
+      "AlmDev": 0
+    },
+    "trend": {
+      "pv": "",
+      "sp": "",
+      "out": ""
+    }
+  },
+  "params": {
+    "tagPath": "[default]PID_Demo/TIC101"
+  },
+  "propConfig": {
+    "custom.pv": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/PV"
+        }
+      }
+    },
+    "custom.mode": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/Mode"
+        }
+      }
+    },
+    "custom.units": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/PV.engUnit"
+        }
+      }
+    },
+    "custom.pvLo": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/PV.engLow"
+        }
+      }
+    },
+    "custom.pvHi": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "1": "{view.params.tagPath}"
+          },
+          "tagPath": "{1}/PV.engHigh"
+        }
+      }
+    },
+    "custom.isEngineer": {
+      "binding": {
+        "type": "property",
+        "config": {
+          "path": "session.props.auth.user.roles"
+        },
+        "transforms": [
+          {
+            "type": "script",
+            "code": "\treturn self.view.custom.engineerRole in (value or [])"
+          }
+        ]
+      }
+    },
+    "custom.trend": {
+      "binding": {
+        "type": "expr",
+        "config": {
+          "expression": "now(5000)"
+        },
+        "transforms": [
+          {
+            "type": "script",
+            "code": "\tbase = self.view.params.tagPath\n\tW, H = 400.0, 84.0\n\tempty = {\"pv\": \"\", \"sp\": \"\", \"out\": \"\"}\n\tif not base:\n\t\treturn empty\n\ttry:\n\t\tds = system.tag.queryTagHistory(paths=[base + \"/PV\", base + \"/SP\", base + \"/OUT\"], rangeMinutes=5,\n\t\t\treturnSize=120, aggregationMode=\"Average\", returnFormat=\"Wide\", ignoreBadQuality=True)\n\texcept:\n\t\treturn empty\n\tlo = float(self.view.custom.pvLo)\n\thi = float(self.view.custom.pvHi)\n\tif hi <= lo:\n\t\thi = lo + 1\n\trows = []\n\tfor r in range(ds.getRowCount()):\n\t\tvals = [ds.getValueAt(r, c) for c in (1, 2, 3)]\n\t\tif None not in vals:\n\t\t\trows.append([float(x) for x in vals])\n\tif len(rows) < 2:\n\t\treturn empty\n\tstep = W / (len(rows) - 1)\n\tdef mk(i, a, b):\n\t\tpts = []\n\t\tfor n, p in enumerate(rows):\n\t\t\tf = max(0.0, min(1.0, (p[i] - a) / (b - a)))\n\t\t\tpts.append((\"M\" if n == 0 else \"L\") + \"%.1f,%.1f\" % (n * step, H - 4 - f * (H - 8)))\n\t\treturn \" \".join(pts)\n\treturn {\"pv\": mk(0, lo, hi), \"sp\": mk(1, lo, hi), \"out\": mk(2, 0.0, 100.0)}"
+          }
+        ]
+      }
+    },
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 440,
+      "height": 480
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "#FFFFFF",
+        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif"
+      }
+    },
+    "position": {
+      "shrink": 0
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "meta": {
+          "name": "header"
+        },
+        "props": {
+          "direction": "row",
+          "style": {
+            "padding": "1.481vh 1.667vh 0.741vh 1.667vh"
+          },
+          "alignItems": "flex-start"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "meta": {
+              "name": "titles"
+            },
+            "props": {
+              "direction": "column",
+              "style": {}
+            },
+            "position": {
+              "grow": 1,
+              "basis": "0px"
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "meta": {
+                  "name": "tag"
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                    "color": "#1E2329",
+                    "fontSize": "1.574vh",
+                    "fontWeight": 700
+                  }
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "substring({view.params.tagPath}, lastIndexOf({view.params.tagPath}, \"/\") + 1)"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "meta": {
+                  "name": "desc"
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                    "color": "#6B737C",
+                    "fontSize": "1.157vh"
+                  }
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "tag",
+                      "config": {
+                        "fallbackDelay": 2.5,
+                        "mode": "indirect",
+                        "references": {
+                          "1": "{view.params.tagPath}"
+                        },
+                        "tagPath": "{1}/Description"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.input.button",
+            "meta": {
+              "name": "close"
+            },
+            "props": {
+              "text": "×",
+              "style": {
+                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                "fontWeight": 600,
+                "fontSize": "1.667vh",
+                "borderRadius": "0.741vh",
+                "border": "none",
+                "backgroundColor": "#E9ECEF",
+                "color": "#1E2329",
+                "padding": "0.185vh 0.926vh"
+              }
+            },
+            "position": {
+              "shrink": 0
+            },
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "type": "script",
+                  "scope": "G",
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup(\"\")"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.container.tab",
+        "meta": {
+          "name": "tabs"
+        },
+        "props": {
+          "tabs": [
+            "Operate",
+            "Tuning",
+            "Limits & Alarms"
+          ],
+          "currentTabIndex": 0,
+          "menuType": "modern",
+          "tabSize": {
+            "width": 120,
+            "height": 34
+          },
+          "contentStyle": {
+            "backgroundColor": "#FFFFFF"
+          },
+          "menuStyle": {
+            "inactive": {
+              "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+              "color": "#6B737C"
+            },
+            "active": {
+              "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+              "fontWeight": 600,
+              "color": "#1E2329"
+            }
+          }
+        },
+        "position": {
+          "grow": 1,
+          "basis": "0px"
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "meta": {
+              "name": "Operate"
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "padding": "1.481vh 1.667vh"
+              }
+            },
+            "position": {
+              "tabIndex": 0
+            },
+            "children": [
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "modes"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "backgroundColor": "#E9ECEF",
+                    "borderRadius": "0.926vh",
+                    "padding": "0.278vh",
+                    "gap": "0.278vh",
+                    "marginBottom": "1.296vh"
+                  }
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.input.button",
+                    "meta": {
+                      "name": "modeMAN"
+                    },
+                    "props": {
+                      "text": "MAN",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontWeight": 600,
+                        "fontSize": "1.157vh",
+                        "borderRadius": "0.741vh",
+                        "border": "1px solid #C3C8CE",
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#1E2329",
+                        "padding": "0.556vh 1.667vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.mode} = 0, \"#FFFFFF\", \"transparent\")"
+                          }
+                        }
+                      },
+                      "props.style.boxShadow": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.mode} = 0, \"0 1px 3px rgba(20,30,40,0.18)\", \"none\")"
+                          }
+                        }
+                      },
+                      "props.style.border": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "\"none\""
+                          }
+                        }
+                      },
+                      "props.style.color": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.mode} = 0, \"#1E2329\", \"#4A535C\")"
+                          }
+                        }
+                      }
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "type": "script",
+                          "scope": "G",
+                          "config": {
+                            "script": "\tsystem.tag.writeBlocking([self.view.params.tagPath + \"/Mode\"], [0])"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.input.button",
+                    "meta": {
+                      "name": "modeAUTO"
+                    },
+                    "props": {
+                      "text": "AUTO",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontWeight": 600,
+                        "fontSize": "1.157vh",
+                        "borderRadius": "0.741vh",
+                        "border": "1px solid #C3C8CE",
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#1E2329",
+                        "padding": "0.556vh 1.667vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.mode} = 1, \"#FFFFFF\", \"transparent\")"
+                          }
+                        }
+                      },
+                      "props.style.boxShadow": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.mode} = 1, \"0 1px 3px rgba(20,30,40,0.18)\", \"none\")"
+                          }
+                        }
+                      },
+                      "props.style.border": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "\"none\""
+                          }
+                        }
+                      },
+                      "props.style.color": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.mode} = 1, \"#1E2329\", \"#4A535C\")"
+                          }
+                        }
+                      }
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "type": "script",
+                          "scope": "G",
+                          "config": {
+                            "script": "\tsystem.tag.writeBlocking([self.view.params.tagPath + \"/Mode\"], [1])"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.input.button",
+                    "meta": {
+                      "name": "modeCAS"
+                    },
+                    "props": {
+                      "text": "CAS",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontWeight": 600,
+                        "fontSize": "1.157vh",
+                        "borderRadius": "0.741vh",
+                        "border": "1px solid #C3C8CE",
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#1E2329",
+                        "padding": "0.556vh 1.667vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    },
+                    "propConfig": {
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.mode} = 2, \"#FFFFFF\", \"transparent\")"
+                          }
+                        }
+                      },
+                      "props.style.boxShadow": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.mode} = 2, \"0 1px 3px rgba(20,30,40,0.18)\", \"none\")"
+                          }
+                        }
+                      },
+                      "props.style.border": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "\"none\""
+                          }
+                        }
+                      },
+                      "props.style.color": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "if({view.custom.mode} = 2, \"#1E2329\", \"#4A535C\")"
+                          }
+                        }
+                      }
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "type": "script",
+                          "scope": "G",
+                          "config": {
+                            "script": "\tsystem.tag.writeBlocking([self.view.params.tagPath + \"/Mode\"], [2])"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "kpis"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "marginBottom": "1.111vh"
+                  }
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.container.flex",
+                    "meta": {
+                      "name": "kPV"
+                    },
+                    "props": {
+                      "direction": "column",
+                      "style": {
+                        "backgroundColor": "#F7F8F9",
+                        "border": "1px solid #E3E6E9",
+                        "borderRadius": "0.926vh",
+                        "padding": "0.833vh 1.019vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "meta": {
+                          "name": "t"
+                        },
+                        "props": {
+                          "text": "PV",
+                          "style": {
+                            "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                            "color": "#6B737C",
+                            "fontSize": "0.926vh",
+                            "fontWeight": 600,
+                            "letterSpacing": "0.05em",
+                            "marginBottom": "0.37vh"
+                          }
+                        },
+                        "position": {
+                          "shrink": 0
+                        }
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "meta": {
+                          "name": "r"
+                        },
+                        "props": {
+                          "direction": "row",
+                          "style": {},
+                          "alignItems": "baseline"
+                        },
+                        "position": {
+                          "shrink": 0
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "meta": {
+                              "name": "pv"
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                                "color": "#1E2329",
+                                "fontSize": "1.852vh",
+                                "fontWeight": 600,
+                                "fontVariantNumeric": "tabular-nums",
+                                "lineHeight": 1
+                              }
+                            },
+                            "position": {
+                              "shrink": 0
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "type": "expr",
+                                  "config": {
+                                    "expression": "numberFormat({view.custom.pv}, \"#,##0.0\")"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "ia.display.label",
+                            "meta": {
+                              "name": "u"
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                                "color": "#6B737C",
+                                "fontSize": "1.019vh",
+                                "marginLeft": "0.278vh"
+                              }
+                            },
+                            "position": {
+                              "shrink": 0
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.units"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "meta": {
+                      "name": "kSP"
+                    },
+                    "props": {
+                      "direction": "column",
+                      "style": {
+                        "backgroundColor": "#F7F8F9",
+                        "border": "1px solid #E3E6E9",
+                        "borderRadius": "0.926vh",
+                        "padding": "0.833vh 1.019vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "meta": {
+                          "name": "t"
+                        },
+                        "props": {
+                          "text": "SP",
+                          "style": {
+                            "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                            "color": "#6B737C",
+                            "fontSize": "0.926vh",
+                            "fontWeight": 600,
+                            "letterSpacing": "0.05em",
+                            "marginBottom": "0.37vh"
+                          }
+                        },
+                        "position": {
+                          "shrink": 0
+                        }
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "meta": {
+                          "name": "r"
+                        },
+                        "props": {
+                          "direction": "row",
+                          "style": {},
+                          "alignItems": "center"
+                        },
+                        "position": {
+                          "shrink": 0
+                        },
+                        "children": [
+                          {
+                            "type": "ia.input.numeric-entry-field",
+                            "meta": {
+                              "name": "sp"
+                            },
+                            "props": {
+                              "value": 0,
+                              "format": "0,0.0[00]",
+                              "style": {
+                                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                                "fontSize": "1.667vh",
+                                "fontVariantNumeric": "tabular-nums",
+                                "textAlign": "right",
+                                "borderRadius": "0.741vh",
+                                "color": "#2F6FD6",
+                                "fontWeight": 600
+                              }
+                            },
+                            "position": {
+                              "grow": 1,
+                              "basis": "0px"
+                            },
+                            "propConfig": {
+                              "props.value": {
+                                "binding": {
+                                  "type": "tag",
+                                  "config": {
+                                    "fallbackDelay": 2.5,
+                                    "mode": "indirect",
+                                    "references": {
+                                      "1": "{view.params.tagPath}"
+                                    },
+                                    "tagPath": "{1}/SP",
+                                    "bidirectional": true
+                                  }
+                                }
+                              },
+                              "props.enabled": {
+                                "binding": {
+                                  "type": "expr",
+                                  "config": {
+                                    "expression": "{view.custom.mode} != 2"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "ia.display.label",
+                            "meta": {
+                              "name": "u"
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                                "color": "#6B737C",
+                                "fontSize": "1.019vh",
+                                "marginLeft": "0.37vh"
+                              }
+                            },
+                            "position": {
+                              "shrink": 0
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.units"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "meta": {
+                      "name": "kOUT"
+                    },
+                    "props": {
+                      "direction": "column",
+                      "style": {
+                        "backgroundColor": "#F7F8F9",
+                        "border": "1px solid #E3E6E9",
+                        "borderRadius": "0.926vh",
+                        "padding": "0.833vh 1.019vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "meta": {
+                          "name": "t"
+                        },
+                        "props": {
+                          "text": "OUT",
+                          "style": {
+                            "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                            "color": "#6B737C",
+                            "fontSize": "0.926vh",
+                            "fontWeight": 600,
+                            "letterSpacing": "0.05em",
+                            "marginBottom": "0.37vh"
+                          }
+                        },
+                        "position": {
+                          "shrink": 0
+                        }
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "meta": {
+                          "name": "r"
+                        },
+                        "props": {
+                          "direction": "row",
+                          "style": {},
+                          "alignItems": "center"
+                        },
+                        "position": {
+                          "shrink": 0
+                        },
+                        "children": [
+                          {
+                            "type": "ia.input.numeric-entry-field",
+                            "meta": {
+                              "name": "out"
+                            },
+                            "props": {
+                              "value": 0,
+                              "format": "0,0.0[00]",
+                              "style": {
+                                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                                "fontSize": "1.667vh",
+                                "fontVariantNumeric": "tabular-nums",
+                                "textAlign": "right",
+                                "borderRadius": "0.741vh",
+                                "fontWeight": 600
+                              }
+                            },
+                            "position": {
+                              "grow": 1,
+                              "basis": "0px"
+                            },
+                            "propConfig": {
+                              "props.value": {
+                                "binding": {
+                                  "type": "tag",
+                                  "config": {
+                                    "fallbackDelay": 2.5,
+                                    "mode": "indirect",
+                                    "references": {
+                                      "1": "{view.params.tagPath}"
+                                    },
+                                    "tagPath": "{1}/OUT",
+                                    "bidirectional": true
+                                  }
+                                }
+                              },
+                              "props.enabled": {
+                                "binding": {
+                                  "type": "expr",
+                                  "config": {
+                                    "expression": "{view.custom.mode} = 0"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "ia.display.label",
+                            "meta": {
+                              "name": "u"
+                            },
+                            "props": {
+                              "text": "%",
+                              "style": {
+                                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                                "color": "#6B737C",
+                                "fontSize": "1.019vh",
+                                "marginLeft": "0.37vh"
+                              }
+                            },
+                            "position": {
+                              "shrink": 0
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "ia.shapes.svg",
+                "meta": {
+                  "name": "trend"
+                },
+                "props": {
+                  "viewBox": "0 0 400 84",
+                  "preserveAspectRatio": "none",
+                  "elements": [
+                    {
+                      "type": "rect",
+                      "name": "bg",
+                      "x": 0,
+                      "y": 0,
+                      "width": 400,
+                      "height": 84,
+                      "rx": 8,
+                      "ry": 8,
+                      "fill": {
+                        "paint": "#F7F8F9"
+                      },
+                      "stroke": {
+                        "paint": "none",
+                        "width": 0
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "name": "out",
+                      "d": "",
+                      "fill": {
+                        "paint": "none"
+                      },
+                      "stroke": {
+                        "paint": "#A9B0B8",
+                        "width": 1.2
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "name": "sp",
+                      "d": "",
+                      "fill": {
+                        "paint": "none"
+                      },
+                      "stroke": {
+                        "paint": "#2F6FD6",
+                        "width": 1.5,
+                        "dasharray": "5 4"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "name": "pv",
+                      "d": "",
+                      "fill": {
+                        "paint": "none"
+                      },
+                      "stroke": {
+                        "paint": "#1E2329",
+                        "width": 1.8
+                      }
+                    }
+                  ]
+                },
+                "position": {
+                  "shrink": 0,
+                  "basis": "7.778vh"
+                },
+                "propConfig": {
+                  "props.elements[1].d": {
+                    "binding": {
+                      "type": "property",
+                      "config": {
+                        "path": "view.custom.trend.out"
+                      }
+                    }
+                  },
+                  "props.elements[2].d": {
+                    "binding": {
+                      "type": "property",
+                      "config": {
+                        "path": "view.custom.trend.sp"
+                      }
+                    }
+                  },
+                  "props.elements[3].d": {
+                    "binding": {
+                      "type": "property",
+                      "config": {
+                        "path": "view.custom.trend.pv"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "legend"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "1.296vh",
+                    "marginTop": "0.556vh"
+                  }
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "l1"
+                    },
+                    "props": {
+                      "text": "━ PV",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#1E2329",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "l2"
+                    },
+                    "props": {
+                      "text": "━ SP",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#2F6FD6",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "l3"
+                    },
+                    "props": {
+                      "text": "━ OUT",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#A9B0B8",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "l4"
+                    },
+                    "props": {
+                      "text": "last 5 min",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.display.label",
+                "meta": {
+                  "name": "note"
+                },
+                "props": {
+                  "text": "OUT can be written only in MAN. SP is locked in CAS (it comes from the primary loop).",
+                  "style": {
+                    "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                    "color": "#6B737C",
+                    "fontSize": "1.065vh",
+                    "marginTop": "0.926vh",
+                    "whiteSpace": "normal"
+                  }
+                },
+                "position": {
+                  "shrink": 0
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "meta": {
+              "name": "Tuning"
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "padding": "1.481vh 1.667vh"
+              }
+            },
+            "position": {
+              "tabIndex": 1
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "meta": {
+                  "name": "lock"
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                    "color": "#1E2329",
+                    "fontSize": "1.111vh",
+                    "borderRadius": "0.741vh",
+                    "padding": "0.741vh 0.926vh",
+                    "marginBottom": "0.926vh",
+                    "whiteSpace": "normal"
+                  }
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if({view.custom.isEngineer}, \"Changes are written to the PLC when you press Apply.\", \"Read only. Log in with the \" + {view.custom.engineerRole} + \" role to change tuning.\")"
+                      }
+                    }
+                  },
+                  "props.style.backgroundColor": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if({view.custom.isEngineer}, \"#E9ECEF\", \"#FFF7E0\")"
+                      }
+                    }
+                  },
+                  "props.style.color": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "if({view.custom.isEngineer}, \"#454D55\", \"#6A5300\")"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "row_Kp"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "height": "3.148vh"
+                  },
+                  "alignItems": "center"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "props": {
+                      "text": "Kp (gain)",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#3A424A",
+                        "fontSize": "1.157vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    }
+                  },
+                  {
+                    "type": "ia.input.numeric-entry-field",
+                    "meta": {
+                      "name": "Kp"
+                    },
+                    "props": {
+                      "value": 0,
+                      "format": "0,0.0[00]",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontSize": "1.204vh",
+                        "fontVariantNumeric": "tabular-nums",
+                        "textAlign": "right",
+                        "borderRadius": "0.741vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "12.037vh"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.edit.Kp",
+                            "bidirectional": true
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.isEngineer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "u"
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "3.704vh"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "row_Ti"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "height": "3.148vh"
+                  },
+                  "alignItems": "center"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "props": {
+                      "text": "Ti (integral)",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#3A424A",
+                        "fontSize": "1.157vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    }
+                  },
+                  {
+                    "type": "ia.input.numeric-entry-field",
+                    "meta": {
+                      "name": "Ti"
+                    },
+                    "props": {
+                      "value": 0,
+                      "format": "0,0.0[00]",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontSize": "1.204vh",
+                        "fontVariantNumeric": "tabular-nums",
+                        "textAlign": "right",
+                        "borderRadius": "0.741vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "12.037vh"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.edit.Ti",
+                            "bidirectional": true
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.isEngineer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "u"
+                    },
+                    "props": {
+                      "text": "s",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "3.704vh"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "row_Td"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "height": "3.148vh"
+                  },
+                  "alignItems": "center"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "props": {
+                      "text": "Td (derivative)",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#3A424A",
+                        "fontSize": "1.157vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    }
+                  },
+                  {
+                    "type": "ia.input.numeric-entry-field",
+                    "meta": {
+                      "name": "Td"
+                    },
+                    "props": {
+                      "value": 0,
+                      "format": "0,0.0[00]",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontSize": "1.204vh",
+                        "fontVariantNumeric": "tabular-nums",
+                        "textAlign": "right",
+                        "borderRadius": "0.741vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "12.037vh"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.edit.Td",
+                            "bidirectional": true
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.isEngineer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "u"
+                    },
+                    "props": {
+                      "text": "s",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "3.704vh"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "row_Action"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "height": "3.148vh"
+                  },
+                  "alignItems": "center"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "props": {
+                      "text": "Action",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#3A424A",
+                        "fontSize": "1.157vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    }
+                  },
+                  {
+                    "type": "ia.input.dropdown",
+                    "meta": {
+                      "name": "Action"
+                    },
+                    "props": {
+                      "options": [
+                        {
+                          "value": 0,
+                          "label": "Reverse"
+                        },
+                        {
+                          "value": 1,
+                          "label": "Direct"
+                        }
+                      ],
+                      "value": 0,
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontSize": "1.204vh",
+                        "borderRadius": "0.741vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "12.037vh"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.edit.Action",
+                            "bidirectional": true
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.isEngineer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "u"
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "3.704vh"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "meta": {
+              "name": "Limits"
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "padding": "1.481vh 1.667vh"
+              }
+            },
+            "position": {
+              "tabIndex": 2
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "meta": {
+                  "name": "sec_SETPOINTLIMITS"
+                },
+                "props": {
+                  "text": "SETPOINT LIMITS",
+                  "style": {
+                    "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                    "color": "#6B737C",
+                    "fontSize": "0.926vh",
+                    "fontWeight": 600,
+                    "letterSpacing": "0.05em",
+                    "marginTop": "0.556vh"
+                  }
+                },
+                "position": {
+                  "shrink": 0
+                }
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "row_SP_Lo"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "height": "3.148vh"
+                  },
+                  "alignItems": "center"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "props": {
+                      "text": "SP low",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#3A424A",
+                        "fontSize": "1.157vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    }
+                  },
+                  {
+                    "type": "ia.input.numeric-entry-field",
+                    "meta": {
+                      "name": "SP_Lo"
+                    },
+                    "props": {
+                      "value": 0,
+                      "format": "0,0.0[00]",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontSize": "1.204vh",
+                        "fontVariantNumeric": "tabular-nums",
+                        "textAlign": "right",
+                        "borderRadius": "0.741vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "12.037vh"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.edit.SP_Lo",
+                            "bidirectional": true
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.isEngineer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "u"
+                    },
+                    "props": {
+                      "text": "EU",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "3.704vh"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "row_SP_Hi"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "height": "3.148vh"
+                  },
+                  "alignItems": "center"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "props": {
+                      "text": "SP high",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#3A424A",
+                        "fontSize": "1.157vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    }
+                  },
+                  {
+                    "type": "ia.input.numeric-entry-field",
+                    "meta": {
+                      "name": "SP_Hi"
+                    },
+                    "props": {
+                      "value": 0,
+                      "format": "0,0.0[00]",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontSize": "1.204vh",
+                        "fontVariantNumeric": "tabular-nums",
+                        "textAlign": "right",
+                        "borderRadius": "0.741vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "12.037vh"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.edit.SP_Hi",
+                            "bidirectional": true
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.isEngineer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "u"
+                    },
+                    "props": {
+                      "text": "EU",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "3.704vh"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.display.label",
+                "meta": {
+                  "name": "sec_OUTPUTLIMITS"
+                },
+                "props": {
+                  "text": "OUTPUT LIMITS",
+                  "style": {
+                    "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                    "color": "#6B737C",
+                    "fontSize": "0.926vh",
+                    "fontWeight": 600,
+                    "letterSpacing": "0.05em",
+                    "marginTop": "0.556vh"
+                  }
+                },
+                "position": {
+                  "shrink": 0
+                }
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "row_OUT_Lo"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "height": "3.148vh"
+                  },
+                  "alignItems": "center"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "props": {
+                      "text": "OUT low",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#3A424A",
+                        "fontSize": "1.157vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    }
+                  },
+                  {
+                    "type": "ia.input.numeric-entry-field",
+                    "meta": {
+                      "name": "OUT_Lo"
+                    },
+                    "props": {
+                      "value": 0,
+                      "format": "0,0.0[00]",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontSize": "1.204vh",
+                        "fontVariantNumeric": "tabular-nums",
+                        "textAlign": "right",
+                        "borderRadius": "0.741vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "12.037vh"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.edit.OUT_Lo",
+                            "bidirectional": true
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.isEngineer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "u"
+                    },
+                    "props": {
+                      "text": "%",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "3.704vh"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "row_OUT_Hi"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "height": "3.148vh"
+                  },
+                  "alignItems": "center"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "props": {
+                      "text": "OUT high",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#3A424A",
+                        "fontSize": "1.157vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    }
+                  },
+                  {
+                    "type": "ia.input.numeric-entry-field",
+                    "meta": {
+                      "name": "OUT_Hi"
+                    },
+                    "props": {
+                      "value": 0,
+                      "format": "0,0.0[00]",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontSize": "1.204vh",
+                        "fontVariantNumeric": "tabular-nums",
+                        "textAlign": "right",
+                        "borderRadius": "0.741vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "12.037vh"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.edit.OUT_Hi",
+                            "bidirectional": true
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.isEngineer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "u"
+                    },
+                    "props": {
+                      "text": "%",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "3.704vh"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.display.label",
+                "meta": {
+                  "name": "sec_ALARMS"
+                },
+                "props": {
+                  "text": "ALARMS",
+                  "style": {
+                    "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                    "color": "#6B737C",
+                    "fontSize": "0.926vh",
+                    "fontWeight": 600,
+                    "letterSpacing": "0.05em",
+                    "marginTop": "0.556vh"
+                  }
+                },
+                "position": {
+                  "shrink": 0
+                }
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "row_AlmHi"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "height": "3.148vh"
+                  },
+                  "alignItems": "center"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "props": {
+                      "text": "PV high",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#3A424A",
+                        "fontSize": "1.157vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    }
+                  },
+                  {
+                    "type": "ia.input.numeric-entry-field",
+                    "meta": {
+                      "name": "AlmHi"
+                    },
+                    "props": {
+                      "value": 0,
+                      "format": "0,0.0[00]",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontSize": "1.204vh",
+                        "fontVariantNumeric": "tabular-nums",
+                        "textAlign": "right",
+                        "borderRadius": "0.741vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "12.037vh"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.edit.AlmHi",
+                            "bidirectional": true
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.isEngineer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "u"
+                    },
+                    "props": {
+                      "text": "EU",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "3.704vh"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "row_AlmLo"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "height": "3.148vh"
+                  },
+                  "alignItems": "center"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "props": {
+                      "text": "PV low",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#3A424A",
+                        "fontSize": "1.157vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    }
+                  },
+                  {
+                    "type": "ia.input.numeric-entry-field",
+                    "meta": {
+                      "name": "AlmLo"
+                    },
+                    "props": {
+                      "value": 0,
+                      "format": "0,0.0[00]",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontSize": "1.204vh",
+                        "fontVariantNumeric": "tabular-nums",
+                        "textAlign": "right",
+                        "borderRadius": "0.741vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "12.037vh"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.edit.AlmLo",
+                            "bidirectional": true
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.isEngineer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "u"
+                    },
+                    "props": {
+                      "text": "EU",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "3.704vh"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "meta": {
+                  "name": "row_AlmDev"
+                },
+                "props": {
+                  "direction": "row",
+                  "style": {
+                    "gap": "0.926vh",
+                    "height": "3.148vh"
+                  },
+                  "alignItems": "center"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "props": {
+                      "text": "Deviation",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#3A424A",
+                        "fontSize": "1.157vh"
+                      }
+                    },
+                    "position": {
+                      "grow": 1,
+                      "basis": "0px"
+                    }
+                  },
+                  {
+                    "type": "ia.input.numeric-entry-field",
+                    "meta": {
+                      "name": "AlmDev"
+                    },
+                    "props": {
+                      "value": 0,
+                      "format": "0,0.0[00]",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "fontSize": "1.204vh",
+                        "fontVariantNumeric": "tabular-nums",
+                        "textAlign": "right",
+                        "borderRadius": "0.741vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "12.037vh"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.edit.AlmDev",
+                            "bidirectional": true
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.isEngineer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "meta": {
+                      "name": "u"
+                    },
+                    "props": {
+                      "text": "± EU",
+                      "style": {
+                        "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                        "color": "#6B737C",
+                        "fontSize": "1.019vh"
+                      }
+                    },
+                    "position": {
+                      "shrink": 0,
+                      "basis": "3.704vh"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "meta": {
+          "name": "footer"
+        },
+        "props": {
+          "direction": "row",
+          "style": {
+            "gap": "0.741vh",
+            "padding": "0.926vh 1.667vh 1.481vh 1.667vh"
+          },
+          "justify": "flex-end"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "children": [
+          {
+            "type": "ia.input.button",
+            "meta": {
+              "name": "cancel"
+            },
+            "props": {
+              "text": "Cancel",
+              "style": {
+                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                "fontWeight": 600,
+                "fontSize": "1.157vh",
+                "borderRadius": "0.741vh",
+                "border": "1px solid #C3C8CE",
+                "backgroundColor": "#FFFFFF",
+                "color": "#1E2329",
+                "padding": "0.556vh 1.667vh"
+              }
+            },
+            "position": {
+              "shrink": 0
+            },
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "type": "script",
+                  "scope": "G",
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup(\"\")"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "ia.input.button",
+            "meta": {
+              "name": "apply"
+            },
+            "props": {
+              "text": "Apply",
+              "style": {
+                "fontFamily": "Inter, 'Segoe UI', Roboto, Arial, sans-serif",
+                "fontWeight": 600,
+                "fontSize": "1.157vh",
+                "borderRadius": "0.741vh",
+                "border": "1px solid #2B3138",
+                "backgroundColor": "#2B3138",
+                "color": "#FFFFFF",
+                "padding": "0.556vh 1.667vh"
+              }
+            },
+            "position": {
+              "shrink": 0
+            },
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "type": "script",
+                  "scope": "G",
+                  "config": {
+                    "script": "\tif self.view.custom.isEngineer:\n\t\tbase = self.view.params.tagPath\n\t\tnames = ['Kp', 'Ti', 'Td', 'Action', 'SP_Lo', 'SP_Hi', 'OUT_Lo', 'OUT_Hi', 'AlmHi', 'AlmLo', 'AlmDev']\n\t\tedit = self.view.custom.edit\n\t\tsystem.tag.writeBlocking([base + \"/\" + n for n in names], [edit[n] for n in names])\n\tsystem.perspective.closePopup(\"\")"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "events": {
+      "system": {
+        "onStartup": {
+          "type": "script",
+          "scope": "G",
+          "config": {
+            "script": "\tbase = self.view.params.tagPath\n\tnames = ['Kp', 'Ti', 'Td', 'Action', 'SP_Lo', 'SP_Hi', 'OUT_Lo', 'OUT_Hi', 'AlmHi', 'AlmLo', 'AlmDev']\n\tvals = system.tag.readBlocking([base + \"/\" + n for n in names])\n\tedit = {}\n\tfor n, q in zip(names, vals):\n\t\tedit[n] = q.value\n\tself.view.custom.edit = edit"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5116 @@
+{
+  "custom": {
+    "t": {
+      "Active": null,
+      "Complete": null,
+      "Deadband": null,
+      "Disabled": null,
+      "Failed": null,
+      "Filling": null,
+      "GrossWeight": null,
+      "InletCMD": null,
+      "InletREQ": null,
+      "Msg": null,
+      "NetWeight": null,
+      "Press_Balanced": null,
+      "Press_Max": null,
+      "PT": null,
+      "PT_Diff": null,
+      "PT_Valid": null,
+      "ReadyToFill": null,
+      "ReadyToStart": null,
+      "Recovering": null,
+      "SampleCMD": null,
+      "SamplePress": null,
+      "SampleREQ": null,
+      "SampleWeight": null,
+      "ScaleName": null,
+      "Selected": null,
+      "StationName": null,
+      "TareWeight": null,
+      "TargetWeight": null,
+      "TotalWeight": null,
+      "Units": null,
+      "VacuumCMD": null,
+      "Vacuumed": null,
+      "Vacuuming": null,
+      "VacuumREQ": null,
+      "Venting": null,
+      "Vessel_Present": null
+    },
+    "s": {
+      "name": "Station 1",
+      "scale": "WT101",
+      "word": "FILLING",
+      "chip": "State/Running",
+      "msg": "Filling primary vessel",
+      "units": "kg",
+      "busy": true,
+      "dis": false,
+      "sel": true,
+      "selText": "SELECTED",
+      "selCls": "Button/Toggle/On",
+      "hiCls": " Util/Highlight",
+      "net": "9.814",
+      "target": "12.645",
+      "rem": "2.831",
+      "db": "0.005",
+      "gross": "146.988",
+      "tare": "137.174",
+      "total": "9.814",
+      "pct": "77.6%",
+      "fillCls": "Bar/Fill",
+      "fillW": 0.719,
+      "tgtX": 0.926,
+      "dbX": 0.925,
+      "dbW": 0.012,
+      "pt": "1,314.5",
+      "ptBad": false,
+      "ptCls": "Text/ValueLarge",
+      "ptSmallCls": "Text/Value Text/Mod/Right",
+      "ptd": "dP 3.2 psi",
+      "ptW": 0.405,
+      "preX": 0.015,
+      "maxX": 0.901,
+      "pre": "50.0",
+      "pmax": "2,950.0",
+      "steps": [
+        "Station/Step/Done",
+        "Station/Step/Done",
+        "Station/Step/Done",
+        "Station/Step/Active",
+        "Station/Step/Pending",
+        "Station/Step/Pending"
+      ],
+      "stepText": [
+        "Text/Caption Text/Mod/Center",
+        "Text/Caption Text/Mod/Center",
+        "Text/Caption Text/Mod/Center",
+        "Text/Caption Text/Mod/Center",
+        "Text/Caption Text/Mod/Center",
+        "Text/Caption Text/Mod/Center"
+      ],
+      "permLed": [
+        "Indicator/LED/On",
+        "Indicator/LED/On",
+        "Indicator/LED/On",
+        "Indicator/LED/On",
+        "Indicator/LED/On"
+      ],
+      "permTxt": [
+        "Text/Label Text/Color/Default",
+        "Text/Label Text/Color/Default",
+        "Text/Label Text/Color/Default",
+        "Text/Label Text/Color/Default",
+        "Text/Label Text/Color/Default"
+      ],
+      "inReq": "Indicator/LED/On",
+      "inCmd": "Indicator/LED/On",
+      "inIlk": false,
+      "smReq": "Indicator/LED/Off",
+      "smCmd": "Indicator/LED/Off",
+      "smIlk": false,
+      "vaReq": "Indicator/LED/Off",
+      "vaCmd": "Indicator/LED/Off",
+      "vaIlk": false,
+      "tzLocked": true,
+      "resetLocked": true,
+      "foot": "Tare and Zero locked while active"
+    },
+    "pendingCmd": ""
+  },
+  "params": {
+    "tagPath": ""
+  },
+  "propConfig": {
+    "params.tagPath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "custom.s": {
+      "binding": {
+        "type": "property",
+        "config": {
+          "path": "view.custom.t"
+        },
+        "transforms": [
+          {
+            "type": "script",
+            "code": "\tt = value\n\tdef g(k, d=None):\n\t\ttry:\n\t\t\tv = t[k]\n\t\texcept:\n\t\t\tv = None\n\t\treturn d if v is None else v\n\tdef b(k):\n\t\ttry:\n\t\t\treturn bool(g(k, False))\n\t\texcept:\n\t\t\treturn False\n\tdef f(k):\n\t\ttry:\n\t\t\treturn float(g(k, 0.0))\n\t\texcept:\n\t\t\treturn 0.0\n\tdef cl(x):\n\t\treturn max(0.0, min(1.0, x))\n\tf3 = lambda x: \"%.3f\" % x\n\tdef f1(x):\n\t\treturn \"{:,.1f}\".format(x)\n\tdis, flt, cmp = b(\"Disabled\"), b(\"Failed\"), b(\"Complete\")\n\tsmp = b(\"SampleCMD\")\n\tif dis:   word, chip, txt = \"DISABLED\", \"State/OutOfService\", \"Station disabled\"\n\telif flt: word, chip, txt = \"FAULT\", \"State/Fault\", \"Station fault\"\n\telif cmp: word, chip, txt = \"COMPLETE\", \"State/Stopped\", \"Fill complete\"\n\telif b(\"Filling\"):    word, chip, txt = \"FILLING\", \"State/Running\", \"Filling primary vessel\"\n\telif smp:             word, chip, txt = \"SAMPLING\", \"State/Running\", \"Routing sample to secondary\"\n\telif b(\"Vacuuming\"):  word, chip, txt = \"VACUUMING\", \"State/Transition\", \"Evacuating vessel\"\n\telif b(\"Venting\"):    word, chip, txt = \"VENTING\", \"State/Transition\", \"Venting\"\n\telif b(\"Recovering\"): word, chip, txt = \"RECOVERING\", \"State/Transition\", \"Recovering\"\n\telif b(\"Active\"):     word, chip, txt = \"ACTIVE\", \"State/Running\", \"Station active\"\n\telif b(\"ReadyToStart\") or b(\"ReadyToFill\"): word, chip, txt = \"READY\", \"State/Stopped\", \"Ready to start\"\n\telse:                 word, chip, txt = \"IDLE\", \"State/Stopped\", \"Idle\"\n\tbusy = chip in (\"State/Running\", \"State/Transition\")\n\tmsg = g(\"Msg\", \"\")\n\ttry:\n\t\tmsg = msg.strip() if isinstance(msg, basestring) else \"\"\n\texcept NameError:\n\t\tmsg = msg.strip() if isinstance(msg, str) else \"\"\n\tif not msg:\n\t\tmsg = txt\n\tu = g(\"Units\", \"\")\n\tu = (\"%s\" % u).strip() if u is not None else \"\"\n\tif u in (\"\", \"---\", \"null\", \"None\"):\n\t\tu = \"kg\"\n\tnet, tgt, db = f(\"NetWeight\"), f(\"TargetWeight\"), f(\"Deadband\")\n\tscale = tgt * 1.08 if tgt > 0 else 1.0\n\tpct = net / tgt * 100.0 if tgt > 0 else 0.0\n\tover = tgt > 0 and net > tgt + db\n\tpt, pmax, pre = f(\"PT\"), f(\"Press_Max\"), f(\"SamplePress\")\n\tptok = b(\"PT_Valid\")\n\tpscale = pmax * 1.1 if pmax > 0 else 100.0\n\tvac = b(\"Vacuumed\")\n\tst = [0, 0, 0, 0, 0, 0]\n\tst[0] = 2 if b(\"Vessel_Present\") else 0\n\tst[1] = 2 if vac else (1 if b(\"Vacuuming\") else 0)\n\tst[2] = 2 if b(\"Press_Balanced\") else (1 if (b(\"Active\") and vac and not b(\"Filling\")) else 0)\n\tst[3] = 2 if (cmp or smp) else (1 if b(\"Filling\") else 0)\n\tst[4] = 2 if cmp else (1 if smp else 0)\n\tst[5] = 2 if cmp else 0\n\tif dis:\n\t\tst = [0, 0, 0, 0, 0, 0]\n\telif flt:\n\t\tfor i in range(6):\n\t\t\tif st[i] != 2:\n\t\t\t\tst[i] = 3\n\t\t\t\tbreak\n\tSC = [\"Station/Step/Pending\", \"Station/Step/Active\", \"Station/Step/Done\", \"Station/Step/Fault\"]\n\tTC = [\"Text/Caption Text/Mod/Center\", \"Text/Caption Text/Mod/Center Text/Color/Default Text/Weight/Bold\",\n\t      \"Text/Caption Text/Mod/Center Text/Color/Default\", \"Text/Caption Text/Mod/Center Text/Color/Default Text/Weight/Bold\"]\n\tled = lambda x: \"Indicator/LED/On\" if x else \"Indicator/LED/Off\"\n\tpl = lambda x: \"Text/Label Text/Color/Default\" if x else \"Text/Label\"\n\tsel = b(\"Selected\")\n\ttz = busy or dis\n\trs = not (cmp or flt)\n\tfoot = \"Station disabled: commands unavailable\" if dis else (\"Tare and Zero locked while active\" if tz else \"\")\n\tname = g(\"StationName\", \"\")\n\tscl = g(\"ScaleName\", \"\")\n\treturn {\n\t\t\"name\": (\"%s\" % name) if name else \"Station\", \"scale\": (\"%s\" % scl) if scl else \"\",\n\t\t\"word\": word, \"chip\": chip, \"msg\": msg, \"units\": u,\n\t\t\"busy\": busy, \"dis\": dis, \"sel\": sel,\n\t\t\"selText\": \"SELECTED\" if sel else \"SELECT\",\n\t\t\"selCls\": \"Button/Toggle/On\" if sel else \"Button/Toggle/Off\",\n\t\t\"hiCls\": \" Util/Highlight\" if sel else \"\",\n\t\t\"net\": f3(net), \"target\": f3(tgt), \"rem\": f3(max(0.0, tgt - net)), \"db\": f3(db),\n\t\t\"gross\": f3(f(\"GrossWeight\")), \"tare\": f3(f(\"TareWeight\")), \"total\": f3(f(\"TotalWeight\")),\n\t\t\"pct\": ((\"OVER \" if over else \"\") + \"%.1f%%\" % pct) if tgt > 0 else \"-\",\n\t\t\"fillCls\": \"Bar/FillAlarm\" if over else \"Bar/Fill\",\n\t\t\"fillW\": cl(net / scale), \"tgtX\": cl(tgt / scale) if tgt > 0 else 0.0,\n\t\t\"dbX\": cl((tgt - db) / scale), \"dbW\": max(0.012, cl(2 * db / scale)) if tgt > 0 else 0.0,\n\t\t\"pt\": f1(pt) if ptok else \"-----\", \"ptBad\": not ptok,\n\t\t\"ptCls\": \"Text/ValueLarge\" if ptok else \"Text/ValueLarge Value/BadQuality\",\n\t\t\"ptSmallCls\": \"Text/Value Text/Mod/Right\" if ptok else \"Text/Value Text/Mod/Right Value/BadQuality\",\n\t\t\"ptd\": \"dP %.1f psi\" % f(\"PT_Diff\"),\n\t\t\"ptW\": cl(pt / pscale) if ptok else 0.0,\n\t\t\"preX\": cl(pre / pscale), \"maxX\": cl(pmax / pscale - 0.008),\n\t\t\"pre\": f1(pre), \"pmax\": f1(pmax),\n\t\t\"steps\": [SC[x] for x in st], \"stepText\": [TC[x] for x in st],\n\t\t\"permLed\": [led(b(\"Vessel_Present\")), led(ptok), led(b(\"Press_Balanced\")), led(b(\"ReadyToStart\")), led(b(\"ReadyToFill\"))],\n\t\t\"permTxt\": [pl(b(\"Vessel_Present\")), pl(ptok), pl(b(\"Press_Balanced\")), pl(b(\"ReadyToStart\")), pl(b(\"ReadyToFill\"))],\n\t\t\"inReq\": led(b(\"InletREQ\")), \"inCmd\": led(b(\"InletCMD\")), \"inIlk\": b(\"InletREQ\") and not b(\"InletCMD\"),\n\t\t\"smReq\": led(b(\"SampleREQ\")), \"smCmd\": led(smp), \"smIlk\": b(\"SampleREQ\") and not smp,\n\t\t\"vaReq\": led(b(\"VacuumREQ\")), \"vaCmd\": led(b(\"VacuumCMD\")), \"vaIlk\": b(\"VacuumREQ\") and not b(\"VacuumCMD\"),\n\t\t\"tzLocked\": tz, \"resetLocked\": rs, \"foot\": foot\n\t}"
+          }
+        ]
+      }
+    },
+    "custom.t.Active": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Active",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Complete": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Complete",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Deadband": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Deadband",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Disabled": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Disabled",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Failed": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Failed",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Filling": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Filling",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.GrossWeight": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/GrossWeight",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.InletCMD": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/InletCMD",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.InletREQ": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/InletREQ",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Msg": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Msg",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.NetWeight": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/NetWeight",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Press_Balanced": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Press_Balanced",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Press_Max": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Press_Max",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.PT": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/PT",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.PT_Diff": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/PT_Diff",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.PT_Valid": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/PT_Valid",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.ReadyToFill": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/ReadyToFill",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.ReadyToStart": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/ReadyToStart",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Recovering": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Recovering",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.SampleCMD": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/SampleCMD",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.SamplePress": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/SamplePress",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.SampleREQ": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/SampleREQ",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.SampleWeight": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/SampleWeight",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.ScaleName": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/ScaleName",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Selected": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Selected",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.StationName": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/StationName",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.TareWeight": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/TareWeight",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.TargetWeight": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/TargetWeight",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.TotalWeight": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/TotalWeight",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Units": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Units",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.VacuumCMD": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/VacuumCMD",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Vacuumed": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Vacuumed",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Vacuuming": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Vacuuming",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.VacuumREQ": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/VacuumREQ",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Venting": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Venting",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    },
+    "custom.t.Vessel_Present": {
+      "binding": {
+        "type": "tag",
+        "config": {
+          "mode": "indirect",
+          "tagPath": "{0}/Vessel_Present",
+          "references": {
+            "0": "{view.params.tagPath}"
+          },
+          "fallbackDelay": 2.5
+        }
+      }
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 300,
+      "height": 800
+    }
+  },
+  "root": {
+    "type": "ia.container.flex",
+    "version": 0,
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "basis": "auto",
+      "grow": 0,
+      "shrink": 0
+    },
+    "props": {
+      "direction": "column",
+      "justify": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "style": {
+        "classes": "Container/Popup Util/Clip"
+      }
+    },
+    "children": [
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "basis": "3.519vh",
+          "grow": 0,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "center",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "Container/PopupHeader",
+            "padding": "0 0.37vh 0 0.926vh"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Titles"
+            },
+            "position": {
+              "basis": "0px",
+              "grow": 1,
+              "shrink": 1
+            },
+            "props": {
+              "direction": "column",
+              "justify": "center",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": ""
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Name"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Text/Subheader Text/Color/Inverse Text/Mod/Ellipsis"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "property",
+                      "config": {
+                        "path": "view.custom.s.name"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Scale"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Text/Caption Text/Color/Inverse"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "property",
+                      "config": {
+                        "path": "view.custom.s.scale"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ia.display.icon",
+            "version": 0,
+            "meta": {
+              "name": "Close",
+              "tooltip": {
+                "enabled": true,
+                "text": "Close"
+              }
+            },
+            "position": {
+              "basis": "2.593vh",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "path": "material/close",
+              "color": "#FFFFFF",
+              "style": {
+                "classes": "Util/Pointer"
+              }
+            },
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tsystem.perspective.closeDock(\"StationSidebar\")"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ia.container.flex",
+        "version": 0,
+        "meta": {
+          "name": "Body"
+        },
+        "position": {
+          "basis": "0px",
+          "grow": 1,
+          "shrink": 1
+        },
+        "props": {
+          "direction": "column",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "wrap": "nowrap",
+          "style": {
+            "classes": "",
+            "padding": "0.556vh",
+            "gap": "0.37vh"
+          }
+        },
+        "children": [
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Status"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": "Container/Faceplate",
+                "padding": "0.556vh 0.741vh"
+              }
+            },
+            "propConfig": {
+              "props.style.classes": {
+                "binding": {
+                  "type": "expr",
+                  "config": {
+                    "expression": "\"Container/Faceplate\" + {view.custom.s.hiCls}"
+                  }
+                }
+              }
+            },
+            "children": [
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "ChipRow"
+                },
+                "position": {
+                  "basis": "2.407vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "center",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Chip"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "State/Stopped",
+                        "alignSelf": "center"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.word"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.chip"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Sp"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.input.button",
+                    "version": 0,
+                    "meta": {
+                      "name": "Select"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "SELECT",
+                      "style": {
+                        "classes": "Button/Toggle/Off"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.selText"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.selCls"
+                          }
+                        }
+                      },
+                      "props.enabled": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "!{view.custom.s.dis}"
+                          }
+                        }
+                      }
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\t# Momentary pulse: set the PLC bit, release it 1 s later (harmless if the PLC clears it first).\n\tpath = self.view.params.tagPath + \"/HMI_Select\"\n\tsystem.tag.writeBlocking([path], [True])\n\tdef _release(p=path):\n\t\timport time\n\t\ttime.sleep(1.0)\n\t\tsystem.tag.writeBlocking([p], [False])\n\tsystem.util.invokeAsynchronous(_release)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Msg"
+                },
+                "position": {
+                  "basis": "1.667vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Text/Body Text/Mod/Ellipsis",
+                    "marginTop": "0.37vh"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "property",
+                      "config": {
+                        "path": "view.custom.s.msg"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Steps"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "stretch",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "gap": "0.185vh",
+                    "marginTop": "0.556vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Step0"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.185vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Seg"
+                        },
+                        "position": {
+                          "basis": "0.556vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": "Station/Step/Pending"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.steps[0]"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Txt"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Vessel",
+                          "style": {
+                            "classes": "Text/Caption Text/Mod/Center"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.stepText[0]"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Step1"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.185vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Seg"
+                        },
+                        "position": {
+                          "basis": "0.556vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": "Station/Step/Pending"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.steps[1]"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Txt"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Vac",
+                          "style": {
+                            "classes": "Text/Caption Text/Mod/Center"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.stepText[1]"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Step2"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.185vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Seg"
+                        },
+                        "position": {
+                          "basis": "0.556vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": "Station/Step/Pending"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.steps[2]"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Txt"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Prefill",
+                          "style": {
+                            "classes": "Text/Caption Text/Mod/Center"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.stepText[2]"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Step3"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.185vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Seg"
+                        },
+                        "position": {
+                          "basis": "0.556vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": "Station/Step/Pending"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.steps[3]"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Txt"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Fill",
+                          "style": {
+                            "classes": "Text/Caption Text/Mod/Center"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.stepText[3]"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Step4"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.185vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Seg"
+                        },
+                        "position": {
+                          "basis": "0.556vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": "Station/Step/Pending"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.steps[4]"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Txt"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Sample",
+                          "style": {
+                            "classes": "Text/Caption Text/Mod/Center"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.stepText[4]"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Step5"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.185vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Seg"
+                        },
+                        "position": {
+                          "basis": "0.556vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": "Station/Step/Pending"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.steps[5]"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Txt"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Done",
+                          "style": {
+                            "classes": "Text/Caption Text/Mod/Center"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.stepText[5]"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Weight"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": "Container/Faceplate",
+                "padding": "0.556vh 0.741vh"
+              }
+            },
+            "children": [
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "NetHead"
+                },
+                "position": {
+                  "basis": "1.389vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "baseline",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "NetLbl"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "Net weight",
+                      "style": {
+                        "classes": "Text/Label Text/Weight/Semibold Text/Mod/Upper"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "TgtLbl"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "Target",
+                      "style": {
+                        "classes": "Text/Label"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Target"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Value/Setpoint",
+                        "marginLeft": "0.278vh"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.target"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "TgtUnits"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Text/Units"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.units"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "NetRow"
+                },
+                "position": {
+                  "basis": "3.148vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "baseline",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "marginTop": "0.185vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Net"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Text/ValueHero Text/Mod/NoWrap",
+                        "lineHeight": "3.148vh"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.net"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "NetUnits"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Text/Units"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.units"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Spacer"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Pct"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Text/Value"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.pct"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.coord",
+                "version": 0,
+                "meta": {
+                  "name": "NetBar"
+                },
+                "position": {
+                  "basis": "1.111vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "mode": "percent",
+                  "style": {
+                    "classes": "Bar/Track Util/Clip",
+                    "marginTop": "0.37vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Fill"
+                    },
+                    "position": {
+                      "x": 0,
+                      "y": 0,
+                      "width": 0.5,
+                      "height": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Bar/Fill"
+                      }
+                    },
+                    "propConfig": {
+                      "position.width": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.fillW"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.fillCls"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Deadband"
+                    },
+                    "position": {
+                      "x": 0.9,
+                      "y": 0,
+                      "width": 0.012,
+                      "height": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Bar/Band/Deadband"
+                      }
+                    },
+                    "propConfig": {
+                      "position.x": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.dbX"
+                          }
+                        }
+                      },
+                      "position.width": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.dbW"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Target"
+                    },
+                    "position": {
+                      "x": 0.9,
+                      "y": 0,
+                      "width": 0.008,
+                      "height": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Bar/Marker"
+                      }
+                    },
+                    "propConfig": {
+                      "position.x": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.tgtX"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "NetCap"
+                },
+                "position": {
+                  "basis": "1.296vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "stretch",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "marginTop": "0.278vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "RemL"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "Remaining",
+                      "style": {
+                        "classes": "Text/Caption"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Rem"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Text/Caption",
+                        "marginLeft": "0.278vh"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.rem"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Sp2"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "DbL"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "Deadband \u00b1",
+                      "style": {
+                        "classes": "Text/Caption"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Db"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Text/Caption"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.db"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Boxes"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "stretch",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "gap": "0.37vh",
+                    "marginTop": "0.556vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Gross"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "Container/ValueBox",
+                        "padding": "0.185vh 0.37vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "GrossLbl"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Gross",
+                          "style": {
+                            "classes": "Text/Caption"
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "GrossRow"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "flex-start",
+                          "alignItems": "baseline",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "GrossVal"
+                            },
+                            "position": {
+                              "basis": "0px",
+                              "grow": 1,
+                              "shrink": 1
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Text/Value Text/Mod/Right"
+                              }
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.gross"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Tare"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "Container/ValueBox",
+                        "padding": "0.185vh 0.37vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "TareLbl"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Tare",
+                          "style": {
+                            "classes": "Text/Caption"
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "TareRow"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "flex-start",
+                          "alignItems": "baseline",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "TareVal"
+                            },
+                            "position": {
+                              "basis": "0px",
+                              "grow": 1,
+                              "shrink": 1
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Text/Value Text/Mod/Right"
+                              }
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.tare"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Total"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "Container/ValueBox",
+                        "padding": "0.185vh 0.37vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "TotalLbl"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Total",
+                          "style": {
+                            "classes": "Text/Caption"
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "TotalRow"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "flex-start",
+                          "alignItems": "baseline",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "TotalVal"
+                            },
+                            "position": {
+                              "basis": "0px",
+                              "grow": 1,
+                              "shrink": 1
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Text/Value Text/Mod/Right"
+                              }
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.total"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Pressure"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": "Container/Faceplate",
+                "padding": "0.556vh 0.741vh"
+              }
+            },
+            "children": [
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "PHead"
+                },
+                "position": {
+                  "basis": "1.389vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "baseline",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "PLbl"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "Vessel pressure",
+                      "style": {
+                        "classes": "Text/Label Text/Weight/Semibold Text/Mod/Upper"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Ptd"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Text/Label"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.ptd"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "PRow"
+                },
+                "position": {
+                  "basis": "2.315vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "baseline",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "marginTop": "0.185vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Pt"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Text/ValueLarge"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.pt"
+                          }
+                        }
+                      },
+                      "props.style.classes": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.ptCls"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "PtU"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "psig",
+                      "style": {
+                        "classes": "Text/Units"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Sp3"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "PtBad"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "BAD QUALITY",
+                      "style": {
+                        "classes": "Text/Caption Text/Weight/Bold Text/Mod/Italic"
+                      }
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.ptBad"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.coord",
+                "version": 0,
+                "meta": {
+                  "name": "PtBar"
+                },
+                "position": {
+                  "basis": "0.741vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "mode": "percent",
+                  "style": {
+                    "classes": "Bar/Track Util/Clip",
+                    "marginTop": "0.278vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Fill"
+                    },
+                    "position": {
+                      "x": 0,
+                      "y": 0,
+                      "width": 0.5,
+                      "height": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Bar/Fill"
+                      }
+                    },
+                    "propConfig": {
+                      "position.width": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.ptW"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Prefill"
+                    },
+                    "position": {
+                      "x": 0.9,
+                      "y": 0,
+                      "width": 0.008,
+                      "height": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Bar/Marker"
+                      }
+                    },
+                    "propConfig": {
+                      "position.x": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.preX"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Max"
+                    },
+                    "position": {
+                      "x": 0.9,
+                      "y": 0,
+                      "width": 0.008,
+                      "height": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Bar/Marker"
+                      }
+                    },
+                    "propConfig": {
+                      "position.x": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.maxX"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "PCap"
+                },
+                "position": {
+                  "basis": "1.296vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "stretch",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "marginTop": "0.185vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "PreL"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "Prefill",
+                      "style": {
+                        "classes": "Text/Caption"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Pre"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Text/Caption Text/Color/Editable",
+                        "marginLeft": "0.278vh"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.pre"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Sp4"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "MaxL"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "Max",
+                      "style": {
+                        "classes": "Text/Caption"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "Max"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Text/Caption Text/Color/Editable",
+                        "marginLeft": "0.278vh"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "property",
+                          "config": {
+                            "path": "view.custom.s.pmax"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "PermIO"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "row",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": "Container/Faceplate",
+                "padding": "0.556vh 0.741vh",
+                "gap": "0.926vh"
+              }
+            },
+            "children": [
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Perms"
+                },
+                "position": {
+                  "basis": "0px",
+                  "grow": 1,
+                  "shrink": 1
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "flex-start",
+                  "alignItems": "stretch",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "gap": "0.185vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "PermLbl"
+                    },
+                    "position": {
+                      "basis": "1.481vh",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "Permissives",
+                      "style": {
+                        "classes": "Text/Label Text/Weight/Semibold Text/Mod/Upper"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Perm0"
+                    },
+                    "position": {
+                      "basis": "1.481vh",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "direction": "row",
+                      "justify": "flex-start",
+                      "alignItems": "center",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.463vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Led"
+                        },
+                        "position": {
+                          "basis": "0.926vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": "Indicator/LED/Off",
+                            "height": "0.926vh"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.permLed[0]"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Txt"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Vessel present",
+                          "style": {
+                            "classes": "Text/Label Text/Mod/NoWrap"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.permTxt[0]"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Perm1"
+                    },
+                    "position": {
+                      "basis": "1.481vh",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "direction": "row",
+                      "justify": "flex-start",
+                      "alignItems": "center",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.463vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Led"
+                        },
+                        "position": {
+                          "basis": "0.926vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": "Indicator/LED/Off",
+                            "height": "0.926vh"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.permLed[1]"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Txt"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "PT valid",
+                          "style": {
+                            "classes": "Text/Label Text/Mod/NoWrap"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.permTxt[1]"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Perm2"
+                    },
+                    "position": {
+                      "basis": "1.481vh",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "direction": "row",
+                      "justify": "flex-start",
+                      "alignItems": "center",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.463vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Led"
+                        },
+                        "position": {
+                          "basis": "0.926vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": "Indicator/LED/Off",
+                            "height": "0.926vh"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.permLed[2]"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Txt"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Press balanced",
+                          "style": {
+                            "classes": "Text/Label Text/Mod/NoWrap"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.permTxt[2]"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Perm3"
+                    },
+                    "position": {
+                      "basis": "1.481vh",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "direction": "row",
+                      "justify": "flex-start",
+                      "alignItems": "center",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.463vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Led"
+                        },
+                        "position": {
+                          "basis": "0.926vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": "Indicator/LED/Off",
+                            "height": "0.926vh"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.permLed[3]"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Txt"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Ready to start",
+                          "style": {
+                            "classes": "Text/Label Text/Mod/NoWrap"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.permTxt[3]"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "Perm4"
+                    },
+                    "position": {
+                      "basis": "1.481vh",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "direction": "row",
+                      "justify": "flex-start",
+                      "alignItems": "center",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.463vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Led"
+                        },
+                        "position": {
+                          "basis": "0.926vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": "Indicator/LED/Off",
+                            "height": "0.926vh"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.permLed[4]"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Txt"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Ready to fill",
+                          "style": {
+                            "classes": "Text/Label Text/Mod/NoWrap"
+                          }
+                        },
+                        "propConfig": {
+                          "props.style.classes": {
+                            "binding": {
+                              "type": "property",
+                              "config": {
+                                "path": "view.custom.s.permTxt[4]"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Valves"
+                },
+                "position": {
+                  "basis": "0px",
+                  "grow": 1,
+                  "shrink": 1
+                },
+                "props": {
+                  "direction": "column",
+                  "justify": "flex-start",
+                  "alignItems": "stretch",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "gap": "0.185vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "ValveLbl"
+                    },
+                    "position": {
+                      "basis": "1.481vh",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "Valves",
+                      "style": {
+                        "classes": "Text/Label Text/Weight/Semibold Text/Mod/Upper"
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "VHead"
+                    },
+                    "position": {
+                      "basis": "1.204vh",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "direction": "row",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "B"
+                        },
+                        "position": {
+                          "basis": "0px",
+                          "grow": 1,
+                          "shrink": 1
+                        },
+                        "props": {
+                          "text": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Req"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "REQ",
+                          "style": {
+                            "classes": "Text/Caption Text/Mod/Center"
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "Cmd"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "CMD",
+                          "style": {
+                            "classes": "Text/Caption Text/Mod/Center"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_Inlet"
+                    },
+                    "position": {
+                      "basis": "2.222vh",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "direction": "row",
+                      "justify": "flex-start",
+                      "alignItems": "center",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "Name"
+                        },
+                        "position": {
+                          "basis": "0px",
+                          "grow": 1,
+                          "shrink": 1
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "flex-start",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": "",
+                            "gap": "0.37vh"
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Txt"
+                            },
+                            "position": {
+                              "basis": "auto",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "Inlet",
+                              "style": {
+                                "classes": "Text/Label Text/Color/Default"
+                              }
+                            }
+                          },
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Ilk",
+                              "tooltip": {
+                                "enabled": true,
+                                "text": "Requested but interlocked"
+                              }
+                            },
+                            "position": {
+                              "basis": "1.296vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "I",
+                              "style": {
+                                "classes": "Indicator/InterlockBadge",
+                                "height": "1.296vh"
+                              }
+                            },
+                            "propConfig": {
+                              "position.display": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.inIlk"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "Req"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "center",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Led"
+                            },
+                            "position": {
+                              "basis": "0.926vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Indicator/LED/Off",
+                                "height": "0.926vh"
+                              }
+                            },
+                            "propConfig": {
+                              "props.style.classes": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.inReq"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "Cmd"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "center",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Led"
+                            },
+                            "position": {
+                              "basis": "0.926vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Indicator/LED/Off",
+                                "height": "0.926vh"
+                              }
+                            },
+                            "propConfig": {
+                              "props.style.classes": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.inCmd"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_Sample"
+                    },
+                    "position": {
+                      "basis": "2.222vh",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "direction": "row",
+                      "justify": "flex-start",
+                      "alignItems": "center",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "Name"
+                        },
+                        "position": {
+                          "basis": "0px",
+                          "grow": 1,
+                          "shrink": 1
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "flex-start",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": "",
+                            "gap": "0.37vh"
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Txt"
+                            },
+                            "position": {
+                              "basis": "auto",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "Sample",
+                              "style": {
+                                "classes": "Text/Label Text/Color/Default"
+                              }
+                            }
+                          },
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Ilk",
+                              "tooltip": {
+                                "enabled": true,
+                                "text": "Requested but interlocked"
+                              }
+                            },
+                            "position": {
+                              "basis": "1.296vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "I",
+                              "style": {
+                                "classes": "Indicator/InterlockBadge",
+                                "height": "1.296vh"
+                              }
+                            },
+                            "propConfig": {
+                              "position.display": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.smIlk"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "Req"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "center",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Led"
+                            },
+                            "position": {
+                              "basis": "0.926vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Indicator/LED/Off",
+                                "height": "0.926vh"
+                              }
+                            },
+                            "propConfig": {
+                              "props.style.classes": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.smReq"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "Cmd"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "center",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Led"
+                            },
+                            "position": {
+                              "basis": "0.926vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Indicator/LED/Off",
+                                "height": "0.926vh"
+                              }
+                            },
+                            "propConfig": {
+                              "props.style.classes": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.smCmd"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "V_Vacuum"
+                    },
+                    "position": {
+                      "basis": "2.222vh",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "direction": "row",
+                      "justify": "flex-start",
+                      "alignItems": "center",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "Name"
+                        },
+                        "position": {
+                          "basis": "0px",
+                          "grow": 1,
+                          "shrink": 1
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "flex-start",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": "",
+                            "gap": "0.37vh"
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Txt"
+                            },
+                            "position": {
+                              "basis": "auto",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "Vacuum",
+                              "style": {
+                                "classes": "Text/Label Text/Color/Default"
+                              }
+                            }
+                          },
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Ilk",
+                              "tooltip": {
+                                "enabled": true,
+                                "text": "Requested but interlocked"
+                              }
+                            },
+                            "position": {
+                              "basis": "1.296vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "I",
+                              "style": {
+                                "classes": "Indicator/InterlockBadge",
+                                "height": "1.296vh"
+                              }
+                            },
+                            "propConfig": {
+                              "position.display": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.vaIlk"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "Req"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "center",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Led"
+                            },
+                            "position": {
+                              "basis": "0.926vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Indicator/LED/Off",
+                                "height": "0.926vh"
+                              }
+                            },
+                            "propConfig": {
+                              "props.style.classes": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.vaReq"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "Cmd"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "center",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "Led"
+                            },
+                            "position": {
+                              "basis": "0.926vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Indicator/LED/Off",
+                                "height": "0.926vh"
+                              }
+                            },
+                            "propConfig": {
+                              "props.style.classes": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.vaCmd"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Setpoints"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": "Container/Faceplate",
+                "padding": "0.556vh 0.741vh",
+                "gap": "0.37vh"
+              }
+            },
+            "children": [
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "SpLbl"
+                },
+                "position": {
+                  "basis": "1.389vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "Setpoints",
+                  "style": {
+                    "classes": "Text/Label Text/Weight/Semibold Text/Mod/Upper"
+                  }
+                }
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "SpRow0"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "stretch",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "gap": "0.741vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "SpTarget"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.185vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "SpTargetLbl"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Target",
+                          "style": {
+                            "classes": "Text/Label"
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "SpTargetRow"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "flex-start",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": "",
+                            "gap": "0.278vh"
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.input.numeric-entry-field",
+                            "version": 0,
+                            "meta": {
+                              "name": "SpTargetFld"
+                            },
+                            "position": {
+                              "basis": "0px",
+                              "grow": 1,
+                              "shrink": 1
+                            },
+                            "props": {
+                              "value": 0,
+                              "format": "0,0.000",
+                              "style": {
+                                "classes": "Input/Setpoint"
+                              }
+                            },
+                            "propConfig": {
+                              "props.value": {
+                                "binding": {
+                                  "type": "tag",
+                                  "config": {
+                                    "mode": "indirect",
+                                    "tagPath": "{0}/TargetWeight",
+                                    "references": {
+                                      "0": "{view.params.tagPath}"
+                                    },
+                                    "fallbackDelay": 2.5,
+                                    "bidirectional": true
+                                  }
+                                }
+                              },
+                              "props.enabled": {
+                                "binding": {
+                                  "type": "expr",
+                                  "config": {
+                                    "expression": "!{view.custom.s.dis}"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "SpTargetU"
+                            },
+                            "position": {
+                              "basis": "2.593vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Text/Units"
+                              }
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.units"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "SpSample"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.185vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "SpSampleLbl"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Sample",
+                          "style": {
+                            "classes": "Text/Label"
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "SpSampleRow"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "flex-start",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": "",
+                            "gap": "0.278vh"
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.input.numeric-entry-field",
+                            "version": 0,
+                            "meta": {
+                              "name": "SpSampleFld"
+                            },
+                            "position": {
+                              "basis": "0px",
+                              "grow": 1,
+                              "shrink": 1
+                            },
+                            "props": {
+                              "value": 0,
+                              "format": "0,0.000",
+                              "style": {
+                                "classes": "Input/Setpoint"
+                              }
+                            },
+                            "propConfig": {
+                              "props.value": {
+                                "binding": {
+                                  "type": "tag",
+                                  "config": {
+                                    "mode": "indirect",
+                                    "tagPath": "{0}/SampleWeight",
+                                    "references": {
+                                      "0": "{view.params.tagPath}"
+                                    },
+                                    "fallbackDelay": 2.5,
+                                    "bidirectional": true
+                                  }
+                                }
+                              },
+                              "props.enabled": {
+                                "binding": {
+                                  "type": "expr",
+                                  "config": {
+                                    "expression": "!{view.custom.s.dis}"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "SpSampleU"
+                            },
+                            "position": {
+                              "basis": "2.593vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Text/Units"
+                              }
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.units"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "SpRow1"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "stretch",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "gap": "0.741vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "SpPmax"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.185vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "SpPmaxLbl"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Max press",
+                          "style": {
+                            "classes": "Text/Label"
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "SpPmaxRow"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "flex-start",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": "",
+                            "gap": "0.278vh"
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.input.numeric-entry-field",
+                            "version": 0,
+                            "meta": {
+                              "name": "SpPmaxFld"
+                            },
+                            "position": {
+                              "basis": "0px",
+                              "grow": 1,
+                              "shrink": 1
+                            },
+                            "props": {
+                              "value": 0,
+                              "format": "0,0.0",
+                              "style": {
+                                "classes": "Input/Setpoint"
+                              }
+                            },
+                            "propConfig": {
+                              "props.value": {
+                                "binding": {
+                                  "type": "tag",
+                                  "config": {
+                                    "mode": "indirect",
+                                    "tagPath": "{0}/Press_Max",
+                                    "references": {
+                                      "0": "{view.params.tagPath}"
+                                    },
+                                    "fallbackDelay": 2.5,
+                                    "bidirectional": true
+                                  }
+                                }
+                              },
+                              "props.enabled": {
+                                "binding": {
+                                  "type": "expr",
+                                  "config": {
+                                    "expression": "!{view.custom.s.dis}"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "SpPmaxU"
+                            },
+                            "position": {
+                              "basis": "2.593vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "psig",
+                              "style": {
+                                "classes": "Text/Units"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "SpPrefill"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.185vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "SpPrefillLbl"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Prefill press",
+                          "style": {
+                            "classes": "Text/Label"
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "SpPrefillRow"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "flex-start",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": "",
+                            "gap": "0.278vh"
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.input.numeric-entry-field",
+                            "version": 0,
+                            "meta": {
+                              "name": "SpPrefillFld"
+                            },
+                            "position": {
+                              "basis": "0px",
+                              "grow": 1,
+                              "shrink": 1
+                            },
+                            "props": {
+                              "value": 0,
+                              "format": "0,0.0",
+                              "style": {
+                                "classes": "Input/Setpoint"
+                              }
+                            },
+                            "propConfig": {
+                              "props.value": {
+                                "binding": {
+                                  "type": "tag",
+                                  "config": {
+                                    "mode": "indirect",
+                                    "tagPath": "{0}/SamplePress",
+                                    "references": {
+                                      "0": "{view.params.tagPath}"
+                                    },
+                                    "fallbackDelay": 2.5,
+                                    "bidirectional": true
+                                  }
+                                }
+                              },
+                              "props.enabled": {
+                                "binding": {
+                                  "type": "expr",
+                                  "config": {
+                                    "expression": "!{view.custom.s.dis}"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "SpPrefillU"
+                            },
+                            "position": {
+                              "basis": "2.593vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "psig",
+                              "style": {
+                                "classes": "Text/Units"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "SpRow2"
+                },
+                "position": {
+                  "basis": "auto",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "stretch",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "gap": "0.741vh"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.container.flex",
+                    "version": 0,
+                    "meta": {
+                      "name": "SpDb"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-start",
+                      "alignItems": "stretch",
+                      "wrap": "nowrap",
+                      "style": {
+                        "classes": "",
+                        "gap": "0.185vh"
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "ia.display.label",
+                        "version": 0,
+                        "meta": {
+                          "name": "SpDbLbl"
+                        },
+                        "position": {
+                          "basis": "auto",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "text": "Deadband",
+                          "style": {
+                            "classes": "Text/Label"
+                          }
+                        }
+                      },
+                      {
+                        "type": "ia.container.flex",
+                        "version": 0,
+                        "meta": {
+                          "name": "SpDbRow"
+                        },
+                        "position": {
+                          "basis": "2.407vh",
+                          "grow": 0,
+                          "shrink": 0
+                        },
+                        "props": {
+                          "direction": "row",
+                          "justify": "flex-start",
+                          "alignItems": "center",
+                          "wrap": "nowrap",
+                          "style": {
+                            "classes": "",
+                            "gap": "0.278vh"
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "ia.input.numeric-entry-field",
+                            "version": 0,
+                            "meta": {
+                              "name": "SpDbFld"
+                            },
+                            "position": {
+                              "basis": "0px",
+                              "grow": 1,
+                              "shrink": 1
+                            },
+                            "props": {
+                              "value": 0,
+                              "format": "0,0.000",
+                              "style": {
+                                "classes": "Input/Setpoint"
+                              }
+                            },
+                            "propConfig": {
+                              "props.value": {
+                                "binding": {
+                                  "type": "tag",
+                                  "config": {
+                                    "mode": "indirect",
+                                    "tagPath": "{0}/Deadband",
+                                    "references": {
+                                      "0": "{view.params.tagPath}"
+                                    },
+                                    "fallbackDelay": 2.5,
+                                    "bidirectional": true
+                                  }
+                                }
+                              },
+                              "props.enabled": {
+                                "binding": {
+                                  "type": "expr",
+                                  "config": {
+                                    "expression": "!{view.custom.s.dis}"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "ia.display.label",
+                            "version": 0,
+                            "meta": {
+                              "name": "SpDbU"
+                            },
+                            "position": {
+                              "basis": "2.593vh",
+                              "grow": 0,
+                              "shrink": 0
+                            },
+                            "props": {
+                              "text": "",
+                              "style": {
+                                "classes": "Text/Units"
+                              }
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "type": "property",
+                                  "config": {
+                                    "path": "view.custom.s.units"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "SpBlank4"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ia.container.flex",
+            "version": 0,
+            "meta": {
+              "name": "Commands"
+            },
+            "position": {
+              "basis": "auto",
+              "grow": 0,
+              "shrink": 0
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-start",
+              "alignItems": "stretch",
+              "wrap": "nowrap",
+              "style": {
+                "classes": "Container/Faceplate",
+                "padding": "0.556vh 0.741vh",
+                "gap": "0.37vh",
+                "marginTop": "auto"
+              }
+            },
+            "children": [
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Buttons"
+                },
+                "position": {
+                  "basis": "3.333vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "stretch",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "gap": "0.556vh"
+                  }
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.pendingCmd} = \"\""
+                      }
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.input.button",
+                    "version": 0,
+                    "meta": {
+                      "name": "Tare"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "Tare",
+                      "style": {
+                        "classes": "Button/Default"
+                      }
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "!{view.custom.s.tzLocked}"
+                          }
+                        }
+                      }
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.custom.pendingCmd = \"Tare\""
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.input.button",
+                    "version": 0,
+                    "meta": {
+                      "name": "Zero"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "Zero",
+                      "style": {
+                        "classes": "Button/Default"
+                      }
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "!{view.custom.s.tzLocked}"
+                          }
+                        }
+                      }
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.custom.pendingCmd = \"Zero\""
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.input.button",
+                    "version": 0,
+                    "meta": {
+                      "name": "Reset"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "Reset",
+                      "style": {
+                        "classes": "Button/Primary"
+                      }
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "!{view.custom.s.resetLocked}"
+                          }
+                        }
+                      }
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.custom.pendingCmd = \"Reset\""
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.container.flex",
+                "version": 0,
+                "meta": {
+                  "name": "Confirm"
+                },
+                "position": {
+                  "basis": "3.333vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "direction": "row",
+                  "justify": "flex-start",
+                  "alignItems": "center",
+                  "wrap": "nowrap",
+                  "style": {
+                    "classes": "",
+                    "gap": "0.556vh"
+                  }
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "type": "expr",
+                      "config": {
+                        "expression": "{view.custom.pendingCmd} != \"\""
+                      }
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "type": "ia.display.label",
+                    "version": 0,
+                    "meta": {
+                      "name": "ConfirmTxt"
+                    },
+                    "position": {
+                      "basis": "0px",
+                      "grow": 1,
+                      "shrink": 1
+                    },
+                    "props": {
+                      "text": "",
+                      "style": {
+                        "classes": "Text/Body Text/Weight/Semibold Text/Mod/Ellipsis"
+                      }
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "type": "expr",
+                          "config": {
+                            "expression": "{view.custom.pendingCmd} + \" \" + {view.custom.s.scale} + \"?\""
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.input.button",
+                    "version": 0,
+                    "meta": {
+                      "name": "Cancel"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "Cancel",
+                      "style": {
+                        "classes": "Button/Default"
+                      }
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tself.view.custom.pendingCmd = \"\""
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "ia.input.button",
+                    "version": 0,
+                    "meta": {
+                      "name": "ConfirmBtn"
+                    },
+                    "position": {
+                      "basis": "auto",
+                      "grow": 0,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "text": "Confirm",
+                      "style": {
+                        "classes": "Button/Primary"
+                      }
+                    },
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\tcmd = self.view.custom.pendingCmd\n\tself.view.custom.pendingCmd = \"\"\n\tmember = {\"Tare\": \"TareCMD\", \"Zero\": \"ZeroCMD\", \"Reset\": \"HMI_Reset\"}.get(cmd)\n\tif member:\n\t\tpath = self.view.params.tagPath + \"/\" + member\n\t\tsystem.tag.writeBlocking([path], [True])\n\t\tdef _release(p=path):\n\t\t\timport time\n\t\t\ttime.sleep(1.0)\n\t\t\tsystem.tag.writeBlocking([p], [False])\n\t\tsystem.util.invokeAsynchronous(_release)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ia.display.label",
+                "version": 0,
+                "meta": {
+                  "name": "Foot"
+                },
+                "position": {
+                  "basis": "1.296vh",
+                  "grow": 0,
+                  "shrink": 0
+                },
+                "props": {
+                  "text": "",
+                  "style": {
+                    "classes": "Text/Caption"
+                  }
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "type": "property",
+                      "config": {
+                        "path": "view.custom.s.foot"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

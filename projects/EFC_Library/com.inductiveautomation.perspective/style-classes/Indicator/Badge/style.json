@@ -1,0 +1,15 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#595959",
+      "color": "#FFFFFF",
+      "fontSize": "1.019vh",
+      "fontWeight": "700",
+      "borderRadius": "0.741vh",
+      "padding": "0 0.463vh",
+      "justifyContent": "center",
+      "textAlign": "center"
+    }
+  },
+  "variants": []
+}

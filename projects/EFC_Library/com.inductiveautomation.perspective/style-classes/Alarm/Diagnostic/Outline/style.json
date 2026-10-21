@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "outline": "0.278vh solid #6E6E6E",
+      "outlineOffset": "0.093vh"
+    }
+  },
+  "variants": []
+}

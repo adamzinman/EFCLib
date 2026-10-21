@@ -1,0 +1,171 @@
+{
+  "name": "PID_Demo",
+  "tagType": "Folder",
+  "tags": [
+    {
+      "name": "TIC101",
+      "tagType": "UdtInstance",
+      "typeId": "PID_Loop",
+      "tags": [
+        {
+          "name": "PV",
+          "tagType": "AtomicTag",
+          "value": 118.4,
+          "engUnit": "°F",
+          "engLow": 0.0,
+          "engHigh": 200.0
+        },
+        {
+          "name": "SP",
+          "tagType": "AtomicTag",
+          "value": 120.0
+        },
+        {
+          "name": "OUT",
+          "tagType": "AtomicTag",
+          "value": 46.0
+        },
+        {
+          "name": "Mode",
+          "tagType": "AtomicTag",
+          "value": 1
+        },
+        {
+          "name": "AlmHi",
+          "tagType": "AtomicTag",
+          "value": 130.0
+        },
+        {
+          "name": "AlmLo",
+          "tagType": "AtomicTag",
+          "value": 40.0
+        },
+        {
+          "name": "SP_Lo",
+          "tagType": "AtomicTag",
+          "value": 20.0
+        },
+        {
+          "name": "SP_Hi",
+          "tagType": "AtomicTag",
+          "value": 150.0
+        },
+        {
+          "name": "Description",
+          "tagType": "AtomicTag",
+          "value": "Reactor jacket temperature"
+        }
+      ]
+    },
+    {
+      "name": "PIC205",
+      "tagType": "UdtInstance",
+      "typeId": "PID_Loop",
+      "tags": [
+        {
+          "name": "PV",
+          "tagType": "AtomicTag",
+          "value": 262.0,
+          "engUnit": "PSIG",
+          "engLow": 0.0,
+          "engHigh": 300.0
+        },
+        {
+          "name": "SP",
+          "tagType": "AtomicTag",
+          "value": 210.0
+        },
+        {
+          "name": "OUT",
+          "tagType": "AtomicTag",
+          "value": 88.0
+        },
+        {
+          "name": "Mode",
+          "tagType": "AtomicTag",
+          "value": 0
+        },
+        {
+          "name": "AlmHi",
+          "tagType": "AtomicTag",
+          "value": 250.0
+        },
+        {
+          "name": "AlmLo",
+          "tagType": "AtomicTag",
+          "value": 150.0
+        },
+        {
+          "name": "SP_Lo",
+          "tagType": "AtomicTag",
+          "value": 100.0
+        },
+        {
+          "name": "SP_Hi",
+          "tagType": "AtomicTag",
+          "value": 260.0
+        },
+        {
+          "name": "Description",
+          "tagType": "AtomicTag",
+          "value": "Compressor discharge pressure"
+        }
+      ]
+    },
+    {
+      "name": "FIC310",
+      "tagType": "UdtInstance",
+      "typeId": "PID_Loop",
+      "tags": [
+        {
+          "name": "PV",
+          "tagType": "AtomicTag",
+          "value": 296.0,
+          "engUnit": "SCFM",
+          "engLow": 0.0,
+          "engHigh": 500.0
+        },
+        {
+          "name": "SP",
+          "tagType": "AtomicTag",
+          "value": 300.0
+        },
+        {
+          "name": "OUT",
+          "tagType": "AtomicTag",
+          "value": 63.0
+        },
+        {
+          "name": "Mode",
+          "tagType": "AtomicTag",
+          "value": 2
+        },
+        {
+          "name": "AlmHi",
+          "tagType": "AtomicTag",
+          "value": 350.0
+        },
+        {
+          "name": "AlmLo",
+          "tagType": "AtomicTag",
+          "value": 50.0
+        },
+        {
+          "name": "SP_Lo",
+          "tagType": "AtomicTag",
+          "value": 0.0
+        },
+        {
+          "name": "SP_Hi",
+          "tagType": "AtomicTag",
+          "value": 450.0
+        },
+        {
+          "name": "Description",
+          "tagType": "AtomicTag",
+          "value": "N2 feed flow"
+        }
+      ]
+    }
+  ]
+}

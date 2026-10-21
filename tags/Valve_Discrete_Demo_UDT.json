@@ -1,0 +1,167 @@
+{
+  "name": "Valve_Discrete_Demo",
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "name": "Auto",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "Auto_Perm",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "CMD",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "HMI_Auto",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "HMI_CMD",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "HMI_Lockout",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "HMI_Manual",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "HMI_Off",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "Interlock",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "LockedOut",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "Man_Perm",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "Manual",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "Off",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "Permissive",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "REQ",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "Reset_Count",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "ZSO",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": false
+    },
+    {
+      "name": "ZSC",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": true
+    },
+    {
+      "name": "Feedback_Enabled",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "value": true
+    },
+    {
+      "name": "Cycle_Count",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "Int4",
+      "value": 0
+    },
+    {
+      "name": "Description",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "String",
+      "value": ""
+    },
+    {
+      "name": "InterlockList",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "String",
+      "value": ""
+    },
+    {
+      "name": "Name",
+      "tagType": "AtomicTag",
+      "valueSource": "memory",
+      "dataType": "String",
+      "value": ""
+    }
+  ]
+}

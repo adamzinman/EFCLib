@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="56" height="56">
+<path id="pipe0" d="M2 50 H20" fill="none" stroke="#333333" stroke-width="3.571"/>
+<path id="pipe1" d="M80 50 H98" fill="none" stroke="#333333" stroke-width="3.571"/>
+<circle id="body2" cx="50" cy="50" r="30" fill="#9E9E9E" stroke="#262626" stroke-width="2.679"/>
+<path id="detail3" d="M32 50 A9 9 0 1 0 50 50 A9 9 0 1 0 32 50 Z M50 50 A9 9 0 1 0 68 50 A9 9 0 1 0 50 50 Z" fill="none" stroke="#262626" stroke-width="1.786"/>
+<path id="detail4" d="M32 74 L24 92 H76 L68 74" fill="none" stroke="#262626" stroke-width="1.786"/>
+</svg>

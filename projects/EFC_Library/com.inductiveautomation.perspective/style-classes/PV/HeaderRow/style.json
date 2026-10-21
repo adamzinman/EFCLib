@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "gap": "0.278vh",
+      "height": "1.111vh",
+      "minHeight": "1.111vh",
+      "minWidth": "0px"
+    }
+  },
+  "variants": []
+}

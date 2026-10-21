@@ -1,0 +1,18 @@
+{
+  "base": {
+    "style": {
+      "display": "none",
+      "width": "0px",
+      "minWidth": "0px",
+      "maxWidth": "0px",
+      "flexBasis": "0px",
+      "padding": "0px",
+      "margin": "0px",
+      "borderWidth": "0px",
+      "overflow": "hidden",
+      "fontSize": "0px",
+      "visibility": "hidden"
+    }
+  },
+  "variants": []
+}

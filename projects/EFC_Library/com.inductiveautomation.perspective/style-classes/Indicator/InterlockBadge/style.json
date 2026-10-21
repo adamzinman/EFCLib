@@ -1,0 +1,18 @@
+{
+  "base": {
+    "style": {
+      "fontSize": "1.111vh",
+      "fontWeight": "800",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif",
+      "border": "0.093vh solid #1F1F1F",
+      "borderRadius": "0.185vh",
+      "textAlign": "center",
+      "justifyContent": "center",
+      "alignItems": "center",
+      "lineHeight": "1",
+      "backgroundColor": "#C00000",
+      "color": "#FFFFFF"
+    }
+  },
+  "variants": []
+}

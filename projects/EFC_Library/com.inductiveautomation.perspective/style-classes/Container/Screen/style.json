@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#D9D9D9",
+      "fontFamily": "'Noto Sans', 'Segoe UI', Arial, sans-serif",
+      "color": "#1F1F1F"
+    }
+  },
+  "variants": []
+}
